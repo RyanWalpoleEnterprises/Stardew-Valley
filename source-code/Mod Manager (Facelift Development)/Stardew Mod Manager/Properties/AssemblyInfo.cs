@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RWE Labs, Ryan Walpole Enterprises")]
 [assembly: AssemblyProduct("Stardew Mod Manager")]
-[assembly: AssemblyCopyright("Copyright © Ryan Walpole Enterprises, RWE Labs - 2023")]
+[assembly: AssemblyCopyright("Copyright © Ryan Walpole Enterprises, RWE Labs - 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

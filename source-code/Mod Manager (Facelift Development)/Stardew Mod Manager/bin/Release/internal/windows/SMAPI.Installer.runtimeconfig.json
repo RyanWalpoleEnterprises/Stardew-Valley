@@ -1,14 +1,24 @@
 {
   "runtimeOptions": {
-    "tfm": "net5.0",
+    "tfm": "net6.0",
     "includedFrameworks": [
       {
         "name": "Microsoft.NETCore.App",
-        "version": "5.0.17"
+        "version": "6.0.27"
       }
     ],
     "configProperties": {
-      "System.Reflection.Metadata.MetadataUpdater.IsSupported": false
+      "Microsoft.Extensions.DependencyInjection.VerifyOpenGenericServiceTrimmability": true,
+      "System.ComponentModel.TypeConverter.EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization": false,
+      "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
+      "System.Resources.ResourceManager.AllowCustomResourceTypes": false,
+      "System.Runtime.InteropServices.BuiltInComInterop.IsSupported": false,
+      "System.Runtime.InteropServices.EnableConsumingManagedCodeFromNativeHosting": false,
+      "System.Runtime.InteropServices.EnableCppCLIHostActivation": false,
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false,
+      "System.StartupHookProvider.IsSupported": false,
+      "System.Text.Encoding.EnableUnsafeUTF7Encoding": false,
+      "System.Threading.Thread.EnableAutoreleasePool": false
     }
   }
 }

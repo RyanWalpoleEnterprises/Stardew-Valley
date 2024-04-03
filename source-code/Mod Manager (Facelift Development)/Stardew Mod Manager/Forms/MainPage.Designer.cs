@@ -154,6 +154,7 @@ namespace Stardew_Mod_Manager
             this.StartSMAPIUpdateCheck = new System.Windows.Forms.Timer(this.components);
             this.Debug_BackupMods = new System.Windows.Forms.Button();
             this.DoTelemetricChecks = new System.ComponentModel.BackgroundWorker();
+            this.SMAPIBundleInstall = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_SMAPIUpToDate)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -574,6 +575,7 @@ namespace Stardew_Mod_Manager
             // 
             // ModsToMove
             // 
+            this.ModsToMove.Enabled = false;
             this.ModsToMove.Location = new System.Drawing.Point(7, 12);
             this.ModsToMove.Name = "ModsToMove";
             this.ModsToMove.Size = new System.Drawing.Size(194, 26);
@@ -997,6 +999,7 @@ namespace Stardew_Mod_Manager
             // SMAPIWarning
             // 
             this.SMAPIWarning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.SMAPIWarning.Controls.Add(this.SMAPIBundleInstall);
             this.SMAPIWarning.Controls.Add(this.SMAPIDownload);
             this.SMAPIWarning.Controls.Add(this.label3);
             this.SMAPIWarning.Controls.Add(this.pictureBox2);
@@ -1708,6 +1711,20 @@ namespace Stardew_Mod_Manager
             this.DoTelemetricChecks.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoTelemetricChecks_DoWork);
             this.DoTelemetricChecks.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.DoTelemetricChecks_RunWorkerCompleted);
             // 
+            // SMAPIBundleInstall
+            // 
+            this.SMAPIBundleInstall.ActiveLinkColor = System.Drawing.Color.White;
+            this.SMAPIBundleInstall.AutoSize = true;
+            this.SMAPIBundleInstall.LinkColor = System.Drawing.Color.White;
+            this.SMAPIBundleInstall.Location = new System.Drawing.Point(278, 33);
+            this.SMAPIBundleInstall.Name = "SMAPIBundleInstall";
+            this.SMAPIBundleInstall.Size = new System.Drawing.Size(112, 13);
+            this.SMAPIBundleInstall.TabIndex = 3;
+            this.SMAPIBundleInstall.TabStop = true;
+            this.SMAPIBundleInstall.Text = "Install Bundled SMAPI";
+            this.SMAPIBundleInstall.VisitedLinkColor = System.Drawing.Color.White;
+            this.SMAPIBundleInstall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SMAPIBundleInstall_LinkClicked);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1905,5 +1922,6 @@ namespace Stardew_Mod_Manager
         private System.Windows.Forms.LinkLabel ViewTelemetryPolicy;
         private System.Windows.Forms.CheckBox WebToolsWarningEnabled;
         private Syncfusion.WinForms.Controls.SfButton VolunteerTelemetry;
+        private System.Windows.Forms.LinkLabel SMAPIBundleInstall;
     }
 }

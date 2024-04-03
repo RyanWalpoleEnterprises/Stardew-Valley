@@ -46,6 +46,7 @@ namespace Stardew_Mod_Manager
             CheckSDV.Start();
             GetColorProfile();
             CheckDoTelemetry();
+            ModsToMove.Clear();
 
             MainTabs.TabPanelBackColor = System.Drawing.Color.White;
             MainTabs.TabPages.Remove(Tab_Settings);
@@ -66,8 +67,13 @@ namespace Stardew_Mod_Manager
 
             try
             {
-                var SMAPIVersion = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
-                string SMAPIVersionText = "SMAPI " + "v" + SMAPIVersion.ProductVersion;
+                //var SMAPIVersion = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
+                var SMAPI = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
+                string Name = SMAPI.ProductName;
+                string Publisher = SMAPI.LegalCopyright;
+                //string Version = SMAPI.FileVersion;
+
+                string SMAPIVersionText = "SMAPI " + "v" + SMAPI.FileVersion;
                 SMAPIVer.Text = SMAPIVersionText;
 
                 if (!File.Exists(Properties.Settings.Default.PresetsDir + "SMAPI Default.txt"))
@@ -1173,8 +1179,9 @@ namespace Stardew_Mod_Manager
             try
             {
                 string extractdir = Properties.Settings.Default.InactiveModsDir;
-                string extractpath = extractdir + @"\" + Properties.Settings.Default.TMP_ModSafeName;
+                string extractpath = extractdir + Properties.Settings.Default.TMP_ModSafeName;
 
+                //MessageBox.Show("SP: " + extractpath);
                 //MessageBox.Show("Install " + ModZipPath.Text + " to " + extractdir);
 
                 ZipFile.ExtractToDirectory(ModZipPath.Text, extractdir);
@@ -1184,6 +1191,7 @@ namespace Stardew_Mod_Manager
                     MainTabs.SelectedTab = Tab_Main;
                     InstallFromZIP.Enabled = false;
                     ModZipPath.Clear();
+                    ModsToMove.Clear();
                     RefreshObjects();
                     Tab_InstallOptions.Close();
                 }
@@ -1797,6 +1805,16 @@ namespace Stardew_Mod_Manager
             {
                 MessageBox.Show("We ran into an issue sending your telemetry data to RWE Labs.", "Voluntary Submission | RWE Labs Telemetry");
             }
+        }
+
+        private void SMAPIBundleInstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string extractionpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDV Mod Manager\SMAPI\";
+
+            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
+            Process.Start(appPath + @"\smapi.bat");
+
+            Application.Exit();
         }
     }
 }
