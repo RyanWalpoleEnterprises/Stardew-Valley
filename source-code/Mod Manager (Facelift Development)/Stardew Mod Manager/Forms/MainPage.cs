@@ -23,6 +23,7 @@ using Syncfusion.WinForms.Controls;
 using System.Runtime.InteropServices;
 using Stardew_Mod_Manager.Forms.Webapp;
 using System.Security.Cryptography.X509Certificates;
+using Ionic.Zip;
 
 namespace Stardew_Mod_Manager
 {
@@ -907,7 +908,7 @@ namespace Stardew_Mod_Manager
                     Random rn = new Random();
                     intnum = rn.Next(1,98547);
 
-                    ZipFile.CreateFromDirectory(TargetSave, backupsdir + GameSavesList.SelectedItem.ToString() + "_" + DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "_" + intnum + ".zip");
+                    System.IO.Compression.ZipFile.CreateFromDirectory(TargetSave, backupsdir + GameSavesList.SelectedItem.ToString() + "_" + DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "_" + intnum + ".zip");
                     MessageBox.Show("A backup of your game save: " + GameSavesList.SelectedItem.ToString() + " has been made.","Game Save Management | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -1196,7 +1197,25 @@ namespace Stardew_Mod_Manager
                 //MessageBox.Show("SP: " + extractpath);
                 //MessageBox.Show("Install " + ModZipPath.Text + " to " + extractdir);
 
-                ZipFile.ExtractToDirectory(ModZipPath.Text, extractdir);
+                //ZipFile.ExtractToDirectory(ModZipPath.Text, extractdir);
+
+                Ionic.Zip.ZipFile zipFile = Ionic.Zip.ZipFile.Read(ModZipPath.Text);
+                {
+                    foreach(ZipEntry zipEntry in zipFile)
+                    {
+                        try
+                        {
+                            zipEntry.Extract(extractdir, ExtractExistingFileAction.OverwriteSilently);
+                        }
+                        catch(Exception ex)
+                        {
+                            //could not extract specific file
+                            MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
+                        }
+                    }
+                }
+
                 DialogResult dr = MessageBox.Show(Properties.Settings.Default.TMP_ModSafeName + " was successfully installed. To use this mod in game, you must enable it within the Mod Loader.", "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (dr == DialogResult.OK)
                 {
@@ -1544,7 +1563,7 @@ namespace Stardew_Mod_Manager
             MessageBox.Show("The application may hang and become unresponsive for a moment depending on the size of your disabled mods list.");
             if (!File.Exists(Properties.Settings.Default.StardewDir + @"inactive-mods-backup.zip"))
             {
-                ZipFile.CreateFromDirectory(Properties.Settings.Default.InactiveModsDir, Properties.Settings.Default.StardewDir + @"inactive-mods-backup.zip");
+                System.IO.Compression.ZipFile.CreateFromDirectory(Properties.Settings.Default.InactiveModsDir, Properties.Settings.Default.StardewDir + @"inactive-mods-backup.zip");
                 MessageBox.Show("DEBUG_OPERATIONCOMPLETED", "Debug Menu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
