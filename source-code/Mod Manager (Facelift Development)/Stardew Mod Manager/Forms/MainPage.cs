@@ -173,6 +173,14 @@ namespace Stardew_Mod_Manager
                 SDVPlay.Enabled = false;
                 SDVPlay.Text = "Game Running";
                 SDVPlay.Image = null;
+
+                InstalledModsList.Enabled = false;
+                AvailableModsList.Enabled = false;
+                EnableModButton.Enabled = false;
+                DisableModButton.Enabled = false;
+                InstallMods.Enabled = false;
+                LoadPresetButton.Enabled = false;
+                DeleteMod.Enabled = false;
             }
             else
             {
@@ -199,7 +207,11 @@ namespace Stardew_Mod_Manager
                         SDVPlay.Image = Properties.Resources.SDVPlay_Green;
                         break;
                 }
-                
+
+                InstalledModsList.Enabled = true;
+                AvailableModsList.Enabled = true;
+                InstallMods.Enabled = true;
+                LoadPresetButton.Enabled = true;
             }
         }
 
