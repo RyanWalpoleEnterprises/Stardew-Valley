@@ -1181,8 +1181,7 @@ namespace Stardew_Mod_Manager
                 string extractdir = Properties.Settings.Default.InactiveModsDir;
                 string extractpath = extractdir + Properties.Settings.Default.TMP_ModSafeName;
 
-                MessageBox.Show("SP: " + extractpath);
-
+                //MessageBox.Show("SP: " + extractpath);
                 //MessageBox.Show("Install " + ModZipPath.Text + " to " + extractdir);
 
                 ZipFile.ExtractToDirectory(ModZipPath.Text, extractdir);
