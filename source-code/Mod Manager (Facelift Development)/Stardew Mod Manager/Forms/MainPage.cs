@@ -46,6 +46,7 @@ namespace Stardew_Mod_Manager
             CheckSDV.Start();
             GetColorProfile();
             CheckDoTelemetry();
+            ModsToMove.Clear();
 
             MainTabs.TabPanelBackColor = System.Drawing.Color.White;
             MainTabs.TabPages.Remove(Tab_Settings);
@@ -66,8 +67,13 @@ namespace Stardew_Mod_Manager
 
             try
             {
-                var SMAPIVersion = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
-                string SMAPIVersionText = "SMAPI " + "v" + SMAPIVersion.ProductVersion;
+                //var SMAPIVersion = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
+                var SMAPI = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
+                string Name = SMAPI.ProductName;
+                string Publisher = SMAPI.LegalCopyright;
+                //string Version = SMAPI.FileVersion;
+
+                string SMAPIVersionText = "SMAPI " + "v" + SMAPI.FileVersion;
                 SMAPIVer.Text = SMAPIVersionText;
 
                 if (!File.Exists(Properties.Settings.Default.PresetsDir + "SMAPI Default.txt"))
@@ -128,13 +134,13 @@ namespace Stardew_Mod_Manager
                     ThemeColor.SelectedItem = "Special - Birb";
                     SDVPlay.Image = Resources.SDVPlay_Purple;
                     break;
-                case "VICTORIA":
+                case "NATURE":
                     MainTabs.ActiveTabColor = Color.FromArgb(255, 0, 112, 192);
                     Tab_Main.BackgroundImage = Resources.MainBG_Victoria;
                     Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
                     Tab_GameMan.BackgroundImage = Resources.MainBG_Victoria;
                     Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
-                    ThemeColor.SelectedItem = "Special - Victoria";
+                    ThemeColor.SelectedItem = "Colorful - Nature";
                     SDVPlay.Image = Resources.SDVPlay_Blue;
                     break;
                 case "LYLE":
@@ -186,7 +192,7 @@ namespace Stardew_Mod_Manager
                     case "BIRB":
                         SDVPlay.Image = Properties.Resources.SDVPlay_Purple;
                         break;
-                    case "VICTORIA":
+                    case "NATURE":
                         SDVPlay.Image = Properties.Resources.SDVPlay_Blue;
                         break;
                     case "LYLE":
@@ -544,6 +550,10 @@ namespace Stardew_Mod_Manager
             FileWrite.AppendText("    {" + Environment.NewLine);
             FileWrite.AppendText("      \"bool\": \"" + Properties.Settings.Default.CheckUpdateOnStartup.ToLower() + "\"," + Environment.NewLine);
             FileWrite.AppendText("      \"TelemetryData\": \"Check for Updates Enabled\"" + Environment.NewLine);
+            FileWrite.AppendText("    }," + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"string\": \"" + Properties.Settings.Default.Version.ToLower() + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"SDV Mod Manager Version\"" + Environment.NewLine);
             FileWrite.AppendText("    }," + Environment.NewLine);
             FileWrite.AppendText("    {" + Environment.NewLine);
             FileWrite.AppendText("      \"bool\": \"" + Properties.Settings.Default.CheckSMAPIUpdateOnStartup.ToLower() + "\"," + Environment.NewLine);
@@ -1017,11 +1027,13 @@ namespace Stardew_Mod_Manager
                 {
                     TelemetryOptInOut.Text = "Opt-Out";
                     TelemetrySettingStatus.Text = "You are currently sharing telemetry data with RWE Labs";
+                    VolunteerTelemetry.Enabled = true;
                 }
                 else if (Properties.Settings.Default.DoTelemetry == "FALSE")
                 {
                     TelemetryOptInOut.Text = "Opt-In";
                     TelemetrySettingStatus.Text = "You are not currently sharing telemetry data with RWE Labs";
+                    VolunteerTelemetry.Enabled = false;
                 }
                 if (Properties.Settings.Default.IgnoreWebsiteWarning == "FALSE")
                 {
@@ -1167,8 +1179,9 @@ namespace Stardew_Mod_Manager
             try
             {
                 string extractdir = Properties.Settings.Default.InactiveModsDir;
-                string extractpath = extractdir + @"\" + Properties.Settings.Default.TMP_ModSafeName;
+                string extractpath = extractdir + Properties.Settings.Default.TMP_ModSafeName;
 
+                //MessageBox.Show("SP: " + extractpath);
                 //MessageBox.Show("Install " + ModZipPath.Text + " to " + extractdir);
 
                 ZipFile.ExtractToDirectory(ModZipPath.Text, extractdir);
@@ -1178,6 +1191,7 @@ namespace Stardew_Mod_Manager
                     MainTabs.SelectedTab = Tab_Main;
                     InstallFromZIP.Enabled = false;
                     ModZipPath.Clear();
+                    ModsToMove.Clear();
                     RefreshObjects();
                     Tab_InstallOptions.Close();
                 }
@@ -1284,7 +1298,7 @@ namespace Stardew_Mod_Manager
                 MainTabs.TabPages.Add(Tab_Feedback);
                 this.MainTabs.SelectedTab = Tab_Feedback;
                 GiveFeedbackLink.Enabled = false;
-                //FBView.Url = new Uri("https://labs.ryanwalpole.com/feedback/sdvmm/");
+                //FBView.Url = new Uri("https://rwelabs.github.io/sdvmm/feedback.html");
             }
         }
 
@@ -1617,8 +1631,8 @@ namespace Stardew_Mod_Manager
                     Properties.Settings.Default.ColorProfile = "BIRB";
                     Properties.Settings.Default.Save();
                     break;
-                case "Special - Victoria":
-                    Properties.Settings.Default.ColorProfile = "VICTORIA";
+                case "Colorful - Nature":
+                    Properties.Settings.Default.ColorProfile = "NATURE";
                     Properties.Settings.Default.Save();
                     break;
                 case "Special - Lyle":
@@ -1770,6 +1784,37 @@ namespace Stardew_Mod_Manager
             {
                 Properties.Settings.Default.IgnoreWebsiteWarning = "TRUE";
             }
+        }
+
+        private void VolunteerTelemetry_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult DR = MessageBox.Show("Are you sure you'd like to voluntarily submit your telemetry file? You should only do this if you've been instructed to by RWE Labs or a representative from RWE Labs.","Voluntary Submission | RWE Labs Telemetry",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                if(DR == DialogResult.Yes)
+                {
+                    DoTelemetricChecks.RunWorkerAsync();
+                    MessageBox.Show("Thank you for sending your data. We encourage you to not use this voluntary submission for the next 7 days unless otherwise instructed.","Voluntary Submission | RWE Labs Telemetry");
+                }
+                else
+                {
+                    //do nothing
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("We ran into an issue sending your telemetry data to RWE Labs.", "Voluntary Submission | RWE Labs Telemetry");
+            }
+        }
+
+        private void SMAPIBundleInstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string extractionpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDV Mod Manager\SMAPI\";
+
+            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
+            Process.Start(appPath + @"\smapi.bat");
+
+            Application.Exit();
         }
     }
 }

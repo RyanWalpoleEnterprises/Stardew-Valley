@@ -67,7 +67,23 @@ namespace Stardew_Mod_Manager
 
                     if (File.Exists(SettingsINI))
                     {
-                        Application.Run(new UpdateVersion());
+                        if(Properties.Settings.Default.IsManuallyReset == "TRUE")
+                        {
+                            try
+                            {
+                                File.Delete(SettingsINI);
+                            }
+                            catch
+                            {
+                                //
+                            }
+
+                            Application.Run(new FirstRunSetup());
+                        }
+                        else
+                        {
+                            Application.Run(new UpdateVersion());
+                        }
                     }
                     else if (!File.Exists(SettingsINI))
                     {

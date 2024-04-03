@@ -127,6 +127,7 @@
     <None Include="Resources\sdvDelete.png" />
     <None Include="Resources\SDVMPIcon.png" />
     <None Include="Resources\progress_white.gif" />
+    <None Include="Resources\white.png" />
     <Content Include="SDVMPGenerator.ico" />
     <Content Include="Windows Logo.png" />
     <None Include="Resources\icons8-add-48.png" />

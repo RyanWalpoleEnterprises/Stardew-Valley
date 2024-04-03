@@ -531,6 +531,9 @@
         <member name="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameScanner.Platform">
             <summary>The current OS.</summary>
         </member>
+        <member name="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameScanner.SteamAppId">
+            <summary>The Steam app ID for Stardew Valley.</summary>
+        </member>
         <member name="M:StardewModdingAPI.Toolkit.Framework.GameScanning.GameScanner.#ctor">
             <summary>Construct an instance.</summary>
         </member>
@@ -562,6 +565,11 @@
             <summary>Get the value of a key in the Windows HKCU registry.</summary>
             <param name="key">The full path of the registry key relative to HKCU.</param>
             <param name="name">The name of the value.</param>
+        </member>
+        <member name="M:StardewModdingAPI.Toolkit.Framework.GameScanning.GameScanner.GetPathFromSteamLibrary(System.String)">
+            <summary>Get the game directory path from alternative Steam library locations.</summary>
+            <param name="steamPath">The full path to the directory containing steam.exe.</param>
+            <returns>The game directory, if found.</returns>
         </member>
         <member name="T:StardewModdingAPI.Toolkit.Framework.LowLevelEnvironmentUtility">
             <summary>Provides low-level methods for fetching environment information.</summary>
@@ -595,6 +603,15 @@
             This code is derived from the Mono project (see System.Windows.Forms/System.Windows.Forms/XplatUI.cs). It detects macOS by calling the
             <c>uname</c> system command and checking the response, which is always 'Darwin' for macOS.
             </remarks>
+        </member>
+        <member name="T:StardewModdingAPI.Toolkit.Framework.ManifestValidator">
+            <summary>Validates manifest fields.</summary>
+        </member>
+        <member name="M:StardewModdingAPI.Toolkit.Framework.ManifestValidator.TryValidateFields(StardewModdingAPI.IManifest,System.String@)">
+            <summary>Validate a manifest's fields.</summary>
+            <param name="manifest">The manifest to validate.</param>
+            <param name="error">The error message indicating why validation failed, if applicable.</param>
+            <returns>Returns whether all manifest fields validated successfully.</returns>
         </member>
         <member name="T:StardewModdingAPI.Toolkit.Framework.ModData.MetadataModel">
             <summary>The SMAPI predefined metadata.</summary>
@@ -698,6 +715,9 @@
         <member name="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.SuppressWarnings">
             <summary>The mod warnings to suppress, even if they'd normally be shown.</summary>
         </member>
+        <member name="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.IgnoreDependencies">
+            <summary>Whether to ignore dependencies on this mod ID when it's not loaded.</summary>
+        </member>
         <member name="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.ExtensionData">
             <summary>This field stores properties that aren't mapped to another field before they're parsed into <see cref="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.Fields"/>.</summary>
         </member>
@@ -715,11 +735,12 @@
               - The field name itself corresponds to a <see cref="T:StardewModdingAPI.Toolkit.Framework.ModData.ModDataFieldKey"/> value.
             </remarks>
         </member>
-        <member name="M:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.#ctor(System.String,System.String,StardewModdingAPI.Toolkit.Framework.ModData.ModWarning)">
+        <member name="M:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.#ctor(System.String,System.String,StardewModdingAPI.Toolkit.Framework.ModData.ModWarning,System.Boolean)">
             <summary>Construct an instance.</summary>
             <param name="id">The mod's current unique ID.</param>
             <param name="formerIds">The former mod IDs (if any).</param>
             <param name="suppressWarnings">The mod warnings to suppress, even if they'd normally be shown.</param>
+            <param name="ignoreDependencies">Whether to ignore dependencies on this mod ID when it's not loaded.</param>
         </member>
         <member name="M:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.GetFields">
             <summary>Get a parsed representation of the <see cref="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataModel.Fields"/>.</summary>
@@ -745,6 +766,9 @@
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataRecord.SuppressWarnings">
             <summary>The mod warnings to suppress, even if they'd normally be shown.</summary>
+        </member>
+        <member name="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataRecord.IgnoreDependencies">
+            <summary>Whether to ignore dependencies on this mod ID when it's not loaded.</summary>
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Framework.ModData.ModDataRecord.Fields">
             <summary>The versioned field data.</summary>
@@ -823,9 +847,6 @@
         <member name="F:StardewModdingAPI.Toolkit.Framework.ModData.ModWarning.PatchesGame">
             <summary>The mod patches the game in a way that may impact stability.</summary>
         </member>
-        <member name="F:StardewModdingAPI.Toolkit.Framework.ModData.ModWarning.UsesDynamic">
-            <summary>The mod uses the <c>dynamic</c> keyword which won't work on Linux/macOS.</summary>
-        </member>
         <member name="F:StardewModdingAPI.Toolkit.Framework.ModData.ModWarning.UsesUnvalidatedUpdateTick">
             <summary>The mod references specialized 'unvalidated update tick' events which may impact stability.</summary>
         </member>
@@ -841,20 +862,17 @@
         <member name="F:StardewModdingAPI.Toolkit.Framework.ModData.ModWarning.AccessesShell">
             <summary>Uses .NET APIs for shell or process access.</summary>
         </member>
-        <member name="F:StardewModdingAPI.Toolkit.Framework.ModData.ModWarning.DetectedLegacyConfigurationDll">
-            <summary>References the legacy <c>System.Configuration.ConfigurationManager</c> assembly and doesn't include a copy in the mod folder, so it'll break in SMAPI 4.0.0.</summary>
-        </member>
-        <member name="F:StardewModdingAPI.Toolkit.Framework.ModData.ModWarning.DetectedLegacyCachingDll">
-            <summary>References the legacy <c>System.Runtime.Caching</c> assembly and doesn't include a copy in the mod folder, so it'll break in SMAPI 4.0.0.</summary>
-        </member>
-        <member name="F:StardewModdingAPI.Toolkit.Framework.ModData.ModWarning.DetectedLegacyPermissionsDll">
-            <summary>References the legacy <c>System.Security.Permissions</c> assembly and doesn't include a copy in the mod folder, so it'll break in SMAPI 4.0.0.</summary>
-        </member>
         <member name="T:StardewModdingAPI.Toolkit.Framework.ModScanning.ModFolder">
             <summary>The info about a mod read from its folder.</summary>
         </member>
+        <member name="F:StardewModdingAPI.Toolkit.Framework.ModScanning.ModFolder.DirectoryImpl">
+            <summary>The backing field for <see cref="P:StardewModdingAPI.Toolkit.Framework.ModScanning.ModFolder.Directory"/>.</summary>
+        </member>
         <member name="P:StardewModdingAPI.Toolkit.Framework.ModScanning.ModFolder.DisplayName">
             <summary>A suggested display name for the mod folder.</summary>
+        </member>
+        <member name="P:StardewModdingAPI.Toolkit.Framework.ModScanning.ModFolder.DirectoryPath">
+            <summary>The folder path containing the mod's manifest.json.</summary>
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Framework.ModScanning.ModFolder.Directory">
             <summary>The folder containing the mod's manifest.json.</summary>
@@ -882,6 +900,15 @@
             <summary>Construct an instance.</summary>
             <param name="root">The root folder containing mods.</param>
             <param name="directory">The folder containing the mod's manifest.json.</param>
+            <param name="type">The mod type.</param>
+            <param name="manifest">The mod manifest.</param>
+            <param name="manifestParseError">The error which occurred parsing the manifest, if any.</param>
+            <param name="manifestParseErrorText">A human-readable message for the <paramref name="manifestParseError"/>, if any.</param>
+        </member>
+        <member name="M:StardewModdingAPI.Toolkit.Framework.ModScanning.ModFolder.#ctor(System.String,System.String,StardewModdingAPI.Toolkit.Framework.ModScanning.ModType,StardewModdingAPI.Toolkit.Serialization.Models.Manifest,StardewModdingAPI.Toolkit.Framework.ModScanning.ModParseError,System.String)">
+            <summary>Construct an instance.</summary>
+            <param name="displayName">A suggested display name for the mod folder.</param>
+            <param name="directoryPath">The folder path containing the mod's manifest.json.</param>
             <param name="type">The mod type.</param>
             <param name="manifest">The mod manifest.</param>
             <param name="manifestParseError">The error which occurred parsing the manifest, if any.</param>
@@ -1070,6 +1097,9 @@
         <member name="F:StardewModdingAPI.Toolkit.Framework.UpdateData.ModSiteKey.Nexus">
             <summary>The Nexus Mods mod repository.</summary>
         </member>
+        <member name="F:StardewModdingAPI.Toolkit.Framework.UpdateData.ModSiteKey.UpdateManifest">
+            <summary>An arbitrary URL to a JSON file containing update data.</summary>
+        </member>
         <member name="T:StardewModdingAPI.Toolkit.Framework.UpdateData.UpdateKey">
             <summary>A namespaced mod ID which uniquely identifies a mod within a mod repository.</summary>
         </member>
@@ -1131,6 +1161,13 @@
             <param name="site">The mod site containing the mod.</param>
             <param name="id">The mod ID within the repository.</param>
             <param name="subkey">If specified, a substring in download names/descriptions to match.</param>
+        </member>
+        <member name="M:StardewModdingAPI.Toolkit.Framework.UpdateData.UpdateKey.SplitTwoParts(System.String,System.Char,System.Boolean)">
+            <summary>Split a string into two parts at a delimiter and trim whitespace.</summary>
+            <param name="str">The string to split.</param>
+            <param name="delimiter">The character on which to split.</param>
+            <param name="keepDelimiter">Whether to include the delimiter in the second string.</param>
+            <returns>Returns a tuple containing the two strings, with the second value <c>null</c> if the delimiter wasn't found.</returns>
         </member>
         <member name="T:StardewModdingAPI.Toolkit.ModToolkit">
             <summary>A convenience wrapper for the various tools.</summary>
@@ -1530,9 +1567,10 @@
             <summary>Override the update keys loaded from the mod info.</summary>
             <param name="updateKeys">The new update keys to set.</param>
         </member>
-        <member name="M:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.NormalizeWhitespace(System.String)">
-            <summary>Normalize whitespace in a raw string.</summary>
+        <member name="M:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.NormalizeField(System.String,System.Boolean)">
+            <summary>Normalize a manifest field to strip newlines, trim whitespace, and optionally strip square brackets.</summary>
             <param name="input">The input to strip.</param>
+            <param name="replaceSquareBrackets">Whether to replace square brackets with round ones. This is used in the mod name to avoid breaking the log format.</param>
         </member>
         <member name="T:StardewModdingAPI.Toolkit.Serialization.Models.ManifestContentPackFor">
             <summary>Indicates which mod can read the content pack represented by the containing manifest.</summary>

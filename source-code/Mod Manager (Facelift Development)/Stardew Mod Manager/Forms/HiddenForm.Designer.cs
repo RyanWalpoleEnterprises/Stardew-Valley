@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HiddenForm));
             this.CloseButton = new Syncfusion.WinForms.Controls.SfButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.Website_CA = new System.Windows.Forms.LinkLabel();
             this.label11 = new System.Windows.Forms.Label();
             this.HelpButton = new Syncfusion.WinForms.Controls.SfButton();
-            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -60,7 +60,7 @@
             // 
             this.CloseButton.AccessibleName = "Button";
             this.CloseButton.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.CloseButton.Location = new System.Drawing.Point(16, 412);
+            this.CloseButton.Location = new System.Drawing.Point(16, 407);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(112, 28);
             this.CloseButton.TabIndex = 0;
@@ -78,6 +78,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(504, 73);
             this.panel1.TabIndex = 6;
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 7.25F);
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label12.Location = new System.Drawing.Point(12, 43);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(366, 26);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "©️ Copyright 2023 - RWE Labs, Ryan Walpole Enterprises.\r\n©️ Stardew Valley and th" +
+    "e Chicken Icon are Copyright 2023 - ConcernedApe.";
             // 
             // pictureBox1
             // 
@@ -267,23 +278,12 @@
             // 
             this.HelpButton.AccessibleName = "Button";
             this.HelpButton.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.HelpButton.Location = new System.Drawing.Point(140, 412);
+            this.HelpButton.Location = new System.Drawing.Point(140, 407);
             this.HelpButton.Name = "HelpButton";
             this.HelpButton.Size = new System.Drawing.Size(112, 28);
             this.HelpButton.TabIndex = 23;
             this.HelpButton.Text = "Get In Touch";
             this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 7.25F);
-            this.label12.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label12.Location = new System.Drawing.Point(12, 43);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(366, 26);
-            this.label12.TabIndex = 24;
-            this.label12.Text = "©️ Copyright 2022 - RWE Labs, Ryan Walpole Enterprises.\r\n©️ Stardew Valley and th" +
-    "e Chicken Icon are Copyright 2022 - ConcernedApe.";
             // 
             // HiddenForm
             // 

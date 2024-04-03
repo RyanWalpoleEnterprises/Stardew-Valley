@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Web.WebView2.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +18,11 @@ namespace Stardew_Mod_Manager.Forms.Webapp
     {
         public WebToolsHome()
         {
-            if(!Directory.Exists(@"C:\Program Files (x86)\Microsoft\EdgeWebView\Application"))
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDV Mod Manager\WV2\"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDVMM\WV2\");
+            }
+            if (!Directory.Exists(@"C:\Program Files (x86)\Microsoft\EdgeWebView\Application"))
             {
                 //Alert and Install Options
                 DialogResult dr = MessageBox.Show("Stardew Valley WebTools requires an installation of Microsoft Edge WebView2 to function. We weren't able to find an installation on your machine. Would you like to install this now? Installation will require an active internet connection.","Install Required Component", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -27,6 +32,7 @@ namespace Stardew_Mod_Manager.Forms.Webapp
             else
             {
                 InitializeComponent();
+                InitializeBrowser();
             }
         }
 
@@ -63,7 +69,7 @@ namespace Stardew_Mod_Manager.Forms.Webapp
 
         private void Home_Click(object sender, EventArgs e)
         {
-            webView.CoreWebView2.Navigate("https://rwelabs.github.io/sdvmm/webtools/");
+            webView.CoreWebView2.Navigate(new Uri("https://rwelabs.github.io/sdvmm/webtools/").ToString());
             Debug.WriteLine("after Navigate");
         }
 
@@ -96,25 +102,15 @@ namespace Stardew_Mod_Manager.Forms.Webapp
         private async void WebToolsHome_Load(object sender, EventArgs e)
         {
             webView.CoreWebView2InitializationCompleted += WebView_CoreWebView2InitializationCompleted;
-
-            Debug.WriteLine("before InitializeAsync");
-            await InitializeAsync();
-            Debug.WriteLine("after InitializeAsync");
         }
 
-        private async Task InitializeAsync()
+        private async Task InitializeBrowser()
         {
-            Debug.WriteLine("InitializeAsync");
-            await webView.EnsureCoreWebView2Async(null);
-            Debug.WriteLine("WebView2 Runtime version: " + webView.CoreWebView2.Environment.BrowserVersionString);
-
-            webView.CoreWebView2.Navigate("https://rwelabs.github.io/sdvmm/webtools/");
-            Debug.WriteLine("after Navigate");
-
-            if ((webView == null) || (webView.CoreWebView2 == null))
-            {
-                Debug.WriteLine("not ready");
-            }
+            var userDataFolder =
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDV Mod Manager\WV2\";
+            var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
+            await webView.EnsureCoreWebView2Async(env);
+            webView.Source = new Uri("https://rwelabs.github.io/sdvmm/webtools");
         }
 
 

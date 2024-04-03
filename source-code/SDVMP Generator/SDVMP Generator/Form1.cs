@@ -38,7 +38,7 @@ namespace SDVMP_Generator
 
         private void LearnMoreLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/RWELabs/Stardew-Valley-Mod-Manager/wiki/Developer:-Creating-A-Modpack-for-Distribution");
+            Process.Start("https://rwe-labs.gitbook.io/sdvmm/developer/developing-for-stardew-valley-mod-manager/creating-a-modpack");
         }
 
         private void Cancelquit_Click(object sender, EventArgs e)

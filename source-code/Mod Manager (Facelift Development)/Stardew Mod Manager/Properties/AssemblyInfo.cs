@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RWE Labs, Ryan Walpole Enterprises")]
 [assembly: AssemblyProduct("Stardew Mod Manager")]
-[assembly: AssemblyCopyright("Copyright © Ryan Walpole Enterprises, RWE Labs - 2022")]
+[assembly: AssemblyCopyright("Copyright © Ryan Walpole Enterprises, RWE Labs - 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("22.09.00.02")]
-[assembly: AssemblyFileVersion("22.09.00.02")]
+[assembly: AssemblyVersion("24.04.00.01")]
+[assembly: AssemblyFileVersion("24.04.00.01")]
 [assembly: NeutralResourcesLanguage("en-AU")]

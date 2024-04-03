@@ -37,13 +37,13 @@
             this.Forward = new System.Windows.Forms.ToolStripButton();
             this.StatusButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.IgnoreWarning = new System.Windows.Forms.CheckBox();
             this.WarningReturn = new Syncfusion.WinForms.Controls.SfButton();
             this.ContinueWarning = new Syncfusion.WinForms.Controls.SfButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.WarningPanel = new System.Windows.Forms.Panel();
-            this.IgnoreWarning = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -62,7 +62,6 @@
             this.webView.Location = new System.Drawing.Point(0, 40);
             this.webView.Name = "webView";
             this.webView.Size = new System.Drawing.Size(800, 582);
-            this.webView.Source = new System.Uri("https://rwelabs.github.io/sdvmm/webtools/", System.UriKind.Absolute);
             this.webView.TabIndex = 0;
             this.webView.ZoomFactor = 1D;
             this.webView.NavigationCompleted += new System.EventHandler<Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs>(this.webView_NavigationCompleted);
@@ -169,6 +168,16 @@
             this.panel1.Size = new System.Drawing.Size(428, 339);
             this.panel1.TabIndex = 2;
             // 
+            // IgnoreWarning
+            // 
+            this.IgnoreWarning.AutoSize = true;
+            this.IgnoreWarning.Location = new System.Drawing.Point(106, 293);
+            this.IgnoreWarning.Name = "IgnoreWarning";
+            this.IgnoreWarning.Size = new System.Drawing.Size(181, 17);
+            this.IgnoreWarning.TabIndex = 5;
+            this.IgnoreWarning.Text = "Always ignore this safety warning";
+            this.IgnoreWarning.UseVisualStyleBackColor = true;
+            // 
             // WarningReturn
             // 
             this.WarningReturn.AccessibleName = "Button";
@@ -246,16 +255,6 @@
             this.WarningPanel.Size = new System.Drawing.Size(800, 581);
             this.WarningPanel.TabIndex = 3;
             this.WarningPanel.Visible = false;
-            // 
-            // IgnoreWarning
-            // 
-            this.IgnoreWarning.AutoSize = true;
-            this.IgnoreWarning.Location = new System.Drawing.Point(106, 293);
-            this.IgnoreWarning.Name = "IgnoreWarning";
-            this.IgnoreWarning.Size = new System.Drawing.Size(181, 17);
-            this.IgnoreWarning.TabIndex = 5;
-            this.IgnoreWarning.Text = "Always ignore this safety warning";
-            this.IgnoreWarning.UseVisualStyleBackColor = true;
             // 
             // WebToolsHome
             // 

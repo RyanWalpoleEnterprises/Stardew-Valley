@@ -44,7 +44,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Stardew_Mod_Manager.Properties.Resources.SDVTelemetryTask;
-            this.pictureBox1.Location = new System.Drawing.Point(24, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(152, 133);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -55,7 +55,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(202, 22);
+            this.label1.Location = new System.Drawing.Point(194, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(379, 30);
             this.label1.TabIndex = 1;
@@ -64,9 +64,9 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label2.Location = new System.Drawing.Point(204, 65);
+            this.label2.Location = new System.Drawing.Point(196, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(401, 58);
+            this.label2.Size = new System.Drawing.Size(377, 58);
             this.label2.TabIndex = 2;
             this.label2.Text = "RWE Labs can benefit by seeing how you use the Stardew Valley Mod Manager and it\'" +
     "s features. This data can help show us what features we should focus on and what" +
@@ -76,7 +76,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(203, 135);
+            this.label3.Location = new System.Drawing.Point(195, 124);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(360, 20);
             this.label3.TabIndex = 3;
@@ -85,17 +85,17 @@
             // richTextBox1
             // 
             this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(207, 170);
+            this.richTextBox1.Location = new System.Drawing.Point(199, 150);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(374, 164);
+            this.richTextBox1.Size = new System.Drawing.Size(374, 182);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label4.Location = new System.Drawing.Point(204, 343);
+            this.label4.Location = new System.Drawing.Point(196, 343);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(377, 97);
             this.label4.TabIndex = 5;
@@ -107,7 +107,7 @@
             this.AllowTelemetry.CanApplyTheme = false;
             this.AllowTelemetry.CanOverrideStyle = true;
             this.AllowTelemetry.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.AllowTelemetry.Location = new System.Drawing.Point(464, 450);
+            this.AllowTelemetry.Location = new System.Drawing.Point(456, 455);
             this.AllowTelemetry.Name = "AllowTelemetry";
             this.AllowTelemetry.Size = new System.Drawing.Size(117, 28);
             this.AllowTelemetry.Style.BackColor = System.Drawing.Color.RoyalBlue;
@@ -127,7 +127,7 @@
             // 
             this.DenyTelemetry.AccessibleName = "Button";
             this.DenyTelemetry.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.DenyTelemetry.Location = new System.Drawing.Point(341, 450);
+            this.DenyTelemetry.Location = new System.Drawing.Point(333, 455);
             this.DenyTelemetry.Name = "DenyTelemetry";
             this.DenyTelemetry.Size = new System.Drawing.Size(117, 28);
             this.DenyTelemetry.TabIndex = 7;
@@ -137,7 +137,7 @@
             // ViewTelemetryPolicy
             // 
             this.ViewTelemetryPolicy.AutoSize = true;
-            this.ViewTelemetryPolicy.Location = new System.Drawing.Point(45, 173);
+            this.ViewTelemetryPolicy.Location = new System.Drawing.Point(37, 173);
             this.ViewTelemetryPolicy.Name = "ViewTelemetryPolicy";
             this.ViewTelemetryPolicy.Size = new System.Drawing.Size(110, 13);
             this.ViewTelemetryPolicy.TabIndex = 8;
@@ -150,7 +150,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(614, 504);
+            this.ClientSize = new System.Drawing.Size(610, 510);
             this.Controls.Add(this.ViewTelemetryPolicy);
             this.Controls.Add(this.DenyTelemetry);
             this.Controls.Add(this.AllowTelemetry);

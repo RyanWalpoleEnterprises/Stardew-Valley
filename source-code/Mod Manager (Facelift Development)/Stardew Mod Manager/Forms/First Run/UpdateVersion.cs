@@ -82,8 +82,8 @@ namespace Stardew_Mod_Manager.Forms.First_Run
             string InactiveModsDirRegex = "$InactiveModsDir=";
             string PresetsDirRegex = "$PresetsDir=";
             string CheckUpdateOnStartupRegex = "$CheckUpdateOnStartup=";
-            string IsCheckSMAPIUpdatesOnStartupRegex = "$CheckSMAPIUpdateOnStartup";
-            string ColorProfileRegex = "$ColorProfile";
+            string IsCheckSMAPIUpdatesOnStartupRegex = "$CheckSMAPIUpdateOnStartup=";
+            string ColorProfileRegex = "$ColorProfile=";
             string DoTelemetryRegex = "$DoTelemetry=";
 
             foreach (string line in FileRead.Lines)

@@ -125,6 +125,10 @@
       "TelemetryData": "Check for Updates Enabled"
     },
     {
+      "string": "230302",
+      "TelemetryData": "SDV Mod Manager Version"
+    },
+    {
       "boolean": "false",
       "TelemetryData": "Check for SMAPI Updates Enabled"
     },

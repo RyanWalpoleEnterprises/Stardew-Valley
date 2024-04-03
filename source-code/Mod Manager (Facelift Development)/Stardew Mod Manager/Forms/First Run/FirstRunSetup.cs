@@ -204,6 +204,7 @@ namespace Stardew_Mod_Manager
             }
 
             Properties.Settings.Default.SetupComplete = "TRUE";
+            Properties.Settings.Default.IsManuallyReset = "FALSE";
             Properties.Settings.Default.ModsDir = Properties.Settings.Default.StardewDir.ToString() + @"\Mods\";
             Properties.Settings.Default.InactiveModsDir = Properties.Settings.Default.StardewDir + @"\inactive-mods\";
             Properties.Settings.Default.PresetsDir = ModPresets;

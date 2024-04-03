@@ -83,7 +83,7 @@ namespace Stardew_Mod_Manager
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(414, 149);
+            this.ClientSize = new System.Drawing.Size(414, 145);
             this.Controls.Add(this.SettingsReset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -94,7 +94,6 @@ namespace Stardew_Mod_Manager
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings | Stardew Valley Modded Framework";
-            //this.Load += new System.EventHandler(this.Settings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
