@@ -190,7 +190,7 @@ namespace Stardew_Mod_Manager
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Stardew_Mod_Manager.Properties.Resources.GameDirExample;
-            this.pictureBox1.Location = new System.Drawing.Point(-4, -26);
+            this.pictureBox1.Location = new System.Drawing.Point(-1, -26);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(604, 329);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
