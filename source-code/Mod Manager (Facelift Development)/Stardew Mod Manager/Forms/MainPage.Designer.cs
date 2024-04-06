@@ -155,6 +155,9 @@ namespace Stardew_Mod_Manager
             this.StartSMAPIUpdateCheck = new System.Windows.Forms.Timer(this.components);
             this.Debug_BackupMods = new System.Windows.Forms.Button();
             this.DoTelemetricChecks = new System.ComponentModel.BackgroundWorker();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.SMAPIRunRepairButton = new Syncfusion.WinForms.Controls.SfButton();
+            this.InstallBundledSMAPIButton = new Syncfusion.WinForms.Controls.SfButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_SMAPIUpToDate)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -182,6 +185,7 @@ namespace Stardew_Mod_Manager
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // ModFolderPath
@@ -330,12 +334,11 @@ namespace Stardew_Mod_Manager
             this.groupBox5.Controls.Add(this.WebToolsWarningEnabled);
             this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.ThemeColor);
-            this.groupBox5.Controls.Add(this.CheckSMAPIUpdatesOnStart);
             this.groupBox5.Controls.Add(this.CheckForUpdatesOnStartup);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.groupBox5.Location = new System.Drawing.Point(21, 310);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(541, 165);
+            this.groupBox5.Size = new System.Drawing.Size(541, 131);
             this.groupBox5.TabIndex = 35;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Application Settings";
@@ -344,7 +347,7 @@ namespace Stardew_Mod_Manager
             // 
             this.WebToolsWarningEnabled.AutoSize = true;
             this.WebToolsWarningEnabled.Font = new System.Drawing.Font("Segoe UI", 9.25F);
-            this.WebToolsWarningEnabled.Location = new System.Drawing.Point(11, 127);
+            this.WebToolsWarningEnabled.Location = new System.Drawing.Point(11, 95);
             this.WebToolsWarningEnabled.Name = "WebToolsWarningEnabled";
             this.WebToolsWarningEnabled.Size = new System.Drawing.Size(336, 21);
             this.WebToolsWarningEnabled.TabIndex = 38;
@@ -383,7 +386,7 @@ namespace Stardew_Mod_Manager
             // 
             this.CheckSMAPIUpdatesOnStart.AutoSize = true;
             this.CheckSMAPIUpdatesOnStart.Font = new System.Drawing.Font("Segoe UI", 9.25F);
-            this.CheckSMAPIUpdatesOnStart.Location = new System.Drawing.Point(11, 100);
+            this.CheckSMAPIUpdatesOnStart.Location = new System.Drawing.Point(11, 21);
             this.CheckSMAPIUpdatesOnStart.Name = "CheckSMAPIUpdatesOnStart";
             this.CheckSMAPIUpdatesOnStart.Size = new System.Drawing.Size(318, 21);
             this.CheckSMAPIUpdatesOnStart.TabIndex = 35;
@@ -676,6 +679,7 @@ namespace Stardew_Mod_Manager
             this.Tab_Settings.AutoScroll = true;
             this.Tab_Settings.AutoScrollMargin = new System.Drawing.Size(0, 15);
             this.Tab_Settings.BackColor = System.Drawing.Color.White;
+            this.Tab_Settings.Controls.Add(this.groupBox6);
             this.Tab_Settings.Controls.Add(this.groupBox3);
             this.Tab_Settings.Controls.Add(this.groupBox7);
             this.Tab_Settings.Controls.Add(this.SettingsResetButton);
@@ -703,7 +707,7 @@ namespace Stardew_Mod_Manager
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.TelemetryOptInOut);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.groupBox3.Location = new System.Drawing.Point(21, 616);
+            this.groupBox3.Location = new System.Drawing.Point(21, 696);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(539, 127);
             this.groupBox3.TabIndex = 39;
@@ -769,7 +773,7 @@ namespace Stardew_Mod_Manager
             this.groupBox7.Controls.Add(this.ViewErrorLogs);
             this.groupBox7.Controls.Add(this.Setting_CreateErrorLogs);
             this.groupBox7.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.groupBox7.Location = new System.Drawing.Point(21, 495);
+            this.groupBox7.Location = new System.Drawing.Point(21, 453);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(541, 105);
             this.groupBox7.TabIndex = 36;
@@ -816,7 +820,7 @@ namespace Stardew_Mod_Manager
             // 
             this.SettingsResetButton.AccessibleName = "Button";
             this.SettingsResetButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.SettingsResetButton.Location = new System.Drawing.Point(261, 757);
+            this.SettingsResetButton.Location = new System.Drawing.Point(261, 837);
             this.SettingsResetButton.Name = "SettingsResetButton";
             this.SettingsResetButton.Size = new System.Drawing.Size(233, 28);
             this.SettingsResetButton.TabIndex = 38;
@@ -827,7 +831,7 @@ namespace Stardew_Mod_Manager
             // 
             this.LegacySettings.AccessibleName = "Button";
             this.LegacySettings.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LegacySettings.Location = new System.Drawing.Point(19, 757);
+            this.LegacySettings.Location = new System.Drawing.Point(19, 837);
             this.LegacySettings.Name = "LegacySettings";
             this.LegacySettings.Size = new System.Drawing.Size(236, 28);
             this.LegacySettings.TabIndex = 37;
@@ -1725,6 +1729,41 @@ namespace Stardew_Mod_Manager
             this.DoTelemetricChecks.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoTelemetricChecks_DoWork);
             this.DoTelemetricChecks.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.DoTelemetricChecks_RunWorkerCompleted);
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.SMAPIRunRepairButton);
+            this.groupBox6.Controls.Add(this.InstallBundledSMAPIButton);
+            this.groupBox6.Controls.Add(this.CheckSMAPIUpdatesOnStart);
+            this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.groupBox6.Location = new System.Drawing.Point(21, 575);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(541, 105);
+            this.groupBox6.TabIndex = 40;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "SMAPI";
+            // 
+            // SMAPIRunRepairButton
+            // 
+            this.SMAPIRunRepairButton.AccessibleName = "Button";
+            this.SMAPIRunRepairButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SMAPIRunRepairButton.Location = new System.Drawing.Point(190, 56);
+            this.SMAPIRunRepairButton.Name = "SMAPIRunRepairButton";
+            this.SMAPIRunRepairButton.Size = new System.Drawing.Size(171, 28);
+            this.SMAPIRunRepairButton.TabIndex = 40;
+            this.SMAPIRunRepairButton.Text = "Uninstall or Repair SMAPI";
+            this.SMAPIRunRepairButton.Click += new System.EventHandler(this.SMAPIRunRepairButton_Click);
+            // 
+            // InstallBundledSMAPIButton
+            // 
+            this.InstallBundledSMAPIButton.AccessibleName = "Button";
+            this.InstallBundledSMAPIButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.InstallBundledSMAPIButton.Location = new System.Drawing.Point(19, 56);
+            this.InstallBundledSMAPIButton.Name = "InstallBundledSMAPIButton";
+            this.InstallBundledSMAPIButton.Size = new System.Drawing.Size(165, 28);
+            this.InstallBundledSMAPIButton.TabIndex = 39;
+            this.InstallBundledSMAPIButton.Text = "Install Bundled SMAPI";
+            this.InstallBundledSMAPIButton.Click += new System.EventHandler(this.InstallBundledSMAPIButton_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1793,6 +1832,8 @@ namespace Stardew_Mod_Manager
             this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1923,5 +1964,8 @@ namespace Stardew_Mod_Manager
         private System.Windows.Forms.CheckBox WebToolsWarningEnabled;
         private Syncfusion.WinForms.Controls.SfButton VolunteerTelemetry;
         private System.Windows.Forms.LinkLabel SMAPIBundleInstall;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private Syncfusion.WinForms.Controls.SfButton SMAPIRunRepairButton;
+        private Syncfusion.WinForms.Controls.SfButton InstallBundledSMAPIButton;
     }
 }
