@@ -131,15 +131,6 @@ If you're experiencing problems with the application, consider resetting it with
   <metadata name="SaveBackups.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>863, 5</value>
   </metadata>
-  <metadata name="SaveBackups.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>863, 5</value>
-  </metadata>
-  <metadata name="PresetManagement.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>705, 5</value>
-  </metadata>
-  <metadata name="AddRemoveMods.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>372, 6</value>
-  </metadata>
   <metadata name="PresetManagement.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>705, 5</value>
   </metadata>
@@ -149,9 +140,6 @@ If you're experiencing problems with the application, consider resetting it with
   <data name="label9.Text" xml:space="preserve">
     <value>Please note that the mod install process was designed for mods distributed on NexusMods. If you received your ZIP file from a different vendor, it might not install correctly. If you're having issues, ensure that the ZIP archive contains a folder named after the mod and that the mod files are not in the root directory of the ZIP archive.</value>
   </data>
-  <metadata name="HelpTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>984, 6</value>
-  </metadata>
   <metadata name="CheckSDV.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1099, 6</value>
   </metadata>
