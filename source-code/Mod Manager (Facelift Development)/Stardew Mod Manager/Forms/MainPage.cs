@@ -90,6 +90,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Get color profile from user settings and apply
         private void GetColorProfile()
         {
             //MainTabs.ActiveTabColor
@@ -157,6 +158,7 @@ namespace Stardew_Mod_Manager
 
         }
 
+        //Check If the Game Is Running
         private void CheckIfGameRunning()
         {
             int counter = 0;
@@ -216,6 +218,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Compare SMAPI Versions (Installed to Available)
         private void CompareVersions()
         {
             string SMAPIVERNUM = SMAPIVer.Text;
@@ -277,37 +280,44 @@ namespace Stardew_Mod_Manager
             //this.Show();
         }
 
+        //Load MainPage
         private void MainPage_Load(object sender, EventArgs e)
         {
             string EnabledModList = Properties.Settings.Default.ModsDir;
             string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
             string ModPresets = Properties.Settings.Default.StardewDir + @"\mod-presets\";
 
+            //If SMAPI is installed, show the control buttons.
             if (File.Exists(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe"))
             {
                 SMAPIWarning.Visible = false;
                 SMAPIVer.Visible = true;
                 //MessageBox.Show(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
             }
+            //If SMAPI is not installed, show a warning.
             else if (!File.Exists(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe"))
             {
                 SMAPIWarning.Visible = true;
                 SMAPIVer.Visible = true;
             }
 
+            //Populate the enabled mods list
             foreach (string folder in Directory.GetDirectories(EnabledModList))
             {
                 InstalledModsList.Items.Add(Path.GetFileName(folder));
             }
+            //Populate the disabled mods list
             foreach (string folder in Directory.GetDirectories(DisabledModsList))
             {
                 AvailableModsList.Items.Add(Path.GetFileName(folder));
             }
 
+            //Populate the Game Save Tab
             PopulateGameSaveTab();
             //DoSMAPICheck();
         }
 
+        //Populate the Game Save tab with a list of saves
         private void PopulateGameSaveTab()
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -322,6 +332,7 @@ namespace Stardew_Mod_Manager
             Properties.Telemetry.Default.Save();
         }
 
+        //Lists the selected mod(s) that the user requests be disabled
         private void DisableMod_Click(object sender, EventArgs e)
         {
             try
@@ -360,6 +371,7 @@ namespace Stardew_Mod_Manager
             
         }
 
+        //Disables the mod(s) requested to be disabled
         private void DoDisableMods()
         {
             string ModList = Properties.Settings.Default.ModsDir;
@@ -382,6 +394,7 @@ namespace Stardew_Mod_Manager
             //RefreshObjects();
         }
 
+        //Lists the selected mod(s) that the user requests be enabled
         private void EnableMod_Click(object sender, EventArgs e)
         {
             try
@@ -414,6 +427,7 @@ namespace Stardew_Mod_Manager
             
         }
          
+        //Enables the mod(s) requested to be enabled.
         private void DoEnableMods()
         {
             string ModList = Properties.Settings.Default.ModsDir;
@@ -436,6 +450,7 @@ namespace Stardew_Mod_Manager
             //RefreshObjects();
         }
 
+        //Refreshes the mods lists and game save lists
         private void RefreshObjects()
         {
             InstalledModsList.Items.Clear();
@@ -463,6 +478,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Handles deselection when clicking whitepsace in the enabled mods list
         private void InstalledModsList_Click(object sender, EventArgs e)
         {
             if(InstalledModsList.SelectedIndex < 0)
@@ -479,7 +495,8 @@ namespace Stardew_Mod_Manager
                 DisableModButton.Enabled = true;
             }
         }
-
+        
+        //Handles deselection when clicking whitepsace in the disabled mods list
         private void AvailableModsList_Click(object sender, EventArgs e)
         {
             if (AvailableModsList.SelectedIndex < 0)
@@ -498,35 +515,36 @@ namespace Stardew_Mod_Manager
 
         }
 
+        //Handles the closing of the main window
         private void MainPage_FormClosed(object sender, FormClosedEventArgs e)
         {
             string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
             string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
+            //Delete update files if they exist
             if (File.Exists(updatelocation))
             {
                 File.Delete(updatelocation);
             }
 
+            //Reset the IsUpdateModInactive setting
             Properties.Settings.Default.IsUpdateModInactive = false;
 
+            //Hide the window if the "repairactive" setting is set to yes
             if(Properties.Settings.Default.RepairActive == "Yes")
             {
                 this.Hide();
 
             }
-            else if(Properties.Settings.Default.RepairActive == "No")
+            //Save the application settings if the "repairactive" setting is set to no
+            else if (Properties.Settings.Default.RepairActive == "No")
             {
                 DoApplicationSettingSave();
             }
         }
 
-        private void DoApplicationSettingSaveWithoutClose()
-        {
-            
-        }
-
+        //Handle saving the application settings to settings.ini
         private void DoApplicationSettingSave()
         {
             this.Hide();
