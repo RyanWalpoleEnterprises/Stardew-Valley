@@ -113,9 +113,9 @@ namespace Stardew_Mod_Manager
             // 
             this.StepOneContinue.AccessibleName = "Button";
             this.StepOneContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.StepOneContinue.Location = new System.Drawing.Point(222, 546);
+            this.StepOneContinue.Location = new System.Drawing.Point(225, 541);
             this.StepOneContinue.Name = "StepOneContinue";
-            this.StepOneContinue.Size = new System.Drawing.Size(147, 28);
+            this.StepOneContinue.Size = new System.Drawing.Size(147, 32);
             this.StepOneContinue.TabIndex = 9;
             this.StepOneContinue.Text = "Continue";
             this.StepOneContinue.Click += new System.EventHandler(this.StepOneContinue_Click);
@@ -134,7 +134,7 @@ namespace Stardew_Mod_Manager
             // SubHeading
             // 
             this.SubHeading.Font = new System.Drawing.Font("Segoe UI Semilight", 9.25F);
-            this.SubHeading.Location = new System.Drawing.Point(14, 398);
+            this.SubHeading.Location = new System.Drawing.Point(12, 396);
             this.SubHeading.Name = "SubHeading";
             this.SubHeading.Size = new System.Drawing.Size(568, 128);
             this.SubHeading.TabIndex = 7;
@@ -179,7 +179,7 @@ namespace Stardew_Mod_Manager
             this.StepTwoContinue.ForeColor = System.Drawing.Color.Black;
             this.StepTwoContinue.Location = new System.Drawing.Point(439, 544);
             this.StepTwoContinue.Name = "StepTwoContinue";
-            this.StepTwoContinue.Size = new System.Drawing.Size(130, 28);
+            this.StepTwoContinue.Size = new System.Drawing.Size(130, 35);
             this.StepTwoContinue.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.StepTwoContinue.Style.ForeColor = System.Drawing.Color.Black;
             this.StepTwoContinue.TabIndex = 27;
@@ -190,9 +190,9 @@ namespace Stardew_Mod_Manager
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Stardew_Mod_Manager.Properties.Resources.GameDirExample;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, -26);
+            this.pictureBox1.Location = new System.Drawing.Point(-8, -26);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(604, 329);
+            this.pictureBox1.Size = new System.Drawing.Size(609, 329);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
@@ -285,9 +285,9 @@ namespace Stardew_Mod_Manager
             // 
             this.WhatsNew.AccessibleName = "Button";
             this.WhatsNew.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.WhatsNew.Location = new System.Drawing.Point(95, 515);
+            this.WhatsNew.Location = new System.Drawing.Point(93, 515);
             this.WhatsNew.Name = "WhatsNew";
-            this.WhatsNew.Size = new System.Drawing.Size(194, 28);
+            this.WhatsNew.Size = new System.Drawing.Size(194, 37);
             this.WhatsNew.TabIndex = 11;
             this.WhatsNew.Text = "What\'s New In This Update";
             this.WhatsNew.Click += new System.EventHandler(this.WhatsNew_Click);
@@ -296,9 +296,9 @@ namespace Stardew_Mod_Manager
             // 
             this.FinishSetup.AccessibleName = "Button";
             this.FinishSetup.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.FinishSetup.Location = new System.Drawing.Point(295, 515);
+            this.FinishSetup.Location = new System.Drawing.Point(297, 515);
             this.FinishSetup.Name = "FinishSetup";
-            this.FinishSetup.Size = new System.Drawing.Size(204, 28);
+            this.FinishSetup.Size = new System.Drawing.Size(204, 37);
             this.FinishSetup.TabIndex = 10;
             this.FinishSetup.Text = "Complete Setup";
             this.FinishSetup.Click += new System.EventHandler(this.FinishSetup_Click);
@@ -490,9 +490,6 @@ namespace Stardew_Mod_Manager
             this.MinimumSize = new System.Drawing.Size(598, 639);
             this.Name = "FirstRunSetup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
-            this.Style.TitleBar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Text = "Get Started - Setup | Stardew Valley Modded Framework";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FirstRunSetup_FormClosed);
             this.Step.ResumeLayout(false);
