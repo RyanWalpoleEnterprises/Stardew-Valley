@@ -1043,7 +1043,7 @@ namespace Stardew_Mod_Manager
             this.SMAPIWarning.Controls.Add(this.SMAPIDownload);
             this.SMAPIWarning.Controls.Add(this.label3);
             this.SMAPIWarning.Controls.Add(this.pictureBox2);
-            this.SMAPIWarning.Location = new System.Drawing.Point(22, 375);
+            this.SMAPIWarning.Location = new System.Drawing.Point(22, 449);
             this.SMAPIWarning.Name = "SMAPIWarning";
             this.SMAPIWarning.Size = new System.Drawing.Size(553, 61);
             this.SMAPIWarning.TabIndex = 14;
