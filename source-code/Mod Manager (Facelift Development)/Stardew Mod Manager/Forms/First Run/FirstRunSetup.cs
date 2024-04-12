@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace Stardew_Mod_Manager
 {
-    public partial class FirstRunSetup : SfForm
+    public partial class FirstRunSetup : Form
     {
 
         protected override CreateParams CreateParams
