@@ -613,6 +613,7 @@ namespace Stardew_Mod_Manager
             Application.Exit();
         }
 
+        //Save a preset file
         private void SavePreset_Click(object sender, EventArgs e)
         {
             string EnabledModsDir = Properties.Settings.Default.ModsDir;
@@ -631,6 +632,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Load a preset file
         private void LoadPreset_Click(object sender, EventArgs e)
         {
             string PresetsDir = Properties.Settings.Default.PresetsDir;
@@ -688,6 +690,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Delete selected mod(s)
         private void DeleteMod_Click(object sender, EventArgs e)
         {
             ModsToMove.Clear();
@@ -742,6 +745,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Handle when the user clicks the SMAPI download button
         private void SMAPIDownload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://smapi.io/");
@@ -751,6 +755,7 @@ namespace Stardew_Mod_Manager
             Clipboard.SetText(Dir);    
         }
 
+        //Handles the SMAPI version number when clicked...
         private void SMAPIVer_Click(object sender, EventArgs e)
         {
             var SMAPIVersion = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
@@ -764,6 +769,130 @@ namespace Stardew_Mod_Manager
             SMAPIValidationWorker.RunWorkerAsync();
         }
 
+        //Check SMAPI version and whether updates are available
+        private void SMAPIValidationWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string URL = "https://www.nexusmods.com/stardewvalley/mods/2400/";
+
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            request.Timeout = 45000;
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                Stream receiveStream = response.GetResponseStream();
+                StreamReader readStream = null;
+
+                if (response.CharacterSet == null)
+                {
+                    readStream = new StreamReader(receiveStream);
+                }
+                else
+                {
+                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                }
+
+                string data = readStream.ReadToEnd();
+
+                WebData.Invoke(new MethodInvoker(delegate { WebData.Text = data; }));
+            }
+        }
+        private void SMAPIValidationWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled == true)
+            {
+                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
+                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
+            }
+            else if (e.Error != null)
+            {
+                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
+                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
+            }
+            else
+            {
+                SMAPIValidationWorker2.RunWorkerAsync();
+            }
+        }
+        private void SMAPIValidationWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string regex = "<div class=\"stat\">";
+
+            string selectstart = "<li class=\"stat-version\">";
+            string selectend = "</li>";
+
+
+            WebData.Invoke(new MethodInvoker(delegate {
+                WebData.SelectionStart = WebData.Find(selectstart);
+                WebData.SelectionLength = 289;
+
+                WebData.Copy();
+                WebDataParsed.Paste();
+
+                foreach (string line in WebDataParsed.Lines)
+                {
+                    if (line.Contains(regex))
+                    {
+                        string ver = line.Replace(regex, null).Replace("<", null).Replace("/", null).Replace("div", null).Replace(">", null).Trim();
+
+                        SMAPIUpdateVer.Invoke(new MethodInvoker(delegate
+                        {
+                            SMAPIUpdateVer.Text = ver;
+                        }));
+                    }
+                }
+            }));
+        }
+        private void SMAPIValidationWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled == true)
+            {
+                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
+                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                //MessageBox.Show(e.Error.Message);
+                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
+            }
+            else if (e.Error != null)
+            {
+                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
+                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                //MessageBox.Show(e.Error.Message);
+                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
+            }
+            else
+            {
+                //MessageBox.Show(SMAPIUpdateVer.Text);
+                CompareVersions();
+            }
+        }
+
+        //Handles when the user clicks the SMAPI icon
+        private void Icon_SMAPIUpToDate_Click(object sender, EventArgs e)
+        {
+            Icon_SMAPIUpToDate.Image = Properties.Resources.sdvConnecting;
+            HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "Connecting to NexusMods...");
+            HelpTooltip.SetToolTip(SMAPIVer, "Connecting to NexusMods...");
+
+            SMAPIValidationWorker.RunWorkerAsync();
+        }
+
+        //Starts checking for updates when the SMAPI icon is clicked
+        private void StartSMAPIUpdateCheck_Tick(object sender, EventArgs e)
+        {
+            StartSMAPIUpdateCheck.Stop();
+            Icon_SMAPIUpToDate.Image = Properties.Resources.sdvConnecting;
+            SMAPIValidationWorker.RunWorkerAsync();
+        }
+
+        //Handles mod installation via ZIP file when the user clicks the "Install from ZIP" button
         private void ZipInstall_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog()
@@ -792,6 +921,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Handles mod installation via modpack when the user clicks the "Install via Modpack" button
         private void PackInstall_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -808,6 +938,7 @@ namespace Stardew_Mod_Manager
                 this.Hide();
             }
         }
+
 
         private void CloseRefreshPanel_Click(object sender, EventArgs e)
         {
@@ -1380,128 +1511,7 @@ namespace Stardew_Mod_Manager
             Application.Exit();
         }
 
-        private void SMAPIValidationWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            string URL = "https://www.nexusmods.com/stardewvalley/mods/2400/";
-
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            request.Timeout = 45000;
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                Stream receiveStream = response.GetResponseStream();
-                StreamReader readStream = null;
-
-                if (response.CharacterSet == null)
-                {
-                    readStream = new StreamReader(receiveStream);
-                }
-                else
-                {
-                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-                }
-
-                string data = readStream.ReadToEnd();
-
-                WebData.Invoke(new MethodInvoker(delegate { WebData.Text = data; }));
-            }
-        }
-
-        private void SMAPIValidationWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Cancelled == true)
-            {
-                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
-                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
-            }
-            else if (e.Error != null)
-            {
-                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
-                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
-            }
-            else
-            {
-                SMAPIValidationWorker2.RunWorkerAsync();
-            }
-        }
-
-        private void SMAPIValidationWorker2_DoWork(object sender, DoWorkEventArgs e)
-        {
-            string regex = "<div class=\"stat\">";
-
-            string selectstart = "<li class=\"stat-version\">";
-            string selectend = "</li>";
-
-
-            WebData.Invoke(new MethodInvoker(delegate {
-                WebData.SelectionStart = WebData.Find(selectstart);
-                WebData.SelectionLength = 289;
-
-                WebData.Copy();
-                WebDataParsed.Paste();
-
-                foreach (string line in WebDataParsed.Lines)
-                {
-                    if (line.Contains(regex))
-                    {
-                        string ver = line.Replace(regex, null).Replace("<", null).Replace("/", null).Replace("div", null).Replace(">", null).Trim();
-
-                        SMAPIUpdateVer.Invoke(new MethodInvoker(delegate
-                        {
-                            SMAPIUpdateVer.Text = ver;
-                        }));
-                    }
-                }
-            }));
-        }
-
-        private void SMAPIValidationWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Cancelled == true)
-            {
-                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
-                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                //MessageBox.Show(e.Error.Message);
-                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
-            }
-            else if (e.Error != null)
-            {
-                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
-                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                //MessageBox.Show(e.Error.Message);
-                CreateErrorLog("SDV Mod Manager was unable to determine if SMAPI was up to date." + "SMAPI Version: " + SMAPIVer.Text + "SMAPI Update Version:" + SMAPIUpdateVer.Text + Environment.NewLine + e.Error.Message);
-            }
-            else
-            {
-                //MessageBox.Show(SMAPIUpdateVer.Text);
-                CompareVersions();
-            }
-        }
-
-        private void Icon_SMAPIUpToDate_Click(object sender, EventArgs e)
-        {
-            Icon_SMAPIUpToDate.Image = Properties.Resources.sdvConnecting;
-            HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "Connecting to NexusMods...");
-            HelpTooltip.SetToolTip(SMAPIVer, "Connecting to NexusMods...");
-
-            SMAPIValidationWorker.RunWorkerAsync();
-        }
-
-        private void StartSMAPIUpdateCheck_Tick(object sender, EventArgs e)
-        {
-            StartSMAPIUpdateCheck.Stop();
-            Icon_SMAPIUpToDate.Image = Properties.Resources.sdvConnecting;
-            SMAPIValidationWorker.RunWorkerAsync();
-        }
+        
 
         private void SettingsIconImage_DoubleClick(object sender, EventArgs e)
         {
