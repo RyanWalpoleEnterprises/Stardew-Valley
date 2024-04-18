@@ -1876,17 +1876,16 @@ namespace Stardew_Mod_Manager
             Application.Exit();
         }
 
-        private void SMAPIRunRepairButton_Click(object sender, EventArgs e)
-        {
-            string SMAPIPath = "";
-            //do SMAPI things
-        }
-
         private void InstallBundledSMAPIButton_Click(object sender, EventArgs e)
         {
             //run SMAPI Bundled Installer
             string BundledSMAPI = Path.GetDirectoryName(Application.ExecutablePath);
             Process.Start(BundledSMAPI + @"\smapi.bat");
+        }
+
+        private void SMAPIWebButton_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://smapi.io/");
         }
     }
 }
