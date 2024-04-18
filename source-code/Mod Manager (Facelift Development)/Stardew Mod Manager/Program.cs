@@ -33,7 +33,7 @@ namespace Stardew_Mod_Manager
             for (int i = 0; i < args.Length; i++)
             {
                 Console.WriteLine("args[{0}] == {1}", i, args[i]);
-                MessageBox.Show(args[i]);
+                //MessageBox.Show(args[i]);
 
                 if (args.Length > 0)
                 {
