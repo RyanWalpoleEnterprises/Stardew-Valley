@@ -40,6 +40,21 @@ namespace Stardew_Mod_Manager
             }
         }
 
+
+
+        //           __  __       _       
+        //          |  \/  |     (_)      
+        //          | \  / | __ _ _ _ __  
+        //          | |\/| |/ _` | | '_ \ 
+        //          | |  | | (_| | | | | |
+        //          |_|  |_|\__,_|_|_| |_|
+
+
+        //         THE CODE BLOCKS BELOW ARE FOR THE MAIN/MOD MANAGEMENT TAB OF THE APPLICATION
+        //         This is the tab that contains the enabled and disabled mods list and the enable, disable, uninstall buttons, etc.
+
+
+
         //Let's get these crops watered, shall we?
         public MainPage()
         {
@@ -58,7 +73,7 @@ namespace Stardew_Mod_Manager
             MainTabs.TabPages.Remove(Tab_Feedback);
 
             //If the user has opted to check for SMAPI updates on startup, do that now.
-            if(Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
+            if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
             {
                 //SMAPI selected to update on startup.
                 StartSMAPIUpdateCheck.Start();
@@ -95,196 +110,6 @@ namespace Stardew_Mod_Manager
                 SMAPIWarning.Visible = true;
                 SMAPIVer.Visible = true;
             }
-        }
-
-        //Get color profile from user settings and apply
-        private void GetColorProfile()
-        {
-            //MainTabs.ActiveTabColor
-            //Pink - 227, 116, 137
-            //Blue - 0, 169, 202
-            //MessageBox.Show(Properties.Settings.Default.ColorProfile.ToString().ToUpper());
-
-            switch (Properties.Settings.Default.ColorProfile.ToString().ToUpper())
-            {
-                case "BLUE":
-                    MainTabs.ActiveTabColor = Color.FromArgb(255, 0, 169, 202);
-                    Tab_Main.BackgroundImage = Resources.MainBG_Blue;
-                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
-                    Tab_GameMan.BackgroundImage = Resources.MainBG_Blue;
-                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
-                    ThemeColor.SelectedItem = "Colorful - Blue";
-                    SDVPlay.Image = Resources.SDVPlay_Blue;
-                    break;
-                case "PINK":
-                    MainTabs.ActiveTabColor = Color.FromArgb(255, 227, 116, 137);
-                    Tab_Main.BackgroundImage = Resources.MainBG_Pink;
-                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
-                    Tab_GameMan.BackgroundImage = Resources.MainBG_Pink;
-                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
-                    ThemeColor.SelectedItem = "Colorful - Pink";
-                    SDVPlay.Image = Resources.SDVPlay_Pink;
-                    break;
-                case "GREEN":
-                    MainTabs.ActiveTabColor = Color.FromArgb(255, 100, 148, 90);
-                    Tab_Main.BackgroundImage = Resources.MainBG_Green;
-                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
-                    Tab_GameMan.BackgroundImage = Resources.MainBG_Green;
-                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
-                    ThemeColor.SelectedItem = "Colorful - Green";
-                    SDVPlay.Image = Resources.SDVPlay_Green;
-                    break;
-                case "BIRB":
-                    MainTabs.ActiveTabColor = Color.FromArgb(255, 112, 48, 160);
-                    Tab_Main.BackgroundImage = Resources.MainBG_Birb;
-                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
-                    Tab_GameMan.BackgroundImage = Resources.MainBG_Birb;
-                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
-                    ThemeColor.SelectedItem = "Special - Birb";
-                    SDVPlay.Image = Resources.SDVPlay_Purple;
-                    break;
-                case "NATURE":
-                    MainTabs.ActiveTabColor = Color.FromArgb(255, 0, 112, 192);
-                    Tab_Main.BackgroundImage = Resources.MainBG_Victoria;
-                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
-                    Tab_GameMan.BackgroundImage = Resources.MainBG_Victoria;
-                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
-                    ThemeColor.SelectedItem = "Colorful - Nature";
-                    SDVPlay.Image = Resources.SDVPlay_Blue;
-                    break;
-                case "LYLE":
-                    MainTabs.ActiveTabColor = Color.FromArgb(255, 74, 130, 53);
-                    Tab_Main.BackgroundImage = Resources.MainBG_Lyle;
-                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
-                    Tab_GameMan.BackgroundImage = Resources.MainBG_Lyle;
-                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
-                    ThemeColor.SelectedItem = "Special - Lyle";
-                    SDVPlay.Image = Resources.SDVPlay_Green;
-                    break;
-            }
-
-        }
-
-        //Check If the Game Is Running
-        private void CheckIfGameRunning()
-        {
-            int counter = 0;
-            foreach(Process process in Process.GetProcessesByName("Stardew Valley"))
-            {
-                counter++;
-            }
-            foreach (Process process in Process.GetProcessesByName("StardewModdingAPI"))
-            {
-                counter++;
-            }
-
-            if (counter > 0)
-            {
-                SDVPlay.Enabled = false;
-                SDVPlay.Text = "Game Running";
-                SDVPlay.Image = null;
-
-                InstalledModsList.Enabled = false;
-                AvailableModsList.Enabled = false;
-                EnableModButton.Enabled = false;
-                DisableModButton.Enabled = false;
-                InstallMods.Enabled = false;
-                LoadPresetButton.Enabled = false;
-                DeleteMod.Enabled = false;
-            }
-            else
-            {
-                SDVPlay.Enabled = true;
-                SDVPlay.Text = "Launch Game";
-                switch (Properties.Settings.Default.ColorProfile.ToString().ToUpper())
-                {
-                    case "BLUE":
-                        SDVPlay.Image = Properties.Resources.SDVPlay_Blue;
-                        break;
-                    case "PINK":
-                        SDVPlay.Image = Properties.Resources.SDVPlay_Pink;
-                        break;
-                    case "GREEN":
-                        SDVPlay.Image = Properties.Resources.SDVPlay_Green;
-                        break;
-                    case "BIRB":
-                        SDVPlay.Image = Properties.Resources.SDVPlay_Purple;
-                        break;
-                    case "NATURE":
-                        SDVPlay.Image = Properties.Resources.SDVPlay_Blue;
-                        break;
-                    case "LYLE":
-                        SDVPlay.Image = Properties.Resources.SDVPlay_Green;
-                        break;
-                }
-
-                InstalledModsList.Enabled = true;
-                AvailableModsList.Enabled = true;
-                InstallMods.Enabled = true;
-                LoadPresetButton.Enabled = true;
-            }
-        }
-
-        //Compare SMAPI Versions (Installed to Available)
-        private void CompareVersions()
-        {
-            string SMAPIVERNUM = SMAPIVer.Text;
-            string SMAPIVersionWithoutTrailings = SMAPIVer.Text.Remove(SMAPIVERNUM.Length - 2);
-
-            if (SMAPIUpdateVer.Text != SMAPIVer.Text.Replace("SMAPI v", null))
-            {
-                if (SMAPIUpdateVer.Text != SMAPIVersionWithoutTrailings.Replace("SMAPI v",null))
-                {
-                    //MessageBox.Show("SMAPI CURRENT VERSION" + SMAPIVersionWithoutTrailings.Replace("SMAPI v", null));
-                    DialogResult dr = MessageBox.Show("SMAPI is out of date. Would you like to download the latest version now?", "SMAPI Updates Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    Icon_SMAPIUpToDate.Image = Properties.Resources.sdvError;
-                    HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "SMAPI is out of date. Click for more information.");
-                    HelpTooltip.SetToolTip(SMAPIVer, "SMAPI is out of date. Click for more information.");
-
-                    if (dr == DialogResult.Yes)
-                    {
-                        string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                        string SDVAppData = AppData + @"\RWE Labs\SDV Mod Manager\tmp\";
-                        string LINK = SDVAppData + @"link.txt";
-
-                        string ExePath = Path.GetDirectoryName(Application.ExecutablePath);
-                        string SMAPIManager = ExePath + @"\smapiupdate.exe";
-
-                        if (SMAPIUpdateVer.Text == null)
-                        {
-                            Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
-                            HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                            HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
-                        }
-                        else
-                        {
-                            string UpdateURL = "https://github.com/Pathoschild/SMAPI/releases/download/" + SMAPIUpdateVer.Text + "/SMAPI-" + SMAPIUpdateVer.Text + "-installer.zip";
-                            Properties.Settings.Default.SMAPI_UpdateURL = UpdateURL;
-                            Properties.Settings.Default.SMAPI_UpdateVersion = SMAPIUpdateVer.Text;
-                            Properties.Settings.Default.Save();
-
-                            //this.Hide();
-                            SMAPI_Updater su = new SMAPI_Updater();
-                            su.ShowDialog();
-                        }
-                    }
-                }
-
-                else if (SMAPIUpdateVer.Text == SMAPIVersionWithoutTrailings.Replace("SMAPI v", null))
-                {
-                    Icon_SMAPIUpToDate.Image = Properties.Resources.sdvvalidated;
-                    HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "SMAPI is up to date!");
-                    HelpTooltip.SetToolTip(SMAPIVer, "SMAPI is up to date!");
-                }
-            }
-            else
-            {
-                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvvalidated;
-                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "SMAPI is up to date!");
-                HelpTooltip.SetToolTip(SMAPIVer, "SMAPI is up to date!");
-            }
-
-            //this.Show();
         }
 
         //Load MainPage
@@ -348,7 +173,7 @@ namespace Stardew_Mod_Manager
                 string InstalledModFolderName = InstalledModsList.SelectedItem.ToString();
                 string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
 
-                foreach(string item in InstalledModsList.SelectedItems)
+                foreach (string item in InstalledModsList.SelectedItems)
                 {
                     ModsToMove.AppendText(item.ToString() + Environment.NewLine);
                 }
@@ -362,7 +187,7 @@ namespace Stardew_Mod_Manager
             }
             catch (Exception ex)
             {
-                if(ex.Message.Contains("Cannot create a file when that file already exists."))
+                if (ex.Message.Contains("Cannot create a file when that file already exists."))
                 {
                     RefreshObjects();
                     ModsToMove.Clear();
@@ -375,7 +200,7 @@ namespace Stardew_Mod_Manager
                     CreateErrorLog("There was an issue disabling a mod: " + ex.Message);
                 }
             }
-            
+
         }
 
         //Disables the mod(s) requested to be disabled
@@ -387,7 +212,7 @@ namespace Stardew_Mod_Manager
 
             foreach (string line in ModsToMove.Lines)
             {
-                if(line == null)
+                if (line == null)
                 {
                     //
                 }
@@ -431,9 +256,9 @@ namespace Stardew_Mod_Manager
                     CreateErrorLog("There was a problem enabling a mod. Error Message:" + ex.Message);
                 }
             }
-            
+
         }
-         
+
         //Enables the mod(s) requested to be enabled.
         private void DoEnableMods()
         {
@@ -488,7 +313,7 @@ namespace Stardew_Mod_Manager
         //Handles deselection when clicking whitepsace in the enabled mods list
         private void InstalledModsList_Click(object sender, EventArgs e)
         {
-            if(InstalledModsList.SelectedIndex < 0)
+            if (InstalledModsList.SelectedIndex < 0)
             {
                 //AvailableModsList.SelectedItem = null;
                 //AvailableModsList.SelectedIndex = -1;
@@ -502,7 +327,7 @@ namespace Stardew_Mod_Manager
                 DisableModButton.Enabled = true;
             }
         }
-        
+
         //Handles deselection when clicking whitepsace in the disabled mods list
         private void AvailableModsList_Click(object sender, EventArgs e)
         {
@@ -522,102 +347,80 @@ namespace Stardew_Mod_Manager
 
         }
 
-        //Handles the closing of the main window
-        private void MainPage_FormClosed(object sender, FormClosedEventArgs e)
+        //When the user clicks "Changelog" - open the changelog in browser
+        private void ChangelogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
-            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            Process.Start("https://github.com/RyanWalpoleEnterprises/Stardew-Valley-Mod-Manager/releases/tag/v" + Properties.Settings.Default.Version);
+        }
 
-            //Delete update files if they exist
-            if (File.Exists(updatelocation))
+        //When the user clicks "install" under the mod menu options
+        private void InstallMods_Click(object sender, EventArgs e)
+        {
+            MainTabs.TabPages.Add(Tab_InstallOptions);
+            MainTabs.SelectedTab = Tab_InstallOptions;
+        }
+
+        //When the user clicks "Install from ZIP"/"Browse"
+        private void InstallFromZIP_Click(object sender, EventArgs e)
+        {
+            try
             {
-                File.Delete(updatelocation);
+                string extractdir = Properties.Settings.Default.InactiveModsDir;
+                string extractpath = extractdir + Properties.Settings.Default.TMP_ModSafeName;
+
+                //MessageBox.Show("SP: " + extractpath);
+                //MessageBox.Show("Install " + ModZipPath.Text + " to " + extractdir);
+
+                //ZipFile.ExtractToDirectory(ModZipPath.Text, extractdir);
+
+                Ionic.Zip.ZipFile zipFile = Ionic.Zip.ZipFile.Read(ModZipPath.Text);
+                {
+                    foreach (ZipEntry zipEntry in zipFile)
+                    {
+                        try
+                        {
+                            zipEntry.Extract(extractdir, ExtractExistingFileAction.OverwriteSilently);
+                        }
+                        catch (Exception ex)
+                        {
+                            //could not extract specific file
+                            MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
+                        }
+                    }
+                }
+
+                DialogResult dr = MessageBox.Show(Properties.Settings.Default.TMP_ModSafeName + " was successfully installed. To use this mod in game, you must enable it within the Mod Loader.", "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dr == DialogResult.OK)
+                {
+                    MainTabs.SelectedTab = Tab_Main;
+                    InstallFromZIP.Enabled = false;
+                    ModZipPath.Clear();
+                    ModsToMove.Clear();
+                    RefreshObjects();
+                    Tab_InstallOptions.Close();
+                }
             }
-
-            //Reset the IsUpdateModInactive setting
-            Properties.Settings.Default.IsUpdateModInactive = false;
-
-            //Hide the window if the "repairactive" setting is set to yes
-            if(Properties.Settings.Default.RepairActive == "Yes")
+            catch (Exception ex)
             {
-                this.Hide();
-
-            }
-            //Save the application settings if the "repairactive" setting is set to no
-            else if (Properties.Settings.Default.RepairActive == "No")
-            {
-                DoApplicationSettingSave();
+                MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
             }
         }
 
-        //Handle saving the application settings to settings.ini
-        private void DoApplicationSettingSave()
+        //When the Install Mod tab is closed, revert to normal tab order...
+        private void Tab_InstallOptions_Closed(object sender, EventArgs e)
         {
-            this.Hide();
+            MainTabs.TabPages.Remove(Tab_InstallOptions);
+            MainTabs.TabPages.Add(Tab_Main);
+            MainTabs.TabPages.Add(Tab_GameMan);
+        }
 
-            int disabledmodsnumber = AvailableModsList.Items.Count;
-            int enabledmodsnumber = InstalledModsList.Items.Count;
-            Properties.Telemetry.Default.ModsEnabled = enabledmodsnumber;
-            Properties.Telemetry.Default.ModsDisabled = disabledmodsnumber;
-            Properties.Telemetry.Default.ModsInstalled = disabledmodsnumber + enabledmodsnumber;
-            Properties.Telemetry.Default.Save();
-
-            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string SDVAppData = AppData + @"\RWE Labs\SDV Mod Manager\";
-            string SettingsINI = SDVAppData + @"settings.ini";
-            string Telemetry = SDVAppData + @"telemetry.json";
-
-            FileWrite.Clear();
-
-            FileWrite.AppendText("$StardewDir=" + Properties.Settings.Default.StardewDir + Environment.NewLine);
-            FileWrite.AppendText("$ModsDir=" + Properties.Settings.Default.ModsDir + Environment.NewLine);
-            FileWrite.AppendText("$InactiveModsDir=" + Properties.Settings.Default.InactiveModsDir + Environment.NewLine);
-            FileWrite.AppendText("$PresetsDir=" + Properties.Settings.Default.PresetsDir + Environment.NewLine);
-            FileWrite.AppendText("$CheckUpdateOnStartup=" + Properties.Settings.Default.CheckUpdateOnStartup + Environment.NewLine);
-            FileWrite.AppendText("$IsManuallyReset=" + Properties.Settings.Default.IsManuallyReset + Environment.NewLine);
-            FileWrite.AppendText("$CheckSMAPIUpdateOnStartup=" + Properties.Settings.Default.CheckSMAPIUpdateOnStartup + Environment.NewLine);
-            FileWrite.AppendText("$ColorProfile=" + Properties.Settings.Default.ColorProfile + Environment.NewLine);
-            FileWrite.AppendText("$DoTelemetry=" + Properties.Settings.Default.DoTelemetry + Environment.NewLine);
-            FileWrite.SaveFile(SettingsINI, RichTextBoxStreamType.PlainText);
-
-            FileWrite.Clear();
-
-            FileWrite.AppendText("{" + Environment.NewLine);
-            FileWrite.AppendText("  \"data\": [" + Environment.NewLine);
-            FileWrite.AppendText("    {" + Environment.NewLine);
-            FileWrite.AppendText("      \"bool\": \"" + Properties.Settings.Default.CheckUpdateOnStartup.ToLower() + "\"," + Environment.NewLine);
-            FileWrite.AppendText("      \"TelemetryData\": \"Check for Updates Enabled\"" + Environment.NewLine);
-            FileWrite.AppendText("    }," + Environment.NewLine);
-            FileWrite.AppendText("    {" + Environment.NewLine);
-            FileWrite.AppendText("      \"string\": \"" + Properties.Settings.Default.Version.ToLower() + "\"," + Environment.NewLine);
-            FileWrite.AppendText("      \"TelemetryData\": \"SDV Mod Manager Version\"" + Environment.NewLine);
-            FileWrite.AppendText("    }," + Environment.NewLine);
-            FileWrite.AppendText("    {" + Environment.NewLine);
-            FileWrite.AppendText("      \"bool\": \"" + Properties.Settings.Default.CheckSMAPIUpdateOnStartup.ToLower() + "\"," + Environment.NewLine);
-            FileWrite.AppendText("      \"TelemetryData\": \"Check for SMAPI Updates Enabled\"" + Environment.NewLine);
-            FileWrite.AppendText("    }," + Environment.NewLine);
-            FileWrite.AppendText("    {" + Environment.NewLine);
-            FileWrite.AppendText("      \"string\": \"" + Properties.Settings.Default.ColorProfile.ToLower() + "\"," + Environment.NewLine);
-            FileWrite.AppendText("      \"TelemetryData\": \"Color Profile Selected\"" + Environment.NewLine);
-            FileWrite.AppendText("    }," + Environment.NewLine);
-            FileWrite.AppendText("    {" + Environment.NewLine);
-            FileWrite.AppendText("      \"int\": \"" + Properties.Telemetry.Default.ModsInstalled + "\"," + Environment.NewLine);
-            FileWrite.AppendText("      \"TelemetryData\": \"Mods Installed\"" + Environment.NewLine);
-            FileWrite.AppendText("    }," + Environment.NewLine);
-            FileWrite.AppendText("    {" + Environment.NewLine);
-            FileWrite.AppendText("      \"int\": \"" + Properties.Telemetry.Default.ModsEnabled + "\"," + Environment.NewLine);
-            FileWrite.AppendText("      \"TelemetryData\": \"Mods Enabled\"" + Environment.NewLine);
-            FileWrite.AppendText("    }," + Environment.NewLine);
-            FileWrite.AppendText("    {" + Environment.NewLine);
-            FileWrite.AppendText("      \"int\": \"" + Properties.Telemetry.Default.ModsDisabled + "\"," + Environment.NewLine);
-            FileWrite.AppendText("      \"TelemetryData\": \"Mods Disabled\"" + Environment.NewLine);
-            FileWrite.AppendText("    }" + Environment.NewLine);
-            FileWrite.AppendText("  ]" + Environment.NewLine);
-            FileWrite.AppendText("}" + Environment.NewLine);
-            FileWrite.SaveFile(Telemetry, RichTextBoxStreamType.PlainText);
-
-            Application.Exit();
+        //When the install options tab is closed...
+        private void CloseTab_Click(object sender, EventArgs e)
+        {
+            Tab_InstallOptions.Close();
+            RefreshObjects();
         }
 
         //Save a preset file
@@ -631,8 +434,8 @@ namespace Stardew_Mod_Manager
             }
 
             string UserAnswer = Microsoft.VisualBasic.Interaction.InputBox("Please give this mod preset a name ", "Save Preset", "Untitled Preset");
-            
-            if(UserAnswer.Length > 0)
+
+            if (UserAnswer.Length > 0)
             {
                 richTextBox1.SaveFile(Properties.Settings.Default.PresetsDir + UserAnswer + ".txt", RichTextBoxStreamType.PlainText);
                 richTextBox1.Clear();
@@ -681,13 +484,13 @@ namespace Stardew_Mod_Manager
                         }
                         catch (Exception ex)
                         {
-                           // MessageBox.Show(ex.Message);
+                            // MessageBox.Show(ex.Message);
                         }
                     }
 
                     RefreshObjects();
                     richTextBox1.Clear();
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -714,8 +517,8 @@ namespace Stardew_Mod_Manager
                 }
 
                 DialogResult dr = MessageBox.Show("Are you sure you want to delete: " + Environment.NewLine + ModsToMove.Text + " from your mods folder? If you want to continue using this mod in the future, consider just disabling it instead.", "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-    
-                if(dr == DialogResult.Yes)
+
+                if (dr == DialogResult.Yes)
                 {
                     string ModDirectory = Properties.Settings.Default.ModsDir;
                     string DisabledModFolderName = AvailableModsList.SelectedItem.ToString();
@@ -734,7 +537,7 @@ namespace Stardew_Mod_Manager
                         }
                     }
                 }
-                
+
                 else if (dr == DialogResult.No)
                 {
                     //do nothing
@@ -759,16 +562,31 @@ namespace Stardew_Mod_Manager
             Process.Start("https://stardewvalleywiki.com/Modding:Installing_SMAPI_on_Windows");
             MessageBox.Show("We're opening a link to the SMAPI download page and also a link to the installation instructions. Please download SMAPI, follow the instructions to install it and then restart the mod loader. If you're prompted to supply an install directory, we've copied it to your clipboard for you.", "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
             string Dir = Properties.Settings.Default.StardewDir;
-            Clipboard.SetText(Dir);    
+            Clipboard.SetText(Dir);
+        }
+
+        //When the user clicks the "Help" button
+        private void HelpLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                string Documentation = "https://rwe.app/labs/sdvmm/docs";
+                Process.Start(Documentation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The following error occured: " + Environment.NewLine + ex.Message, "Stardew Valley Mod Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CreateErrorLog("An error occured whilst trying to open a documentation link. Error Message: " + ex.Message);
+            }
         }
 
         //Handles the SMAPI version number when clicked...
         private void SMAPIVer_Click(object sender, EventArgs e)
         {
             var SMAPIVersion = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
-            
+
             //MessageBox.Show("You are running SMAPI version " + SMAPIVersion.FileVersion +". Make sure that any mods you are installing are compatible with this version of SMAPI. Alternatively, update or downgrade to a different version of SMAPI by going to https://smapi.io/","Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+
             Icon_SMAPIUpToDate.Image = Properties.Resources.sdvConnecting;
             HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "Connecting to NexusMods...");
             HelpTooltip.SetToolTip(SMAPIVer, "Connecting to NexusMods...");
@@ -835,7 +653,8 @@ namespace Stardew_Mod_Manager
             string selectend = "</li>";
 
 
-            WebData.Invoke(new MethodInvoker(delegate {
+            WebData.Invoke(new MethodInvoker(delegate
+            {
                 WebData.SelectionStart = WebData.Find(selectstart);
                 WebData.SelectionLength = 289;
 
@@ -935,7 +754,7 @@ namespace Stardew_Mod_Manager
             ofd.Filter = "Stardew Valley Modpack|*.sdvmp";
             ofd.Title = "Browse for a Modpack";
 
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.LaunchArguments = ofd.FileName;
 
@@ -946,12 +765,11 @@ namespace Stardew_Mod_Manager
             }
         }
 
-        //Close the Refresh Panel
-        private void CloseRefreshPanel_Click(object sender, EventArgs e)
+        //Open the Mod Update Check utility
+        private void CheckModUpdates_Click(object sender, EventArgs e)
         {
-            RefreshPanel.Visible = false;
-            RefreshPanel.Enabled = false;
-            RefreshObjects();
+            ModUpdateCheck updatemods = new ModUpdateCheck();
+            updatemods.ShowDialog();
         }
 
         //When the user clicks "Check for Updates"
@@ -1019,12 +837,56 @@ namespace Stardew_Mod_Manager
             }
         }
 
-        //When the user clcks "Settings"
-        private void SettingsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //When the user clicks the "Launch Game" button
+        private void SDVPlay_Click(object sender, EventArgs e)
         {
-            SettingsLink.Enabled = false;
-            MainTabs.TabPages.Add(Tab_Settings);
-            MainTabs.SelectedTab = Tab_Settings;
+            int counter = 0;
+            foreach (Process process in Process.GetProcessesByName("Stardew Valley"))
+            {
+                //report that the game is now running.
+                counter++;
+            }
+            foreach (Process process in Process.GetProcessesByName("StardewModdingAPI"))
+            {
+                //report that the game is now running.
+                counter++;
+            }
+
+            //If either SMAPI or Stardew Are running...
+            if (counter > 0)
+            {
+                //don't let the player open another instance, and report that the game is running.
+                SDVPlay.Enabled = false;
+                SDVPlay.Text = "Game Running";
+                SDVPlay.Image = null;
+            }
+            //Issue running the game using the button :(
+            else
+            {
+                try
+                {
+                    string SMAPI = Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe";
+                    Process.Start(Path.GetFullPath(SMAPI));
+                }
+                catch (Exception ex)
+                {
+                    DialogResult dr = MessageBox.Show("We weren't able to find a modded version of Stardew Valley on your PC. Would you like to launch vanilla Stardew Valley?", "Stardew Valley", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            string SDV = Properties.Settings.Default.StardewDir + @"\Stardew Valley.exe";
+                            Process.Start(Path.GetFullPath(SDV));
+                            CreateErrorLog("An error occured whilst trying to find a modded Stardew Valley installation. Error Message: " + ex.Message);
+                        }
+                        catch (Exception ex2)
+                        {
+                            MessageBox.Show("The following error occured: " + Environment.NewLine + ex2.Message, "Stardew Valley", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CreateErrorLog("An error occured whilst trying to find a modded Stardew Valley installation." + Environment.NewLine + "An error occured whilst trying to find a vanilla Stardew Valley installation. Error Message: " + ex.Message);
+                        }
+                    }
+                }
+            }
         }
 
         //Handle buttons and selections when the user selects a disabled mod...
@@ -1046,7 +908,48 @@ namespace Stardew_Mod_Manager
             }
         }
 
-        //Make a backup of the saves
+        //Handle the selection and deselection of enabled mods and the UI elements affected by the change
+        private void InstalledModsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (InstalledModsList.SelectedIndex < 0)
+            {
+                //AvailableModsList.SelectedItem = null;
+                //AvailableModsList.SelectedIndex = -1;
+            }
+            else
+            {
+                AvailableModsList.SelectedItem = null;
+                AvailableModsList.SelectedIndex = -1;
+                DeleteMod.Enabled = false;
+                EnableModButton.Enabled = false;
+                DisableModButton.Enabled = true;
+            }
+        }
+
+        //When the user clicks on the version number of the currently installed version of the application...
+        private void SoftVer_Click(object sender, EventArgs e)
+        {
+            //?????   
+        }
+
+
+
+        //           _____                         __  __                                                   _   
+        //          / ____|                       |  \/  |                                                 | |  
+        //          | |  __ __ _ _ __ ___   ___   | \  / | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_ 
+        //          | | |_ |/ _` | '_ ` _ \ / _ \ | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '_ ` _ \ / _ \ '_ \| __|
+        //          | |__| | (_| | | | | | |  __/ | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ 
+        //           \_____|\__,_|_| |_| |_|\___| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_| |_| |_|\___|_| |_|\__|
+        //                                                                   __/ |                              
+        //                                                                  |___/                               
+
+
+        //         THE CODE BLOCKS BELOW ARE FOR THE GAME MANAGEMENT TAB OF THE APPLICATION
+        //         This is the tab that contains the game save list, backup and web tools.
+
+
+
+        //Clicking this makes a backup of the saves
         private void MakeBackupButton_Click(object sender, EventArgs e)
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1067,10 +970,10 @@ namespace Stardew_Mod_Manager
                     int intnum = 0;
 
                     Random rn = new Random();
-                    intnum = rn.Next(1,98547);
+                    intnum = rn.Next(1, 98547);
 
                     System.IO.Compression.ZipFile.CreateFromDirectory(TargetSave, backupsdir + GameSavesList.SelectedItem.ToString() + "_" + DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "_" + intnum + ".zip");
-                    MessageBox.Show("A backup of your game save: " + GameSavesList.SelectedItem.ToString() + " has been made.","Game Save Management | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("A backup of your game save: " + GameSavesList.SelectedItem.ToString() + " has been made.", "Game Save Management | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -1083,7 +986,7 @@ namespace Stardew_Mod_Manager
         //Handle buttons and selections when the user selects or deselects a game save
         private void GameSavesList_SelectedValueChanged(object sender, EventArgs e)
         {
-            if(GameSavesList.SelectedIndex >= 0)
+            if (GameSavesList.SelectedIndex >= 0)
             {
                 BackupSelectedFarm.Enabled = true;
                 DeleteFarm.Enabled = true;
@@ -1117,9 +1020,9 @@ namespace Stardew_Mod_Manager
             string sdvsaves = appdata + @"\StardewValley\Saves\";
             string backupsdir = Properties.Settings.Default.StardewDir + @"\savebackups\";
 
-            DialogResult dr = MessageBox.Show("Are you sure you want to delete the game save: " + GameSavesList.SelectedItem.ToString() + "?" + Environment.NewLine + "This cannot be undone.", "Game Save Management | Stardew Valley Modded Framework",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-            
-            if(dr == DialogResult.Yes)
+            DialogResult dr = MessageBox.Show("Are you sure you want to delete the game save: " + GameSavesList.SelectedItem.ToString() + "?" + Environment.NewLine + "This cannot be undone.", "Game Save Management | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
             {
                 try
                 {
@@ -1151,14 +1054,14 @@ namespace Stardew_Mod_Manager
             string SMAPIBackups = InstallDir + @"\save-backups";
 
             DialogResult dr = MessageBox.Show("SMAPI comes with a save backup mod that backs up all of your farms every time you play. SMAPI will usually keep 10 snapshots of your saves if you have this mod enabled. Would you like to view your SMAPI backups?", "Game Save Management | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-        
-            if(dr == DialogResult.Yes)
+
+            if (dr == DialogResult.Yes)
             {
                 try
                 {
                     Process.Start(SMAPIBackups);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("The SMAPI Game Backups Folder does not exist. Are you sure you've played Stardew Valley with default SMAPI mods enabled?", "Game Save Management | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CreateErrorLog("There was a problem opening SMAPI backups. Error Message:" + ex.Message);
@@ -1166,355 +1069,32 @@ namespace Stardew_Mod_Manager
             }
         }
 
-        //Open the Mod Update Check utility
-        private void CheckModUpdates_Click(object sender, EventArgs e)
+        //Launches the WebTools window
+        private void WebToolsButton_Click(object sender, EventArgs e)
         {
-            ModUpdateCheck updatemods = new ModUpdateCheck();
-            updatemods.ShowDialog();
+            WebToolsHome wth = new WebToolsHome();
+            wth.Show();
         }
 
-        //When the user moves between tabs...
-        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(MainTabs.SelectedTab != Tab_Settings)
-            {
-                MainTabs.TabPages.Remove(Tab_Settings);
-                SettingsLink.Enabled = true;
-            }
-            
-            if (MainTabs.SelectedTab == Tab_Settings)
-            {
-                SettingsLink.Enabled = false;
-                SDVDir.Text = Properties.Settings.Default.StardewDir;
 
-                if (Properties.Settings.Default.CheckUpdateOnStartup == "TRUE")
-                {
-                    CheckForUpdatesOnStartup.Checked = true;
-                }
-                else if (Properties.Settings.Default.CheckUpdateOnStartup == "FALSE")
-                {
-                    CheckForUpdatesOnStartup.Checked = false;
-                }
 
-                if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
-                {
-                    CheckSMAPIUpdatesOnStart.Checked = true;
-                }
-                else if(Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "FALSE")
-                {
-                    CheckSMAPIUpdatesOnStart.Checked = false;
-                }
-                if (Properties.Settings.Default.DoTelemetry == "TRUE")
-                {
-                    TelemetryOptInOut.Text = "Opt-Out";
-                    TelemetrySettingStatus.Text = "You are currently sharing telemetry data with RWE Labs";
-                    VolunteerTelemetry.Enabled = true;
-                }
-                else if (Properties.Settings.Default.DoTelemetry == "FALSE")
-                {
-                    TelemetryOptInOut.Text = "Opt-In";
-                    TelemetrySettingStatus.Text = "You are not currently sharing telemetry data with RWE Labs";
-                    VolunteerTelemetry.Enabled = false;
-                }
-                if (Properties.Settings.Default.IgnoreWebsiteWarning == "FALSE")
-                {
-                    WebToolsWarningEnabled.Checked = true;
-                }
-                else if (Properties.Settings.Default.IgnoreWebsiteWarning == "TRUE")
-                {
-                    WebToolsWarningEnabled.Checked = false;
-                }
-            }
+        //            ______            _ _                _    
+        //           |  ____|          | | |              | |   
+        //           | |__  ___  ___ __| | |__    __ _ ___| | __
+        //           |  __/ _ \/ _ \/ _` | '_ \ / _` |/ __| |/ /
+        //           | | |  __/  __/ (_| | |_) | (_| | (__|   < 
+        //           |_|  \___|\___|\__,_|_.__/ \__,_|\___|_|\_\
 
-            if(MainTabs.SelectedTab == Tab_InstallOptions)
-            {
-                MainTabs.TabPages.Remove(Tab_Main);
-                MainTabs.TabPages.Remove(Tab_GameMan);
-            }
 
-            if (MainTabs.SelectedTab == Tab_Feedback)
-            {
-                MainTabs.TabPages.Remove(Tab_Main);
-                MainTabs.TabPages.Remove(Tab_GameMan);
-                MainTabs.TabPages.Remove(Tab_Settings);
-                MainTabs.TabPages.Remove(Tab_InstallOptions);
-                GiveFeedbackLink.Enabled = false;
-            }
+        //         THE CODE BLOCKS BELOW ARE FOR THE FEEDBACK TAB OF THE APPLICATION
+        //         This is the tab that allows users to access error logs, submit bug reports, feedback, etc
 
-            if (MainTabs.SelectedTab != Tab_Feedback)
-            {
-                GiveFeedbackLink.Enabled = true;
-            }
-        }
 
-        //When the user attempts to change the Stardew Directory manually...
-        private void SDVDir_TextChanged(object sender, EventArgs e)
-        {
-            if (File.Exists(SDVDir.Text + @"\Stardew Valley.exe"))
-            {
-                //Is a valid directory!
-                ValidDirectory.Image = Resources.sdvvalidated;
-                UpdateSDVDir.Enabled = true;
-                Tooltip.Text = "This directory contains a Stardew Valley installation.";
-            }
-            else
-            {
-                //Is not a valid directory!
-                ValidDirectory.Image = Resources.sdvError;
-                UpdateSDVDir.Enabled = false;
-                Tooltip.Text = "Could not find a valid Stardew Valley installation at this file path.";
-            }
-        }
-
-        //When someone successfully changes the Stardew Valley Directory manually...
-        private void UpdateSDVDir_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(SDVDir.Text + @"\Stardew Valley.exe"))
-            {
-                Properties.Settings.Default.StardewDir = SDVDir.Text;
-                Properties.Settings.Default.Save();
-                UpdateSDVDir.Text = "Updated!";
-                UpdateSDVDir.Enabled = false;
-            }
-        }
-
-        //Copies the Stardew Valley path to the clipboard.
-        private void CopyPath_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(SDVDir.Text);
-        }
-
-        //Opens file explorer to the Stardew Valley directory.
-        private void FileExplorerOpen_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process.Start(SDVDir.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("There was an issue performing this action:" + Environment.NewLine + Environment.NewLine + ex.Message.ToString(), "Settings | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CreateErrorLog("There was a problem opening file explorer. Error Message:" + ex.Message);
-            }
-        }
-
-        //Resets the settings and relaunches the application at factory defaults.
-        private void SettingsReset_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("Are you sure you want to reset your application settings? You will be prompted to set up Stardew Valley Mod Manager again the next time you launch it. This will not:" + Environment.NewLine + Environment.NewLine + "- Delete your mods and presets" + Environment.NewLine + "- Uninstall SMAPI" + Environment.NewLine + "- Uninstall Mod Manager", "Settings Confirmation | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (dr == DialogResult.Yes)
-            {
-                Properties.Settings.Default.Reset();
-
-                Properties.Settings.Default.IsManuallyReset = "TRUE";
-                Properties.Settings.Default.Save();
-
-                Application.Exit();
-            }
-            else
-            {
-                //do nothing.
-            }
-        }
-
-        //Check for app updates on startup
-        private void CheckForUpdatesOnStartup_CheckStateChanged(object sender, EventArgs e)
-        {
-            if(CheckForUpdatesOnStartup.Checked == true)
-            {
-                Properties.Settings.Default.CheckUpdateOnStartup = "TRUE";
-                Properties.Settings.Default.Save();
-            }
-            if (CheckForUpdatesOnStartup.Checked == false)
-            {
-                Properties.Settings.Default.CheckUpdateOnStartup = "FALSE";
-                Properties.Settings.Default.Save();
-            }
-        }
-
-        //Check for SMAPI updates on startup
-        private void CheckSMAPIForUpdatesOnStartup_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (CheckSMAPIUpdatesOnStart.Checked == true)
-            {
-                Properties.Settings.Default.CheckSMAPIUpdateOnStartup = "TRUE";
-                Properties.Settings.Default.Save();
-            }
-            if (CheckSMAPIUpdatesOnStart.Checked == false)
-            {
-                Properties.Settings.Default.CheckSMAPIUpdateOnStartup = "FALSE";
-                Properties.Settings.Default.Save();
-            }
-        }
-
-        //Opens the legacy settings page
-        private void LegacySettings_Click(object sender, EventArgs e)
-        {
-            Settings set = new Settings();
-            set.Show();
-        }
-
-        //When the user clicks "Changelog" - open the changelog in browser
-        private void ChangelogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/RyanWalpoleEnterprises/Stardew-Valley-Mod-Manager/releases/tag/v" + Properties.Settings.Default.Version);
-        }
-
-        //When the user clicks "install" under the mod menu options
-        private void InstallMods_Click(object sender, EventArgs e)
-        {
-            MainTabs.TabPages.Add(Tab_InstallOptions);
-            MainTabs.SelectedTab = Tab_InstallOptions;
-        }
-
-        //When the user clicks "Install from ZIP"/"Browse"
-        private void InstallFromZIP_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string extractdir = Properties.Settings.Default.InactiveModsDir;
-                string extractpath = extractdir + Properties.Settings.Default.TMP_ModSafeName;
-
-                //MessageBox.Show("SP: " + extractpath);
-                //MessageBox.Show("Install " + ModZipPath.Text + " to " + extractdir);
-
-                //ZipFile.ExtractToDirectory(ModZipPath.Text, extractdir);
-
-                Ionic.Zip.ZipFile zipFile = Ionic.Zip.ZipFile.Read(ModZipPath.Text);
-                {
-                    foreach(ZipEntry zipEntry in zipFile)
-                    {
-                        try
-                        {
-                            zipEntry.Extract(extractdir, ExtractExistingFileAction.OverwriteSilently);
-                        }
-                        catch(Exception ex)
-                        {
-                            //could not extract specific file
-                            MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
-                        }
-                    }
-                }
-
-                DialogResult dr = MessageBox.Show(Properties.Settings.Default.TMP_ModSafeName + " was successfully installed. To use this mod in game, you must enable it within the Mod Loader.", "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (dr == DialogResult.OK)
-                {
-                    MainTabs.SelectedTab = Tab_Main;
-                    InstallFromZIP.Enabled = false;
-                    ModZipPath.Clear();
-                    ModsToMove.Clear();
-                    RefreshObjects();
-                    Tab_InstallOptions.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
-            }
-        }
-
-        //When the Install Mod tab is closed, revert to normal tab order...
-        private void Tab_InstallOptions_Closed(object sender, EventArgs e)
-        {
-            MainTabs.TabPages.Remove(Tab_InstallOptions);
-            MainTabs.TabPages.Add(Tab_Main);
-            MainTabs.TabPages.Add(Tab_GameMan);
-        }
-
-        //When the install options tab is closed...
-        private void CloseTab_Click(object sender, EventArgs e)
-        {
-            Tab_InstallOptions.Close();
-            RefreshObjects();
-        }
-
-        //When the main page of the application is shown, print the correct titlebar text.
-        private void MainPage_Shown(object sender, EventArgs e)
-        {
-            this.Text = "Mod Manager | Stardew Valley Modded Framework";
-            //this.TopMost = false;
-        }
-
-        //When the user clicks the "Launch Game" button
-        private void SDVPlay_Click(object sender, EventArgs e)
-        {
-            int counter = 0;
-            foreach (Process process in Process.GetProcessesByName("Stardew Valley"))
-            {
-                //report that the game is now running.
-                counter++;
-            }
-            foreach (Process process in Process.GetProcessesByName("StardewModdingAPI"))
-            {
-                //report that the game is now running.
-                counter++;
-            }
-
-            //If either SMAPI or Stardew Are running...
-            if (counter > 0)
-            {
-                //don't let the player open another instance, and report that the game is running.
-                SDVPlay.Enabled = false;
-                SDVPlay.Text = "Game Running";
-                SDVPlay.Image = null;
-            }
-            //Issue running the game using the button :(
-            else
-            {
-                try
-                {
-                    string SMAPI = Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe";
-                    Process.Start(Path.GetFullPath(SMAPI));
-                }
-                catch(Exception ex)
-                {
-                    DialogResult dr = MessageBox.Show("We weren't able to find a modded version of Stardew Valley on your PC. Would you like to launch vanilla Stardew Valley?", "Stardew Valley", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dr == DialogResult.Yes)
-                    {
-                        try
-                        {
-                            string SDV = Properties.Settings.Default.StardewDir + @"\Stardew Valley.exe";
-                            Process.Start(Path.GetFullPath(SDV));
-                            CreateErrorLog("An error occured whilst trying to find a modded Stardew Valley installation. Error Message: " + ex.Message);
-                        }
-                        catch (Exception ex2)
-                        {
-                            MessageBox.Show("The following error occured: " + Environment.NewLine + ex2.Message, "Stardew Valley", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            CreateErrorLog("An error occured whilst trying to find a modded Stardew Valley installation." + Environment.NewLine + "An error occured whilst trying to find a vanilla Stardew Valley installation. Error Message: " + ex.Message);
-                        }
-                    }
-                }
-            }
-        }
-
-        //Every time the timer goes off, check again if the game is currently launched
-        private void CheckSDV_Tick(object sender, EventArgs e)
-        {
-            CheckIfGameRunning();
-        }
-
-        //When the user clicks the "Help" button
-        private void HelpLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                string Documentation = "https://rwe.app/labs/sdvmm/docs";
-                Process.Start(Documentation);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The following error occured: " + Environment.NewLine + ex.Message, "Stardew Valley Mod Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CreateErrorLog("An error occured whilst trying to open a documentation link. Error Message: " + ex.Message);
-            }
-        }
 
         //When the user clicks the "Give Feedback" button, open to the correct tab
         private void GiveFeedbackLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if(MainTabs.SelectedTab == Tab_Feedback)
+            if (MainTabs.SelectedTab == Tab_Feedback)
             {
                 //do nothing
             }
@@ -1543,52 +1123,11 @@ namespace Stardew_Mod_Manager
                 string BugReport = "https://rwe.app/sdvmm/report/issue";
                 Process.Start(BugReport);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("The following error occured: " + Environment.NewLine + ex.Message, "Stardew Valley Mod Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CreateErrorLog("An error occured whilst trying to open a bug report. Error Message: " + ex.Message);
             }
-        }
-
-        //When the user double clicks the Settings Icon Image, open the Hidden Form
-        private void SettingsIconImage_DoubleClick(object sender, EventArgs e)
-        {
-            HiddenForm hf = new HiddenForm();
-            hf.ShowDialog();
-        }
-
-        //Create an error log with a supplied message.
-        private void CreateErrorLog(string errorMessage)
-        {
-            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string SDVAppData = AppData + @"\RWE Labs\SDV Mod Manager\tmp\logs\";
-            string LogID = DateTime.Now.ToString("dd-mm-yyyy-hh-mm-ss");
-
-            //Check for Log Directory
-            string logsdir = AppData + @"\RWE Labs\SDV Mod Manager\tmp\logs\";
-            if (!Directory.Exists(logsdir))
-            {
-                Directory.CreateDirectory(logsdir);
-            }
-            else
-            {
-                //Directory exists
-            }
-
-            ErrorLog.Clear();
-            ErrorLog.AppendText("Stardew Valley Mod Manager v" + Properties.Settings.Default.Version);
-            ErrorLog.AppendText(Environment.NewLine + "(C) RWE Labs, 2022" + Environment.NewLine);
-            ErrorLog.AppendText("-------------------- ERROR LOG --------------------" + Environment.NewLine);
-            ErrorLog.AppendText("This log was generated at: " + LogID + Environment.NewLine + "With Stardew Valley Mod Manager version " + Properties.Settings.Default.Version + Environment.NewLine);
-            ErrorLog.AppendText( Environment.NewLine + errorMessage);
-            ErrorLog.SaveFile(SDVAppData + "log_" + LogID + ".sdvmmerrorlog", RichTextBoxStreamType.PlainText);
-        }
-
-        //Create a test error message
-        private void debug_TestErrorLogs_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("DEBUG_TESTERRORLOGCREATED", "Debug Menu", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            CreateErrorLog("This is a test. Line One." + Environment.NewLine + "handles second lines okay." + Environment.NewLine + Properties.Settings.Default.InactiveModsDir);
         }
 
         //Opens file explorer to the error logs directory
@@ -1601,7 +1140,7 @@ namespace Stardew_Mod_Manager
             //Check for Log Directory
             string logsdir = AppData + @"\RWE Labs\SDV Mod Manager\tmp\logs\";
 
-            if (Directory.Exists(logsdir))    
+            if (Directory.Exists(logsdir))
             {
                 Process.Start(logsdir);
             }
@@ -1625,21 +1164,6 @@ namespace Stardew_Mod_Manager
             if (Directory.Exists(logsdir))
             {
                 Directory.Delete(logsdir, true);
-            }
-        }
-
-        //Create a test mod backup
-        private void Debug_BackupMods_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("The application may hang and become unresponsive for a moment depending on the size of your disabled mods list.");
-            if (!File.Exists(Properties.Settings.Default.StardewDir + @"inactive-mods-backup.zip"))
-            {
-                System.IO.Compression.ZipFile.CreateFromDirectory(Properties.Settings.Default.InactiveModsDir, Properties.Settings.Default.StardewDir + @"inactive-mods-backup.zip");
-                MessageBox.Show("DEBUG_OPERATIONCOMPLETED", "Debug Menu", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("DEBUG_FILEEXISTS","Debug Menu",MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -1717,10 +1241,98 @@ namespace Stardew_Mod_Manager
             }
         }
 
-        //When the user selects a new user theme, change the theme in settings and then apply it
+
+
+        //           _____      _   _   _                          
+        //          / ____|    | | | | (_)                
+        //         | (___   ___| |_| |_ _ _ __   __ _ ___ 
+        //          \___ \ / _ \ __| __| | '_ \ / _` / __|
+        //          ____) |  __/ |_| |_| | | | | (_| \__ \
+        //         |_____/ \___|\__|\__|_|_| |_|\__, |___/
+        //                                       __/ |    
+        //                                      |___/         
+
+
+        //         THE CODE BLOCKS BELOW ARE FOR SETTINGS
+        //         attached to UI elements within the Settings tab of the application
+
+
+
+        //When the user clcks "Settings"
+        //The settings tab is shown to the user
+        private void SettingsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SettingsLink.Enabled = false;
+            MainTabs.TabPages.Add(Tab_Settings);
+            MainTabs.SelectedTab = Tab_Settings;
+        }
+
+        //Double Click the Settings Page Icon
+        //Opens a hidden window with information regarding the application. A secret credits screen, if you will.
+        private void SettingsIconImage_DoubleClick(object sender, EventArgs e)
+        {
+            HiddenForm hf = new HiddenForm();
+            hf.ShowDialog();
+        }
+
+        //Editing the SDVDir field will change the Stardew Valley Directory path on the computer.
+        //Every keystroke will trigger a check to see if it is a valid path that contains the game files.
+        private void SDVDir_TextChanged(object sender, EventArgs e)
+        {
+            if (File.Exists(SDVDir.Text + @"\Stardew Valley.exe"))
+            {
+                //Is a valid directory!
+                ValidDirectory.Image = Resources.sdvvalidated;
+                UpdateSDVDir.Enabled = true;
+                Tooltip.Text = "This directory contains a Stardew Valley installation.";
+            }
+            else
+            {
+                //Is not a valid directory!
+                ValidDirectory.Image = Resources.sdvError;
+                UpdateSDVDir.Enabled = false;
+                Tooltip.Text = "Could not find a valid Stardew Valley installation at this file path.";
+            }
+        }
+
+        //Clicking the UpdateSDVDir button will attempt to update the Stardew Valley directory.
+        //If the directory contains a valid Stardew Valley.exe, the path will be accepted.
+        private void UpdateSDVDir_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(SDVDir.Text + @"\Stardew Valley.exe"))
+            {
+                Properties.Settings.Default.StardewDir = SDVDir.Text;
+                Properties.Settings.Default.Save();
+                UpdateSDVDir.Text = "Updated!";
+                UpdateSDVDir.Enabled = false;
+            }
+        }
+
+        //Clicking CopyPath copies the Stardew Valley path to the clipboard.
+        private void CopyPath_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(SDVDir.Text);
+        }
+
+        //Clicking FileExplorerOpen, will open file explorer to the Stardew Valley directory.
+        private void FileExplorerOpen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(SDVDir.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an issue performing this action:" + Environment.NewLine + Environment.NewLine + ex.Message.ToString(), "Settings | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CreateErrorLog("There was a problem opening file explorer. Error Message:" + ex.Message);
+            }
+        }
+
+        //Clicking the ThemeColor Dropdown allows the user to select a new application theme.
+        //Once a new theme is selected, trigger the GetColorProfile(); event to apply the changes instantly.
         private void ThemeColor_SelectedValueChanged(object sender, EventArgs e)
         {
-            switch (ThemeColor.SelectedItem.ToString()) 
+            switch (ThemeColor.SelectedItem.ToString())
             {
                 case "Colorful - Pink":
                     Properties.Settings.Default.ColorProfile = "PINK";
@@ -1751,48 +1363,437 @@ namespace Stardew_Mod_Manager
             GetColorProfile();
         }
 
-        //Handle the selection and deselection of enabled mods and the UI elements affected by the change
-        private void InstalledModsList_SelectedIndexChanged(object sender, EventArgs e)
+        //When checked, the WebTools window will warn the user when they visit external websites.
+        //This is the default behavior.
+        private void WebToolsWarningEnabled_CheckStateChanged(object sender, EventArgs e)
         {
-            if (InstalledModsList.SelectedIndex < 0)
+            if (WebToolsWarningEnabled.Checked == true)
             {
-                //AvailableModsList.SelectedItem = null;
-                //AvailableModsList.SelectedIndex = -1;
+                Properties.Settings.Default.IgnoreWebsiteWarning = "FALSE";
+            }
+            else if (WebToolsWarningEnabled.Checked == false)
+            {
+                Properties.Settings.Default.IgnoreWebsiteWarning = "TRUE";
+            }
+        }
+
+        //When checked, the application will check for available updates every time it is launched.
+        //This is the default behavior.
+        private void CheckForUpdatesOnStartup_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (CheckForUpdatesOnStartup.Checked == true)
+            {
+                Properties.Settings.Default.CheckUpdateOnStartup = "TRUE";
+                Properties.Settings.Default.Save();
+            }
+            if (CheckForUpdatesOnStartup.Checked == false)
+            {
+                Properties.Settings.Default.CheckUpdateOnStartup = "FALSE";
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        //When checked, the application will check for available SMAPI updates every time it is launched.
+        //This is not the default behavior.
+        private void CheckSMAPIForUpdatesOnStartup_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (CheckSMAPIUpdatesOnStart.Checked == true)
+            {
+                Properties.Settings.Default.CheckSMAPIUpdateOnStartup = "TRUE";
+                Properties.Settings.Default.Save();
+            }
+            if (CheckSMAPIUpdatesOnStart.Checked == false)
+            {
+                Properties.Settings.Default.CheckSMAPIUpdateOnStartup = "FALSE";
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        //Clicking this button allows the user to opt-out of telemetry, presenting them with the onboarding window.
+        //They can review the policy, see an example of telemetry and re-evaluate their decision
+        private void TelemetryOptInOut_Click(object sender, EventArgs e)
+        {
+            MainTabs.SelectedTab = Tab_Main;
+            TelemetryOnboarding tob = new TelemetryOnboarding();
+            tob.ShowDialog();
+        }
+
+        //Clicking this allows the user to view and read the telemetry policy in the browser
+        private void ViewTelemetryPolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://rwelabs.github.io/sdvmm/policies/#Telemetry");
+        }
+
+        //Clicking this allows the user to voluntarily submit their telemetry data.
+        //Data is then uploaded to the cloud via DoTelemetricChecks.RunWorkerAsync();
+        private void VolunteerTelemetry_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult DR = MessageBox.Show("Are you sure you'd like to voluntarily submit your telemetry file? You should only do this if you've been instructed to by RWE Labs or a representative from RWE Labs.", "Voluntary Submission | RWE Labs Telemetry", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (DR == DialogResult.Yes)
+                {
+                    DoTelemetricChecks.RunWorkerAsync();
+                    MessageBox.Show("Thank you for sending your data. We encourage you to not use this voluntary submission for the next 7 days unless otherwise instructed.", "Voluntary Submission | RWE Labs Telemetry");
+                }
+                else
+                {
+                    //do nothing
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("We ran into an issue sending your telemetry data to RWE Labs.", "Voluntary Submission | RWE Labs Telemetry");
+            }
+        }
+
+        //Clicking this allows the user to manually install the bundled version of SMAPI from the Settings
+        //It launches straight into the SMAPI install bat.
+        private void InstallBundledSMAPIButton_Click(object sender, EventArgs e)
+        {
+            //run SMAPI Bundled Installer
+            string BundledSMAPI = Path.GetDirectoryName(Application.ExecutablePath);
+            Process.Start(BundledSMAPI + @"\smapi.bat");
+        }
+
+        //Clicking this button allows the user to open the SMAPI website in their browser
+        private void SMAPIWebButton_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://smapi.io/");
+        }
+
+        //Clicking this button resets the settings and relaunches the application at factory defaults.
+        //This is useful if the user has copied their entire AppData folder from an old computer.
+        private void SettingsReset_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Are you sure you want to reset your application settings? You will be prompted to set up Stardew Valley Mod Manager again the next time you launch it. This will not:" + Environment.NewLine + Environment.NewLine + "- Delete your mods and presets" + Environment.NewLine + "- Uninstall SMAPI" + Environment.NewLine + "- Uninstall Mod Manager", "Settings Confirmation | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+            {
+                Properties.Settings.Default.Reset();
+
+                Properties.Settings.Default.IsManuallyReset = "TRUE";
+                Properties.Settings.Default.Save();
+
+                Application.Exit();
             }
             else
             {
-                AvailableModsList.SelectedItem = null;
-                AvailableModsList.SelectedIndex = -1;
-                DeleteMod.Enabled = false;
-                EnableModButton.Enabled = false;
-                DisableModButton.Enabled = true;
+                //do nothing.
             }
         }
 
-        //When the user clicks on the version number of the currently installed version of the application...
-        private void SoftVer_Click(object sender, EventArgs e)
+        //Clicking this opens the legacy settings page.
+        //It is not really used for anything anymore.
+        private void LegacySettings_Click(object sender, EventArgs e)
         {
-         //?????   
+            Settings set = new Settings();
+            set.Show();
         }
 
-        //Launches the WebTools window
-        private void WebToolsButton_Click(object sender, EventArgs e)
+
+
+        //          ____  _   _               
+        //         / __ \| | | |              
+        //        | |  | | |_| |__   ___ _ __ 
+        //        | |  | | __| '_ \ / _ \ '__|
+        //        | |__| | |_| | | |  __/ |   
+        //         \____/ \__|_| |_|\___|_|   
+
+
+        //         THE CODE BLOCKS BELOW ARE FOR OTHER MISCELLANIOUS FUNCTIONS
+        //         These may not be attached to UI objects or maybe don't have a clearly defined "home" in the application.
+
+
+
+        //When the user moves between tabs...
+        //This code handles the tab movement as well as defining what tabs are visible when the user is on each tab.
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            WebToolsHome wth = new WebToolsHome();
-            wth.Show();
+            if (MainTabs.SelectedTab != Tab_Settings)
+            {
+                MainTabs.TabPages.Remove(Tab_Settings);
+                SettingsLink.Enabled = true;
+            }
+
+            if (MainTabs.SelectedTab == Tab_Settings)
+            {
+                SettingsLink.Enabled = false;
+                SDVDir.Text = Properties.Settings.Default.StardewDir;
+
+                if (Properties.Settings.Default.CheckUpdateOnStartup == "TRUE")
+                {
+                    CheckForUpdatesOnStartup.Checked = true;
+                }
+                else if (Properties.Settings.Default.CheckUpdateOnStartup == "FALSE")
+                {
+                    CheckForUpdatesOnStartup.Checked = false;
+                }
+
+                if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
+                {
+                    CheckSMAPIUpdatesOnStart.Checked = true;
+                }
+                else if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "FALSE")
+                {
+                    CheckSMAPIUpdatesOnStart.Checked = false;
+                }
+                if (Properties.Settings.Default.DoTelemetry == "TRUE")
+                {
+                    TelemetryOptInOut.Text = "Opt-Out";
+                    TelemetrySettingStatus.Text = "You are currently sharing telemetry data with RWE Labs";
+                    VolunteerTelemetry.Enabled = true;
+                }
+                else if (Properties.Settings.Default.DoTelemetry == "FALSE")
+                {
+                    TelemetryOptInOut.Text = "Opt-In";
+                    TelemetrySettingStatus.Text = "You are not currently sharing telemetry data with RWE Labs";
+                    VolunteerTelemetry.Enabled = false;
+                }
+                if (Properties.Settings.Default.IgnoreWebsiteWarning == "FALSE")
+                {
+                    WebToolsWarningEnabled.Checked = true;
+                }
+                else if (Properties.Settings.Default.IgnoreWebsiteWarning == "TRUE")
+                {
+                    WebToolsWarningEnabled.Checked = false;
+                }
+            }
+
+            if (MainTabs.SelectedTab == Tab_InstallOptions)
+            {
+                MainTabs.TabPages.Remove(Tab_Main);
+                MainTabs.TabPages.Remove(Tab_GameMan);
+            }
+
+            if (MainTabs.SelectedTab == Tab_Feedback)
+            {
+                MainTabs.TabPages.Remove(Tab_Main);
+                MainTabs.TabPages.Remove(Tab_GameMan);
+                MainTabs.TabPages.Remove(Tab_Settings);
+                MainTabs.TabPages.Remove(Tab_InstallOptions);
+                GiveFeedbackLink.Enabled = false;
+            }
+
+            if (MainTabs.SelectedTab != Tab_Feedback)
+            {
+                GiveFeedbackLink.Enabled = true;
+            }
+        }
+
+        //Gets the color profile from user settings and apply them instantly
+        private void GetColorProfile()
+        {
+            //MainTabs.ActiveTabColor
+            //Pink - 227, 116, 137
+            //Blue - 0, 169, 202
+            //MessageBox.Show(Properties.Settings.Default.ColorProfile.ToString().ToUpper());
+
+            switch (Properties.Settings.Default.ColorProfile.ToString().ToUpper())
+            {
+                case "BLUE":
+                    MainTabs.ActiveTabColor = Color.FromArgb(255, 0, 169, 202);
+                    Tab_Main.BackgroundImage = Resources.MainBG_Blue;
+                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
+                    Tab_GameMan.BackgroundImage = Resources.MainBG_Blue;
+                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
+                    ThemeColor.SelectedItem = "Colorful - Blue";
+                    SDVPlay.Image = Resources.SDVPlay_Blue;
+                    break;
+                case "PINK":
+                    MainTabs.ActiveTabColor = Color.FromArgb(255, 227, 116, 137);
+                    Tab_Main.BackgroundImage = Resources.MainBG_Pink;
+                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
+                    Tab_GameMan.BackgroundImage = Resources.MainBG_Pink;
+                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
+                    ThemeColor.SelectedItem = "Colorful - Pink";
+                    SDVPlay.Image = Resources.SDVPlay_Pink;
+                    break;
+                case "GREEN":
+                    MainTabs.ActiveTabColor = Color.FromArgb(255, 100, 148, 90);
+                    Tab_Main.BackgroundImage = Resources.MainBG_Green;
+                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
+                    Tab_GameMan.BackgroundImage = Resources.MainBG_Green;
+                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
+                    ThemeColor.SelectedItem = "Colorful - Green";
+                    SDVPlay.Image = Resources.SDVPlay_Green;
+                    break;
+                case "BIRB":
+                    MainTabs.ActiveTabColor = Color.FromArgb(255, 112, 48, 160);
+                    Tab_Main.BackgroundImage = Resources.MainBG_Birb;
+                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
+                    Tab_GameMan.BackgroundImage = Resources.MainBG_Birb;
+                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
+                    ThemeColor.SelectedItem = "Special - Birb";
+                    SDVPlay.Image = Resources.SDVPlay_Purple;
+                    break;
+                case "NATURE":
+                    MainTabs.ActiveTabColor = Color.FromArgb(255, 0, 112, 192);
+                    Tab_Main.BackgroundImage = Resources.MainBG_Victoria;
+                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
+                    Tab_GameMan.BackgroundImage = Resources.MainBG_Victoria;
+                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
+                    ThemeColor.SelectedItem = "Colorful - Nature";
+                    SDVPlay.Image = Resources.SDVPlay_Blue;
+                    break;
+                case "LYLE":
+                    MainTabs.ActiveTabColor = Color.FromArgb(255, 74, 130, 53);
+                    Tab_Main.BackgroundImage = Resources.MainBG_Lyle;
+                    Tab_Main.BackgroundImageLayout = ImageLayout.Stretch;
+                    Tab_GameMan.BackgroundImage = Resources.MainBG_Lyle;
+                    Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
+                    ThemeColor.SelectedItem = "Special - Lyle";
+                    SDVPlay.Image = Resources.SDVPlay_Green;
+                    break;
+            }
+
+        }
+
+        //Checks If the Game Is Running
+        private void CheckIfGameRunning()
+        {
+            int counter = 0;
+            foreach (Process process in Process.GetProcessesByName("Stardew Valley"))
+            {
+                counter++;
+            }
+            foreach (Process process in Process.GetProcessesByName("StardewModdingAPI"))
+            {
+                counter++;
+            }
+
+            if (counter > 0)
+            {
+                SDVPlay.Enabled = false;
+                SDVPlay.Text = "Game Running";
+                SDVPlay.Image = null;
+
+                InstalledModsList.Enabled = false;
+                AvailableModsList.Enabled = false;
+                EnableModButton.Enabled = false;
+                DisableModButton.Enabled = false;
+                InstallMods.Enabled = false;
+                LoadPresetButton.Enabled = false;
+                DeleteMod.Enabled = false;
+            }
+            else
+            {
+                SDVPlay.Enabled = true;
+                SDVPlay.Text = "Launch Game";
+                switch (Properties.Settings.Default.ColorProfile.ToString().ToUpper())
+                {
+                    case "BLUE":
+                        SDVPlay.Image = Properties.Resources.SDVPlay_Blue;
+                        break;
+                    case "PINK":
+                        SDVPlay.Image = Properties.Resources.SDVPlay_Pink;
+                        break;
+                    case "GREEN":
+                        SDVPlay.Image = Properties.Resources.SDVPlay_Green;
+                        break;
+                    case "BIRB":
+                        SDVPlay.Image = Properties.Resources.SDVPlay_Purple;
+                        break;
+                    case "NATURE":
+                        SDVPlay.Image = Properties.Resources.SDVPlay_Blue;
+                        break;
+                    case "LYLE":
+                        SDVPlay.Image = Properties.Resources.SDVPlay_Green;
+                        break;
+                }
+
+                InstalledModsList.Enabled = true;
+                AvailableModsList.Enabled = true;
+                InstallMods.Enabled = true;
+                LoadPresetButton.Enabled = true;
+            }
+        }
+
+        //Compares the SMAPI Versions (Installed to Available)
+        private void CompareVersions()
+        {
+            string SMAPIVERNUM = SMAPIVer.Text;
+            string SMAPIVersionWithoutTrailings = SMAPIVer.Text.Remove(SMAPIVERNUM.Length - 2);
+
+            if (SMAPIUpdateVer.Text != SMAPIVer.Text.Replace("SMAPI v", null))
+            {
+                if (SMAPIUpdateVer.Text != SMAPIVersionWithoutTrailings.Replace("SMAPI v", null))
+                {
+                    //MessageBox.Show("SMAPI CURRENT VERSION" + SMAPIVersionWithoutTrailings.Replace("SMAPI v", null));
+                    DialogResult dr = MessageBox.Show("SMAPI is out of date. Would you like to download the latest version now?", "SMAPI Updates Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    Icon_SMAPIUpToDate.Image = Properties.Resources.sdvError;
+                    HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "SMAPI is out of date. Click for more information.");
+                    HelpTooltip.SetToolTip(SMAPIVer, "SMAPI is out of date. Click for more information.");
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                        string SDVAppData = AppData + @"\RWE Labs\SDV Mod Manager\tmp\";
+                        string LINK = SDVAppData + @"link.txt";
+
+                        string ExePath = Path.GetDirectoryName(Application.ExecutablePath);
+                        string SMAPIManager = ExePath + @"\smapiupdate.exe";
+
+                        if (SMAPIUpdateVer.Text == null)
+                        {
+                            Icon_SMAPIUpToDate.Image = Properties.Resources.sdvQuestion;
+                            HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                            HelpTooltip.SetToolTip(SMAPIVer, "We couldn't determine if SMAPI was up to date. Click to retry.");
+                        }
+                        else
+                        {
+                            string UpdateURL = "https://github.com/Pathoschild/SMAPI/releases/download/" + SMAPIUpdateVer.Text + "/SMAPI-" + SMAPIUpdateVer.Text + "-installer.zip";
+                            Properties.Settings.Default.SMAPI_UpdateURL = UpdateURL;
+                            Properties.Settings.Default.SMAPI_UpdateVersion = SMAPIUpdateVer.Text;
+                            Properties.Settings.Default.Save();
+
+                            //this.Hide();
+                            SMAPI_Updater su = new SMAPI_Updater();
+                            su.ShowDialog();
+                        }
+                    }
+                }
+
+                else if (SMAPIUpdateVer.Text == SMAPIVersionWithoutTrailings.Replace("SMAPI v", null))
+                {
+                    Icon_SMAPIUpToDate.Image = Properties.Resources.sdvvalidated;
+                    HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "SMAPI is up to date!");
+                    HelpTooltip.SetToolTip(SMAPIVer, "SMAPI is up to date!");
+                }
+            }
+            else
+            {
+                Icon_SMAPIUpToDate.Image = Properties.Resources.sdvvalidated;
+                HelpTooltip.SetToolTip(Icon_SMAPIUpToDate, "SMAPI is up to date!");
+                HelpTooltip.SetToolTip(SMAPIVer, "SMAPI is up to date!");
+            }
+
+            //this.Show();
+        }
+
+        //When SMAPI is not installed, this link can be clicked to install the bundled version of SMAPI
+        //The version bundled may not be the most up to date.
+        private void SMAPIBundleInstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string extractionpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDV Mod Manager\SMAPI\";
+
+            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
+            Process.Start(appPath + @"\smapi.bat");
+
+            Application.Exit();
         }
 
         //Checks whether to do telemetry or not
         private void CheckDoTelemetry()
         {
-            if(Properties.Settings.Default.DoTelemetry == null)
+            if (Properties.Settings.Default.DoTelemetry == null)
             {
                 //Telemetry has not been set.
                 TelemetryOnboarding telemetry = new TelemetryOnboarding();
                 telemetry.ShowDialog();
             }
 
-            else if(Properties.Settings.Default.DoTelemetry == "TRUE")
+            else if (Properties.Settings.Default.DoTelemetry == "TRUE")
             {
                 //Telemetry has been set to true
                 //Check and Send Data
@@ -1813,7 +1814,7 @@ namespace Stardew_Mod_Manager
                 else if (Int16.Parse(Properties.Settings.Default.LastDataSend) >= 7)
                 {
                     DoTelemetricChecks.RunWorkerAsync();
-                }  
+                }
             }
 
             else if (Properties.Settings.Default.DoTelemetry == "FALSE")
@@ -1838,13 +1839,13 @@ namespace Stardew_Mod_Manager
             string SDVAppData = AppData + @"\RWE Labs\SDV Mod Manager\";
             string Telemetry = SDVAppData + @"telemetry.json";
 
-                    //send data
-                    //FTP Upload using Properties.Telemetry.Default.FTPPassword and Properties.Telemetry.Default.FTPUsername
+            //send data
+            //FTP Upload using Properties.Telemetry.Default.FTPPassword and Properties.Telemetry.Default.FTPUsername
 
             WebClient client = new WebClient();
             client.Credentials = new NetworkCredential(Properties.Telemetry.Default.FTPUsername, Properties.Telemetry.Default.FTPPassword);
             var url = Properties.Telemetry.Default.FTPDestination + DateTime.Now.ToString("dd-MM-yy-hh-mm-ss") + "_telemetry.json";
-            client.UploadFile(url, Telemetry);   
+            client.UploadFile(url, Telemetry);
         }
 
         //Report result of the telemetry data upload
@@ -1875,78 +1876,172 @@ namespace Stardew_Mod_Manager
             }
         }
 
-        //Allows the user to opt-out of telemetry, presenting them with the onboarding window.
-        private void TelemetryOptInOut_Click(object sender, EventArgs e)
+        //Create an error log with a supplied message.
+        private void CreateErrorLog(string errorMessage)
         {
-            MainTabs.SelectedTab = Tab_Main;
-            TelemetryOnboarding tob = new TelemetryOnboarding();
-            tob.ShowDialog();
+            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string SDVAppData = AppData + @"\RWE Labs\SDV Mod Manager\tmp\logs\";
+            string LogID = DateTime.Now.ToString("dd-mm-yyyy-hh-mm-ss");
+
+            //Check for Log Directory
+            string logsdir = AppData + @"\RWE Labs\SDV Mod Manager\tmp\logs\";
+            if (!Directory.Exists(logsdir))
+            {
+                Directory.CreateDirectory(logsdir);
+            }
+            else
+            {
+                //Directory exists
+            }
+
+            ErrorLog.Clear();
+            ErrorLog.AppendText("Stardew Valley Mod Manager v" + Properties.Settings.Default.Version);
+            ErrorLog.AppendText(Environment.NewLine + "(C) RWE Labs, 2022" + Environment.NewLine);
+            ErrorLog.AppendText("-------------------- ERROR LOG --------------------" + Environment.NewLine);
+            ErrorLog.AppendText("This log was generated at: " + LogID + Environment.NewLine + "With Stardew Valley Mod Manager version " + Properties.Settings.Default.Version + Environment.NewLine);
+            ErrorLog.AppendText(Environment.NewLine + errorMessage);
+            ErrorLog.SaveFile(SDVAppData + "log_" + LogID + ".sdvmmerrorlog", RichTextBoxStreamType.PlainText);
         }
 
-        //Allows the user to view and read the telemetry policy in the browser
-        private void ViewTelemetryPolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //Create a test error message
+        private void debug_TestErrorLogs_Click(object sender, EventArgs e)
         {
-            Process.Start("https://rwelabs.github.io/sdvmm/policies/#Telemetry");
+            MessageBox.Show("DEBUG_TESTERRORLOGCREATED", "Debug Menu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CreateErrorLog("This is a test. Line One." + Environment.NewLine + "handles second lines okay." + Environment.NewLine + Properties.Settings.Default.InactiveModsDir);
         }
 
-        //Introduce a setting to toggle whether the WebTools browser shows warnings to users leaving the WebTools web app.
-        private void WebToolsWarningEnabled_CheckStateChanged(object sender, EventArgs e)
+        //Create a test mod backup
+        private void Debug_BackupMods_Click(object sender, EventArgs e)
         {
-            if(WebToolsWarningEnabled.Checked == true)
+            MessageBox.Show("The application may hang and become unresponsive for a moment depending on the size of your disabled mods list.");
+            if (!File.Exists(Properties.Settings.Default.StardewDir + @"inactive-mods-backup.zip"))
             {
-                Properties.Settings.Default.IgnoreWebsiteWarning = "FALSE";
+                System.IO.Compression.ZipFile.CreateFromDirectory(Properties.Settings.Default.InactiveModsDir, Properties.Settings.Default.StardewDir + @"inactive-mods-backup.zip");
+                MessageBox.Show("DEBUG_OPERATIONCOMPLETED", "Debug Menu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if (WebToolsWarningEnabled.Checked == false)
+            else
             {
-                Properties.Settings.Default.IgnoreWebsiteWarning = "TRUE";
-            }
-        }
-
-        //Allow the user to voluntarily submit their telemetry data
-        private void VolunteerTelemetry_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DialogResult DR = MessageBox.Show("Are you sure you'd like to voluntarily submit your telemetry file? You should only do this if you've been instructed to by RWE Labs or a representative from RWE Labs.","Voluntary Submission | RWE Labs Telemetry",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                if(DR == DialogResult.Yes)
-                {
-                    DoTelemetricChecks.RunWorkerAsync();
-                    MessageBox.Show("Thank you for sending your data. We encourage you to not use this voluntary submission for the next 7 days unless otherwise instructed.","Voluntary Submission | RWE Labs Telemetry");
-                }
-                else
-                {
-                    //do nothing
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("We ran into an issue sending your telemetry data to RWE Labs.", "Voluntary Submission | RWE Labs Telemetry");
+                MessageBox.Show("DEBUG_FILEEXISTS", "Debug Menu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        //Allows the user to manually install the bundled version of SMAPI during the warning panel that appears if SMAPI is not installed
-        private void SMAPIBundleInstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //Handles the closing of the main window
+        private void MainPage_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string extractionpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDV Mod Manager\SMAPI\";
+            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
+            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
-            Process.Start(appPath + @"\smapi.bat");
+            //Delete update files if they exist
+            if (File.Exists(updatelocation))
+            {
+                File.Delete(updatelocation);
+            }
+
+            //Reset the IsUpdateModInactive setting
+            Properties.Settings.Default.IsUpdateModInactive = false;
+
+            //Hide the window if the "repairactive" setting is set to yes
+            if (Properties.Settings.Default.RepairActive == "Yes")
+            {
+                this.Hide();
+
+            }
+            //Save the application settings if the "repairactive" setting is set to no
+            else if (Properties.Settings.Default.RepairActive == "No")
+            {
+                DoApplicationSettingSave();
+            }
+        }
+
+        //Handle saving the application settings to settings.ini
+        private void DoApplicationSettingSave()
+        {
+            this.Hide();
+
+            int disabledmodsnumber = AvailableModsList.Items.Count;
+            int enabledmodsnumber = InstalledModsList.Items.Count;
+            Properties.Telemetry.Default.ModsEnabled = enabledmodsnumber;
+            Properties.Telemetry.Default.ModsDisabled = disabledmodsnumber;
+            Properties.Telemetry.Default.ModsInstalled = disabledmodsnumber + enabledmodsnumber;
+            Properties.Telemetry.Default.Save();
+
+            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string SDVAppData = AppData + @"\RWE Labs\SDV Mod Manager\";
+            string SettingsINI = SDVAppData + @"settings.ini";
+            string Telemetry = SDVAppData + @"telemetry.json";
+
+            FileWrite.Clear();
+
+            FileWrite.AppendText("$StardewDir=" + Properties.Settings.Default.StardewDir + Environment.NewLine);
+            FileWrite.AppendText("$ModsDir=" + Properties.Settings.Default.ModsDir + Environment.NewLine);
+            FileWrite.AppendText("$InactiveModsDir=" + Properties.Settings.Default.InactiveModsDir + Environment.NewLine);
+            FileWrite.AppendText("$PresetsDir=" + Properties.Settings.Default.PresetsDir + Environment.NewLine);
+            FileWrite.AppendText("$CheckUpdateOnStartup=" + Properties.Settings.Default.CheckUpdateOnStartup + Environment.NewLine);
+            FileWrite.AppendText("$IsManuallyReset=" + Properties.Settings.Default.IsManuallyReset + Environment.NewLine);
+            FileWrite.AppendText("$CheckSMAPIUpdateOnStartup=" + Properties.Settings.Default.CheckSMAPIUpdateOnStartup + Environment.NewLine);
+            FileWrite.AppendText("$ColorProfile=" + Properties.Settings.Default.ColorProfile + Environment.NewLine);
+            FileWrite.AppendText("$DoTelemetry=" + Properties.Settings.Default.DoTelemetry + Environment.NewLine);
+            FileWrite.SaveFile(SettingsINI, RichTextBoxStreamType.PlainText);
+
+            FileWrite.Clear();
+
+            FileWrite.AppendText("{" + Environment.NewLine);
+            FileWrite.AppendText("  \"data\": [" + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"bool\": \"" + Properties.Settings.Default.CheckUpdateOnStartup.ToLower() + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"Check for Updates Enabled\"" + Environment.NewLine);
+            FileWrite.AppendText("    }," + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"string\": \"" + Properties.Settings.Default.Version.ToLower() + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"SDV Mod Manager Version\"" + Environment.NewLine);
+            FileWrite.AppendText("    }," + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"bool\": \"" + Properties.Settings.Default.CheckSMAPIUpdateOnStartup.ToLower() + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"Check for SMAPI Updates Enabled\"" + Environment.NewLine);
+            FileWrite.AppendText("    }," + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"string\": \"" + Properties.Settings.Default.ColorProfile.ToLower() + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"Color Profile Selected\"" + Environment.NewLine);
+            FileWrite.AppendText("    }," + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"int\": \"" + Properties.Telemetry.Default.ModsInstalled + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"Mods Installed\"" + Environment.NewLine);
+            FileWrite.AppendText("    }," + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"int\": \"" + Properties.Telemetry.Default.ModsEnabled + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"Mods Enabled\"" + Environment.NewLine);
+            FileWrite.AppendText("    }," + Environment.NewLine);
+            FileWrite.AppendText("    {" + Environment.NewLine);
+            FileWrite.AppendText("      \"int\": \"" + Properties.Telemetry.Default.ModsDisabled + "\"," + Environment.NewLine);
+            FileWrite.AppendText("      \"TelemetryData\": \"Mods Disabled\"" + Environment.NewLine);
+            FileWrite.AppendText("    }" + Environment.NewLine);
+            FileWrite.AppendText("  ]" + Environment.NewLine);
+            FileWrite.AppendText("}" + Environment.NewLine);
+            FileWrite.SaveFile(Telemetry, RichTextBoxStreamType.PlainText);
 
             Application.Exit();
         }
 
-        //Allows the user to manually install the bundled version of SMAPI from the Settings
-        private void InstallBundledSMAPIButton_Click(object sender, EventArgs e)
+        //Close the Refresh Panel
+        private void CloseRefreshPanel_Click(object sender, EventArgs e)
         {
-            //run SMAPI Bundled Installer
-            string BundledSMAPI = Path.GetDirectoryName(Application.ExecutablePath);
-            Process.Start(BundledSMAPI + @"\smapi.bat");
+            RefreshPanel.Visible = false;
+            RefreshPanel.Enabled = false;
+            RefreshObjects();
         }
 
-        //Allows the user to open the SMAPI website in their browser
-        private void SMAPIWebButton_Click(object sender, EventArgs e)
+        //When the main page of the application is shown, print the correct titlebar text.
+        private void MainPage_Shown(object sender, EventArgs e)
         {
-            Process.Start("https://smapi.io/");
+            this.Text = "Mod Manager | Stardew Valley Modded Framework";
+            //this.TopMost = false;
+        }
+
+        //Every time the timer goes off, check again if the game is currently launched
+        private void CheckSDV_Tick(object sender, EventArgs e)
+        {
+            CheckIfGameRunning();
         }
     }
 }
