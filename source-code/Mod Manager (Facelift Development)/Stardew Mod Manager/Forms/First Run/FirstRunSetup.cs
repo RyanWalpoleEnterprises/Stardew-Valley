@@ -133,6 +133,15 @@ namespace Stardew_Mod_Manager
             }
         }
 
+//       _____ _                ____             
+//      / ____| |              / __ \            
+//     | (___ | |_ ___ _ __   | |  | |_ __   ___ 
+//      \___ \| __/ _ \ '_ \  | |  | | '_ \ / _ \
+//      ____) | ||  __/ |_) | | |__| | | | |  __/
+//     |_____/ \__\___| .__/   \____/|_| |_|\___|
+//                    | |                        
+//                    |_|                        
+
         //Check the validity of the file path supplied
         private void SDVDirPath_TextChanged(object sender, EventArgs e)
         {
@@ -181,6 +190,17 @@ namespace Stardew_Mod_Manager
             //CheckSMAPICurrentVersion();
             Step.SelectedTab = StepTwo;
         }
+
+
+//          _____ _               _______            
+//         / ____| |              |__ __|           
+//        | (___ | |_ ___ _ __      | |_ _____  ___
+//         \___ \| __/ _ \ '_ \     | \ \ /\ / / _ \ 
+//         ____) | ||  __/ |_) |    | |\ V V /  (_) |
+//        |_____/ \__\___| .__/     |_| \_/\_/ \___/ 
+//                        | |                         
+//                        |_|                         
+
 
         //The user clicks Continue on Step Two, to move to Step Three
         private void Continue_Click(object sender, EventArgs e)
