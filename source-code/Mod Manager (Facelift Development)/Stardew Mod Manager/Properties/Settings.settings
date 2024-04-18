@@ -71,5 +71,8 @@
     <Setting Name="IgnoreWebsiteWarning" Type="System.String" Scope="User">
       <Value Profile="(Default)">FALSE</Value>
     </Setting>
+    <Setting Name="LaunchAsAdmin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FALSE</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
