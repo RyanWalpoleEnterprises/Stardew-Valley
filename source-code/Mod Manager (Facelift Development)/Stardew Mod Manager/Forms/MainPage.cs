@@ -2044,4 +2044,5 @@ namespace Stardew_Mod_Manager
             CheckIfGameRunning();
         }
     }
+
 }

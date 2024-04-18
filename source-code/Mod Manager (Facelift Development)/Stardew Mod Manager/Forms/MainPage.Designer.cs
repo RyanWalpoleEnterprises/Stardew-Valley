@@ -955,7 +955,7 @@ namespace Stardew_Mod_Manager
             this.BackupSelectedFarm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BackupSelectedFarm.Name = "BackupSelectedFarm";
             this.BackupSelectedFarm.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.BackupSelectedFarm.Size = new System.Drawing.Size(101, 58);
+            this.BackupSelectedFarm.Size = new System.Drawing.Size(101, 45);
             this.BackupSelectedFarm.Text = "Backup Selected";
             this.BackupSelectedFarm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BackupSelectedFarm.Click += new System.EventHandler(this.MakeBackupButton_Click);
@@ -966,7 +966,7 @@ namespace Stardew_Mod_Manager
             this.ViewBackups.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ViewBackups.Name = "ViewBackups";
             this.ViewBackups.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.ViewBackups.Size = new System.Drawing.Size(88, 58);
+            this.ViewBackups.Size = new System.Drawing.Size(88, 45);
             this.ViewBackups.Text = "View Backups";
             this.ViewBackups.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ViewBackups.Click += new System.EventHandler(this.ViewBackupsButton_Click);
@@ -977,7 +977,7 @@ namespace Stardew_Mod_Manager
             this.OpenSMAPIBackups.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenSMAPIBackups.Name = "OpenSMAPIBackups";
             this.OpenSMAPIBackups.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.OpenSMAPIBackups.Size = new System.Drawing.Size(95, 58);
+            this.OpenSMAPIBackups.Size = new System.Drawing.Size(95, 45);
             this.OpenSMAPIBackups.Text = "SMAPI Backups";
             this.OpenSMAPIBackups.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenSMAPIBackups.Click += new System.EventHandler(this.ViewSMAPIBackups_Click);
@@ -989,7 +989,7 @@ namespace Stardew_Mod_Manager
             this.DeleteFarm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteFarm.Name = "DeleteFarm";
             this.DeleteFarm.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.DeleteFarm.Size = new System.Drawing.Size(97, 58);
+            this.DeleteFarm.Size = new System.Drawing.Size(97, 45);
             this.DeleteFarm.Text = "Delete Selected";
             this.DeleteFarm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.DeleteFarm.Click += new System.EventHandler(this.DeleteFarmButton_Click);
@@ -1000,7 +1000,7 @@ namespace Stardew_Mod_Manager
             this.OpenSaves.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenSaves.Name = "OpenSaves";
             this.OpenSaves.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.OpenSaves.Size = new System.Drawing.Size(114, 58);
+            this.OpenSaves.Size = new System.Drawing.Size(114, 45);
             this.OpenSaves.Text = "Open Saves Folder";
             this.OpenSaves.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenSaves.Click += new System.EventHandler(this.OpenSavesButton_Click);
