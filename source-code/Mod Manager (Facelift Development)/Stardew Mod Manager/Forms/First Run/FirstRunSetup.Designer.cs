@@ -387,7 +387,6 @@ namespace Stardew_Mod_Manager
             this.WebData.TabIndex = 13;
             this.WebData.Text = "";
             this.WebData.Visible = false;
-            this.WebData.TextChanged += new System.EventHandler(this.WebData_TextChanged);
             // 
             // SMAPIOpenInstall
             // 
