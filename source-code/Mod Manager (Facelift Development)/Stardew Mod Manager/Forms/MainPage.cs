@@ -29,7 +29,7 @@ namespace Stardew_Mod_Manager
 {
     public partial class MainPage : Form
     {
-
+        //A little UI element fix, I forget what for exactly but it was something to do with SyncFusion forms...
         protected override CreateParams CreateParams
         {
             get
@@ -40,8 +40,10 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Let's get these crops watered, shall we?
         public MainPage()
         {
+            //Get the application running and do all necessary checks
             InitializeComponent();
             CheckIfGameRunning();
             CheckSDV.Start();
@@ -49,11 +51,13 @@ namespace Stardew_Mod_Manager
             CheckDoTelemetry();
             ModsToMove.Clear();
 
+            //Set the active/available tabs
             MainTabs.TabPanelBackColor = System.Drawing.Color.White;
             MainTabs.TabPages.Remove(Tab_Settings);
             MainTabs.TabPages.Remove(Tab_InstallOptions);
             MainTabs.TabPages.Remove(Tab_Feedback);
 
+            //If the user has opted to check for SMAPI updates on startup, do that now.
             if(Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
             {
                 //SMAPI selected to update on startup.
@@ -64,8 +68,11 @@ namespace Stardew_Mod_Manager
                 //Do not update SMAPI
             }
 
+            //Report the version of the mod manager installed.
             SoftVer.Text = "v" + Properties.Settings.Default.Version;
 
+            //Check the locally installed version of SMAPI and report it also.
+            //If the Presets directory has not been created, create it and add the default SMAPI preset
             try
             {
                 //var SMAPIVersion = FileVersionInfo.GetVersionInfo(Properties.Settings.Default.StardewDir + @"\StardewModdingAPI.exe");
@@ -939,7 +946,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
-
+        //Close the Refresh Panel
         private void CloseRefreshPanel_Click(object sender, EventArgs e)
         {
             RefreshPanel.Visible = false;
@@ -947,6 +954,7 @@ namespace Stardew_Mod_Manager
             RefreshObjects();
         }
 
+        //When the user clicks "Check for Updates"
         private void UpdateCheckLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string CurrentUpdateVersion = "https://raw.githubusercontent.com/RyanWalpoleEnterprises/Stardew-Valley-Mod-Manager/main/web/uc.xml";
@@ -979,6 +987,7 @@ namespace Stardew_Mod_Manager
                     //User clicks yes
                     if (dr == DialogResult.Yes)
                     {
+                        //Download the update
                         try
                         {
                             //Process.Start(LatestRelease);
@@ -1010,6 +1019,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user clcks "Settings"
         private void SettingsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SettingsLink.Enabled = false;
@@ -1017,6 +1027,7 @@ namespace Stardew_Mod_Manager
             MainTabs.SelectedTab = Tab_Settings;
         }
 
+        //Handle buttons and selections when the user selects a disabled mod...
         private void AvailableModsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(this.AvailableModsList.SelectedIndex.ToString());
@@ -1035,6 +1046,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Make a backup of the saves
         private void MakeBackupButton_Click(object sender, EventArgs e)
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1068,6 +1080,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Handle buttons and selections when the user selects or deselects a game save
         private void GameSavesList_SelectedValueChanged(object sender, EventArgs e)
         {
             if(GameSavesList.SelectedIndex >= 0)
@@ -1082,6 +1095,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user clicks "View Backups"...
         private void ViewBackupsButton_Click(object sender, EventArgs e)
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1096,6 +1110,7 @@ namespace Stardew_Mod_Manager
             Process.Start(backupsdir);
         }
 
+        //When the user clicks "Delete Farm"
         private void DeleteFarmButton_Click(object sender, EventArgs e)
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1119,6 +1134,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user clicks "Open Saves Directory"
         private void OpenSavesButton_Click(object sender, EventArgs e)
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1128,6 +1144,7 @@ namespace Stardew_Mod_Manager
             Process.Start(sdvsaves);
         }
 
+        //When the user clicks "View SMAPI backups"
         private void ViewSMAPIBackups_Click(object sender, EventArgs e)
         {
             string InstallDir = Properties.Settings.Default.StardewDir;
@@ -1149,12 +1166,14 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Open the Mod Update Check utility
         private void CheckModUpdates_Click(object sender, EventArgs e)
         {
             ModUpdateCheck updatemods = new ModUpdateCheck();
             updatemods.ShowDialog();
         }
 
+        //When the user moves between tabs...
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(MainTabs.SelectedTab != Tab_Settings)
@@ -1221,28 +1240,33 @@ namespace Stardew_Mod_Manager
                 MainTabs.TabPages.Remove(Tab_InstallOptions);
                 GiveFeedbackLink.Enabled = false;
             }
+
             if (MainTabs.SelectedTab != Tab_Feedback)
             {
                 GiveFeedbackLink.Enabled = true;
             }
         }
 
+        //When the user attempts to change the Stardew Directory manually...
         private void SDVDir_TextChanged(object sender, EventArgs e)
         {
             if (File.Exists(SDVDir.Text + @"\Stardew Valley.exe"))
             {
+                //Is a valid directory!
                 ValidDirectory.Image = Resources.sdvvalidated;
                 UpdateSDVDir.Enabled = true;
                 Tooltip.Text = "This directory contains a Stardew Valley installation.";
             }
             else
             {
+                //Is not a valid directory!
                 ValidDirectory.Image = Resources.sdvError;
                 UpdateSDVDir.Enabled = false;
                 Tooltip.Text = "Could not find a valid Stardew Valley installation at this file path.";
             }
         }
 
+        //When someone successfully changes the Stardew Valley Directory manually...
         private void UpdateSDVDir_Click(object sender, EventArgs e)
         {
             if (File.Exists(SDVDir.Text + @"\Stardew Valley.exe"))
@@ -1254,11 +1278,13 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Copies the Stardew Valley path to the clipboard.
         private void CopyPath_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(SDVDir.Text);
         }
 
+        //Opens file explorer to the Stardew Valley directory.
         private void FileExplorerOpen_Click(object sender, EventArgs e)
         {
             try
@@ -1272,6 +1298,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Resets the settings and relaunches the application at factory defaults.
         private void SettingsReset_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you sure you want to reset your application settings? You will be prompted to set up Stardew Valley Mod Manager again the next time you launch it. This will not:" + Environment.NewLine + Environment.NewLine + "- Delete your mods and presets" + Environment.NewLine + "- Uninstall SMAPI" + Environment.NewLine + "- Uninstall Mod Manager", "Settings Confirmation | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -1291,6 +1318,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Check for app updates on startup
         private void CheckForUpdatesOnStartup_CheckStateChanged(object sender, EventArgs e)
         {
             if(CheckForUpdatesOnStartup.Checked == true)
@@ -1305,6 +1333,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Check for SMAPI updates on startup
         private void CheckSMAPIForUpdatesOnStartup_CheckStateChanged(object sender, EventArgs e)
         {
             if (CheckSMAPIUpdatesOnStart.Checked == true)
@@ -1319,23 +1348,27 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Opens the legacy settings page
         private void LegacySettings_Click(object sender, EventArgs e)
         {
             Settings set = new Settings();
             set.Show();
         }
 
+        //When the user clicks "Changelog" - open the changelog in browser
         private void ChangelogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/RyanWalpoleEnterprises/Stardew-Valley-Mod-Manager/releases/tag/v" + Properties.Settings.Default.Version);
         }
 
+        //When the user clicks "install" under the mod menu options
         private void InstallMods_Click(object sender, EventArgs e)
         {
             MainTabs.TabPages.Add(Tab_InstallOptions);
             MainTabs.SelectedTab = Tab_InstallOptions;
         }
 
+        //When the user clicks "Install from ZIP"/"Browse"
         private void InstallFromZIP_Click(object sender, EventArgs e)
         {
             try
@@ -1383,6 +1416,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the Install Mod tab is closed, revert to normal tab order...
         private void Tab_InstallOptions_Closed(object sender, EventArgs e)
         {
             MainTabs.TabPages.Remove(Tab_InstallOptions);
@@ -1390,36 +1424,44 @@ namespace Stardew_Mod_Manager
             MainTabs.TabPages.Add(Tab_GameMan);
         }
 
+        //When the install options tab is closed...
         private void CloseTab_Click(object sender, EventArgs e)
         {
             Tab_InstallOptions.Close();
             RefreshObjects();
         }
 
+        //When the main page of the application is shown, print the correct titlebar text.
         private void MainPage_Shown(object sender, EventArgs e)
         {
             this.Text = "Mod Manager | Stardew Valley Modded Framework";
             //this.TopMost = false;
         }
 
+        //When the user clicks the "Launch Game" button
         private void SDVPlay_Click(object sender, EventArgs e)
         {
             int counter = 0;
             foreach (Process process in Process.GetProcessesByName("Stardew Valley"))
             {
+                //report that the game is now running.
                 counter++;
             }
             foreach (Process process in Process.GetProcessesByName("StardewModdingAPI"))
             {
+                //report that the game is now running.
                 counter++;
             }
 
+            //If either SMAPI or Stardew Are running...
             if (counter > 0)
             {
+                //don't let the player open another instance, and report that the game is running.
                 SDVPlay.Enabled = false;
                 SDVPlay.Text = "Game Running";
                 SDVPlay.Image = null;
             }
+            //Issue running the game using the button :(
             else
             {
                 try
@@ -1448,11 +1490,13 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Every time the timer goes off, check again if the game is currently launched
         private void CheckSDV_Tick(object sender, EventArgs e)
         {
             CheckIfGameRunning();
         }
 
+        //When the user clicks the "Help" button
         private void HelpLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -1467,6 +1511,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user clicks the "Give Feedback" button, open to the correct tab
         private void GiveFeedbackLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if(MainTabs.SelectedTab == Tab_Feedback)
@@ -1482,6 +1527,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the feedback tab is closed...
         private void Tab_Feedback_Closed(object sender, EventArgs e)
         {
             MainTabs.TabPages.Add(Tab_Main);
@@ -1489,6 +1535,7 @@ namespace Stardew_Mod_Manager
             GiveFeedbackLink.Enabled = true;
         }
 
+        //When the user clicks to report a bug
         private void BugReport_Click(object sender, EventArgs e)
         {
             try
@@ -1503,22 +1550,14 @@ namespace Stardew_Mod_Manager
             }
         }
 
-        private void DownloadSMAPIButton_Click(object sender, EventArgs e)
-        {
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
-            Process.Start(appPath + @"\smapi.bat");
-
-            Application.Exit();
-        }
-
-        
-
+        //When the user double clicks the Settings Icon Image, open the Hidden Form
         private void SettingsIconImage_DoubleClick(object sender, EventArgs e)
         {
             HiddenForm hf = new HiddenForm();
             hf.ShowDialog();
         }
 
+        //Create an error log with a supplied message.
         private void CreateErrorLog(string errorMessage)
         {
             string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1545,12 +1584,14 @@ namespace Stardew_Mod_Manager
             ErrorLog.SaveFile(SDVAppData + "log_" + LogID + ".sdvmmerrorlog", RichTextBoxStreamType.PlainText);
         }
 
+        //Create a test error message
         private void debug_TestErrorLogs_Click(object sender, EventArgs e)
         {
             MessageBox.Show("DEBUG_TESTERRORLOGCREATED", "Debug Menu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             CreateErrorLog("This is a test. Line One." + Environment.NewLine + "handles second lines okay." + Environment.NewLine + Properties.Settings.Default.InactiveModsDir);
         }
 
+        //Opens file explorer to the error logs directory
         private void ViewErrorLogs_Click(object sender, EventArgs e)
         {
             string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1571,6 +1612,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Clear the error logs that are actively stored on the machine.
         private void ClearErrorLogs_Click(object sender, EventArgs e)
         {
             string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1586,6 +1628,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Create a test mod backup
         private void Debug_BackupMods_Click(object sender, EventArgs e)
         {
             MessageBox.Show("The application may hang and become unresponsive for a moment depending on the size of your disabled mods list.");
@@ -1600,6 +1643,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user opts to give feedback, launch the feedback form in browser
         private void Feedback_Feedback_Click(object sender, EventArgs e)
         {
             try
@@ -1614,6 +1658,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user opts to request a feature
         private void Feedback_FeatureRequest_Click(object sender, EventArgs e)
         {
             try
@@ -1628,6 +1673,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user opts to view the bug tracker/github issue tracker
         private void Feedback_ViewBugTracker_Click(object sender, EventArgs e)
         {
             try
@@ -1642,6 +1688,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user wants to view logs from the feedback page
         private void Feedback_ViewLogs_Click(object sender, EventArgs e)
         {
             string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
@@ -1670,6 +1717,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user selects a new user theme, change the theme in settings and then apply it
         private void ThemeColor_SelectedValueChanged(object sender, EventArgs e)
         {
             switch (ThemeColor.SelectedItem.ToString()) 
@@ -1703,6 +1751,7 @@ namespace Stardew_Mod_Manager
             GetColorProfile();
         }
 
+        //Handle the selection and deselection of enabled mods and the UI elements affected by the change
         private void InstalledModsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (InstalledModsList.SelectedIndex < 0)
@@ -1720,17 +1769,20 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //When the user clicks on the version number of the currently installed version of the application...
         private void SoftVer_Click(object sender, EventArgs e)
         {
-            
+         //?????   
         }
 
+        //Launches the WebTools window
         private void WebToolsButton_Click(object sender, EventArgs e)
         {
             WebToolsHome wth = new WebToolsHome();
             wth.Show();
         }
 
+        //Checks whether to do telemetry or not
         private void CheckDoTelemetry()
         {
             if(Properties.Settings.Default.DoTelemetry == null)
@@ -1778,6 +1830,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Upload the telemetry data to the cloud
         private void DoTelemetricChecks_DoWork(object sender, DoWorkEventArgs e)
         {
             //this.ControlBox = false;
@@ -1794,6 +1847,7 @@ namespace Stardew_Mod_Manager
             client.UploadFile(url, Telemetry);   
         }
 
+        //Report result of the telemetry data upload
         private void DoTelemetricChecks_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled == true)
@@ -1821,6 +1875,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Allows the user to opt-out of telemetry, presenting them with the onboarding window.
         private void TelemetryOptInOut_Click(object sender, EventArgs e)
         {
             MainTabs.SelectedTab = Tab_Main;
@@ -1828,11 +1883,13 @@ namespace Stardew_Mod_Manager
             tob.ShowDialog();
         }
 
+        //Allows the user to view and read the telemetry policy in the browser
         private void ViewTelemetryPolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://rwelabs.github.io/sdvmm/policies/#Telemetry");
         }
 
+        //Introduce a setting to toggle whether the WebTools browser shows warnings to users leaving the WebTools web app.
         private void WebToolsWarningEnabled_CheckStateChanged(object sender, EventArgs e)
         {
             if(WebToolsWarningEnabled.Checked == true)
@@ -1845,6 +1902,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Allow the user to voluntarily submit their telemetry data
         private void VolunteerTelemetry_Click(object sender, EventArgs e)
         {
             try
@@ -1866,6 +1924,7 @@ namespace Stardew_Mod_Manager
             }
         }
 
+        //Allows the user to manually install the bundled version of SMAPI during the warning panel that appears if SMAPI is not installed
         private void SMAPIBundleInstall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string extractionpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\RWE Labs\SDV Mod Manager\SMAPI\";
@@ -1876,6 +1935,7 @@ namespace Stardew_Mod_Manager
             Application.Exit();
         }
 
+        //Allows the user to manually install the bundled version of SMAPI from the Settings
         private void InstallBundledSMAPIButton_Click(object sender, EventArgs e)
         {
             //run SMAPI Bundled Installer
@@ -1883,6 +1943,7 @@ namespace Stardew_Mod_Manager
             Process.Start(BundledSMAPI + @"\smapi.bat");
         }
 
+        //Allows the user to open the SMAPI website in their browser
         private void SMAPIWebButton_Click(object sender, EventArgs e)
         {
             Process.Start("https://smapi.io/");
