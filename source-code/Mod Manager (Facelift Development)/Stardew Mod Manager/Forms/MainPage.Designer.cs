@@ -74,7 +74,7 @@ namespace Stardew_Mod_Manager
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Tab_Settings = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.SMAPIRunRepairButton = new Syncfusion.WinForms.Controls.SfButton();
+            this.SMAPIWebButton = new Syncfusion.WinForms.Controls.SfButton();
             this.InstallBundledSMAPIButton = new Syncfusion.WinForms.Controls.SfButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.VolunteerTelemetry = new Syncfusion.WinForms.Controls.SfButton();
@@ -701,7 +701,7 @@ namespace Stardew_Mod_Manager
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.SMAPIRunRepairButton);
+            this.groupBox6.Controls.Add(this.SMAPIWebButton);
             this.groupBox6.Controls.Add(this.InstallBundledSMAPIButton);
             this.groupBox6.Controls.Add(this.CheckSMAPIUpdatesOnStart);
             this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 8.25F);
@@ -712,17 +712,17 @@ namespace Stardew_Mod_Manager
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "SMAPI";
             // 
-            // SMAPIRunRepairButton
+            // SMAPIWebButton
             // 
-            this.SMAPIRunRepairButton.AccessibleName = "Button";
-            this.SMAPIRunRepairButton.Enabled = false;
-            this.SMAPIRunRepairButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.SMAPIRunRepairButton.Location = new System.Drawing.Point(190, 56);
-            this.SMAPIRunRepairButton.Name = "SMAPIRunRepairButton";
-            this.SMAPIRunRepairButton.Size = new System.Drawing.Size(171, 28);
-            this.SMAPIRunRepairButton.TabIndex = 40;
-            this.SMAPIRunRepairButton.Text = "Uninstall or Repair SMAPI";
-            this.SMAPIRunRepairButton.Click += new System.EventHandler(this.SMAPIRunRepairButton_Click);
+            this.SMAPIWebButton.AccessibleName = "Button";
+            this.SMAPIWebButton.Enabled = false;
+            this.SMAPIWebButton.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SMAPIWebButton.Location = new System.Drawing.Point(190, 56);
+            this.SMAPIWebButton.Name = "SMAPIWebButton";
+            this.SMAPIWebButton.Size = new System.Drawing.Size(171, 28);
+            this.SMAPIWebButton.TabIndex = 40;
+            this.SMAPIWebButton.Text = "Visit SMAPI.io";
+            this.SMAPIWebButton.Click += new System.EventHandler(this.SMAPIWebButton_Click);
             // 
             // InstallBundledSMAPIButton
             // 
@@ -1966,7 +1966,7 @@ namespace Stardew_Mod_Manager
         private Syncfusion.WinForms.Controls.SfButton VolunteerTelemetry;
         private System.Windows.Forms.LinkLabel SMAPIBundleInstall;
         private System.Windows.Forms.GroupBox groupBox6;
-        private Syncfusion.WinForms.Controls.SfButton SMAPIRunRepairButton;
+        private Syncfusion.WinForms.Controls.SfButton SMAPIWebButton;
         private Syncfusion.WinForms.Controls.SfButton InstallBundledSMAPIButton;
     }
 }
