@@ -1940,6 +1940,7 @@ namespace Stardew_Mod_Manager
 
             //Reset the IsUpdateModInactive setting
             Properties.Settings.Default.IsUpdateModInactive = false;
+            Properties.Settings.Default.LaunchArguments = null;
 
             //Hide the window if the "repairactive" setting is set to yes
             if (Properties.Settings.Default.RepairActive == "Yes")
@@ -1958,6 +1959,9 @@ namespace Stardew_Mod_Manager
         private void DoApplicationSettingSave()
         {
             this.Hide();
+
+            Properties.Settings.Default.LaunchArguments = null;
+            Properties.Settings.Default.Save();
 
             int disabledmodsnumber = AvailableModsList.Items.Count;
             int enabledmodsnumber = InstalledModsList.Items.Count;
