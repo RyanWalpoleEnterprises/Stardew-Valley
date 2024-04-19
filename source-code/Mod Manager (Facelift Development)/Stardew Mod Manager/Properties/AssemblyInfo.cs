@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Stardew Mod Manager and Modded Framework")]
+[assembly: AssemblyTitle("Stardew Valley Mod Manager and Modded Framework")]
 [assembly: AssemblyDescription("Manage your mods and install modpacks with just a few clicks using Stardew Mod Manager and Modded Framework.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RWE Labs, Ryan Walpole Enterprises")]
@@ -33,6 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("24.04.00.01")]
-[assembly: AssemblyFileVersion("24.04.00.01")]
+[assembly: AssemblyVersion("24.04.00.02")]
+[assembly: AssemblyFileVersion("24.04.00.02")]
 [assembly: NeutralResourcesLanguage("en-AU")]
