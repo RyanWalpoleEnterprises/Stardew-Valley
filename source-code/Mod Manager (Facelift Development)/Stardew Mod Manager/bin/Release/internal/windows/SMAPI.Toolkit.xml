@@ -516,11 +516,11 @@
         <member name="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameFolderType.NoGameFound">
             <summary>The folder doesn't contain Stardew Valley.</summary>
         </member>
-        <member name="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameFolderType.Legacy154OrEarlier">
-            <summary>The folder contains Stardew Valley 1.5.4 or earlier. This version uses XNA Framework and 32-bit .NET Framework 4.5.2 on Windows and Mono on Linux/macOS, and isn't compatible with current versions of SMAPI.</summary>
+        <member name="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameFolderType.LegacyVersion">
+            <summary>The folder contains Stardew Valley 1.5.6 or earlier, which isn't compatible with current versions of SMAPI.</summary>
         </member>
         <member name="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameFolderType.LegacyCompatibilityBranch">
-            <summary>The folder contains Stardew Valley from the game's legacy compatibility branch, which backports newer changes to the <see cref="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameFolderType.Legacy154OrEarlier"/> format.</summary>
+            <summary>The folder contains Stardew Valley from the game's legacy compatibility branch, which backports newer changes to the <see cref="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameFolderType.LegacyVersion"/> format.</summary>
         </member>
         <member name="F:StardewModdingAPI.Toolkit.Framework.GameScanning.GameFolderType.InvalidUnknown">
             <summary>The folder seems to contain Stardew Valley files, but they failed to load for unknown reasons (e.g. corrupted executable).</summary>
@@ -541,9 +541,9 @@
             <summary>Find all valid Stardew Valley install folders.</summary>
             <remarks>This checks default game locations, and on Windows checks the Windows registry for GOG/Steam install data. A folder is considered 'valid' if it contains the Stardew Valley executable for the current OS.</remarks>
         </member>
-        <member name="M:StardewModdingAPI.Toolkit.Framework.GameScanning.GameScanner.LooksLikeGameFolder(System.IO.DirectoryInfo)">
-            <summary>Get whether a folder seems to contain the game.</summary>
-            <param name="dir">The folder to check.</param>
+        <member name="M:StardewModdingAPI.Toolkit.Framework.GameScanning.GameScanner.ScanIncludingInvalid">
+            <summary>Find all valid Stardew Valley install folders.</summary>
+            <remarks>This checks default game locations, and on Windows checks the Windows registry for GOG/Steam install data. A folder is considered 'valid' if it contains the Stardew Valley executable for the current OS.</remarks>
         </member>
         <member name="M:StardewModdingAPI.Toolkit.Framework.GameScanning.GameScanner.GetGameFolderType(System.IO.DirectoryInfo)">
             <summary>Detect the validity of a game folder based on file structure heuristics.</summary>
@@ -1188,6 +1188,10 @@
             <summary>Find valid Stardew Valley install folders.</summary>
             <remarks>This checks default game locations, and on Windows checks the Windows registry for GOG/Steam install data. A folder is considered 'valid' if it contains the Stardew Valley executable for the current OS.</remarks>
         </member>
+        <member name="M:StardewModdingAPI.Toolkit.ModToolkit.GetGameFoldersIncludingInvalid">
+            <summary>Find all default Stardew Valley install folders which exist, regardless of whether they're valid.</summary>
+            <remarks>This checks default game locations, and on Windows checks the Windows registry for GOG/Steam install data.</remarks>
+        </member>
         <member name="M:StardewModdingAPI.Toolkit.ModToolkit.GetWikiCompatibilityListAsync">
             <summary>Extract mod metadata from the wiki compatibility list.</summary>
         </member>
@@ -1506,40 +1510,43 @@
             <summary>Get a low-level JSON serializer matching the <see cref="P:StardewModdingAPI.Toolkit.Serialization.JsonHelper.JsonSettings"/>.</summary>
         </member>
         <member name="T:StardewModdingAPI.Toolkit.Serialization.Models.Manifest">
-            <summary>A manifest which describes a mod for SMAPI.</summary>
+            <inheritdoc cref="T:StardewModdingAPI.IManifest" />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.Name">
-            <summary>The mod name.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.Description">
-            <summary>A brief description of the mod.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.Author">
-            <summary>The mod author's name.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.Version">
-            <summary>The mod version.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.MinimumApiVersion">
-            <summary>The minimum SMAPI version required by this mod, if any.</summary>
+            <inheritdoc />
+        </member>
+        <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.MinimumGameVersion">
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.EntryDll">
-            <summary>The name of the DLL in the directory that has the <c>Entry</c> method. Mutually exclusive with <see cref="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.ContentPackFor"/>.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.ContentPackFor">
-            <summary>The mod which will read this as a content pack. Mutually exclusive with <see cref="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.EntryDll"/>.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.Dependencies">
-            <summary>The other mods that must be loaded before this mod.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.UpdateKeys">
-            <summary>The namespaced mod IDs to query for updates (like <c>Nexus:541</c>).</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.UniqueID">
-            <summary>The unique mod ID.</summary>
+            <inheritdoc />
         </member>
         <member name="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.ExtraFields">
-            <summary>Any manifest fields which didn't match a valid field.</summary>
+            <inheritdoc />
         </member>
         <member name="M:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.#ctor(System.String,System.String,System.String,System.String,StardewModdingAPI.ISemanticVersion,System.String)">
             <summary>Construct an instance for a transitional content pack.</summary>
@@ -1550,7 +1557,7 @@
             <param name="version">The mod version.</param>
             <param name="contentPackFor">The modID which will read this as a content pack.</param>
         </member>
-        <member name="M:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.#ctor(System.String,System.String,System.String,System.String,StardewModdingAPI.ISemanticVersion,StardewModdingAPI.ISemanticVersion,System.String,StardewModdingAPI.IManifestContentPackFor,StardewModdingAPI.IManifestDependency[],System.String[])">
+        <member name="M:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.#ctor(System.String,System.String,System.String,System.String,StardewModdingAPI.ISemanticVersion,StardewModdingAPI.ISemanticVersion,StardewModdingAPI.ISemanticVersion,System.String,StardewModdingAPI.IManifestContentPackFor,StardewModdingAPI.IManifestDependency[],System.String[])">
             <summary>Construct an instance for a transitional content pack.</summary>
             <param name="uniqueId">The unique mod ID.</param>
             <param name="name">The mod name.</param>
@@ -1558,6 +1565,7 @@
             <param name="description">A brief description of the mod.</param>
             <param name="version">The mod version.</param>
             <param name="minimumApiVersion">The minimum SMAPI version required by this mod, if any.</param>
+            <param name="minimumGameVersion">The minimum Stardew Valley version required by this mod, if any.</param>
             <param name="entryDll">The name of the DLL in the directory that has the <c>Entry</c> method. Mutually exclusive with <see cref="P:StardewModdingAPI.Toolkit.Serialization.Models.Manifest.ContentPackFor"/>.</param>
             <param name="contentPackFor">The modID which will read this as a content pack.</param>
             <param name="dependencies">The other mods that must be loaded before this mod.</param>
