@@ -37,13 +37,24 @@ namespace Stardew_Mod_Manager
 
                 if (args.Length > 0)
                 {
-                    //There are launch arguments, save them to settings.
-                    Properties.Settings.Default.LaunchArguments = args[i];
+                    //If the launch arguments are already defined (from before the admin check was completed)
+                    if(string.IsNullOrEmpty(Properties.Settings.Default.LaunchArguments))
+                    {
+                        //There are launch arguments, save them to settings.
+                        Properties.Settings.Default.LaunchArguments = args[i];
+                        Properties.Settings.Default.Save();
+                    }
+                    else
+                    {
+                        //We can assume that the application already has launch arguments from being switched to admin mode
+                        //Because the default state is for the string to be empty.
+                    }
                 }
                 else
                 {
                     //There are no launch arguments, save them absolutely nowhere.
                     Properties.Settings.Default.LaunchArguments = null;
+                    Properties.Settings.Default.Save();
                 }    
             }
 
@@ -86,8 +97,6 @@ namespace Stardew_Mod_Manager
                             //Set "LaunchAsAdmin" to TRUE
                             Properties.Settings.Default.LaunchAsAdmin = "TRUE";
                         }
-
-                        
                      }
                  }
 
