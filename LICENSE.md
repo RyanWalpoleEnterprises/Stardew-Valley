@@ -1,5 +1,5 @@
 ## Stardew Valley Mod Manager
-### Copyright (C) 2021 - RWE Labs, Ryan Walpole Enterprises
+### Copyright (C) 2024 - RWE Labs, Ryan Walpole Enterprises
 
 #### LICENSE AGREEMENT
 Please find the following license agreement for the Stardew Valley Mod Manager and Stardew Valley Modded Framework by RWE Labs. This documentation will explain the rights you have to this software and it's source code.
