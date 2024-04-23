@@ -7,11 +7,11 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {},
     ".NETCoreApp,Version=v6.0/win-x64": {
-      "SMAPI.Installer/4.0.2": {
+      "SMAPI.Installer/4.0.7": {
         "dependencies": {
           "Microsoft.NET.ILLink.Analyzers": "7.0.100-1.23211.1",
           "Microsoft.NET.ILLink.Tasks": "7.0.100-1.23211.1",
-          "SMAPI.Toolkit": "4.0.2",
+          "SMAPI.Toolkit": "4.0.7",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "6.0.27"
         },
         "runtime": {
@@ -1464,13 +1464,13 @@
           }
         }
       },
-      "SMAPI.Toolkit/4.0.2": {
+      "SMAPI.Toolkit/4.0.7": {
         "dependencies": {
           "HtmlAgilityPack": "1.11.52",
           "Microsoft.Win32.Registry": "5.0.0",
           "Newtonsoft.Json": "13.0.3",
           "Pathoschild.Http.FluentClient": "4.3.0",
-          "SMAPI.Toolkit.CoreInterfaces": "4.0.2",
+          "SMAPI.Toolkit.CoreInterfaces": "4.0.7",
           "System.Management": "5.0.0",
           "VdfConverter": "1.0.3"
         },
@@ -1478,7 +1478,7 @@
           "SMAPI.Toolkit.dll": {}
         }
       },
-      "SMAPI.Toolkit.CoreInterfaces/4.0.2": {
+      "SMAPI.Toolkit.CoreInterfaces/4.0.7": {
         "runtime": {
           "SMAPI.Toolkit.CoreInterfaces.dll": {}
         }
@@ -1486,7 +1486,7 @@
     }
   },
   "libraries": {
-    "SMAPI.Installer/4.0.2": {
+    "SMAPI.Installer/4.0.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2301,12 +2301,12 @@
       "path": "vdfconverter/1.0.3",
       "hashPath": "vdfconverter.1.0.3.nupkg.sha512"
     },
-    "SMAPI.Toolkit/4.0.2": {
+    "SMAPI.Toolkit/4.0.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "SMAPI.Toolkit.CoreInterfaces/4.0.2": {
+    "SMAPI.Toolkit.CoreInterfaces/4.0.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

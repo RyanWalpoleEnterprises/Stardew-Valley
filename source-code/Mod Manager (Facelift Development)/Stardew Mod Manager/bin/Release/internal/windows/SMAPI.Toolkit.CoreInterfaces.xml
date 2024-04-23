@@ -22,6 +22,9 @@
         <member name="P:StardewModdingAPI.IManifest.MinimumApiVersion">
             <summary>The minimum SMAPI version required by this mod, if any.</summary>
         </member>
+        <member name="P:StardewModdingAPI.IManifest.MinimumGameVersion">
+            <summary>The minimum Stardew Valley version required by this mod, if any.</summary>
+        </member>
         <member name="P:StardewModdingAPI.IManifest.UniqueID">
             <summary>The unique mod ID.</summary>
         </member>

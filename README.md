@@ -1,5 +1,5 @@
 <p align="center">
-<img height=300px src="https://github.com/RyanWalpoleEnterprises/Stardew-Valley/raw/release-stable/web/SDVMM_Logo.png?raw=true">
+<img height=300px src="https://github.com/RWELabs/Stardew-Valley/raw/release-stable/web/SDVMM_Logo_WhiteFill.png?raw=true">
 </p>
 
 # Stardew Valley Mod Manager
@@ -70,16 +70,16 @@ Or for more articles and information, [Visit our Wiki](https://rwe-labs.gitbook.
 
 ## License
 It's your responsibility to read the license agreement when installing the software if you intend on using it as much as it's our responsibility to do our best to show it to you.
-If you're modifying and/or downloading the source code, however, your responsibility to understand what you are and are not permitted to do become even more of a big deal - and it's your responsibility. Please familiarise yourself with our [license agreement](https://github.com/RyanWalpoleEnterprises/Stardew-Valley-Mod-Manager/release-stable/LICENSE.md) before even downloading a copy of the source code.
+If you're modifying and/or downloading the source code, however, your responsibility to understand what you are and are not permitted to do become even more of a big deal - and it's your responsibility. Please familiarise yourself with our [license agreement](https://github.com/RWELabs/Stardew-Valley-Mod-Manager/release-stable/LICENSE.md) before even downloading a copy of the source code.
 
 ## Download
 ### System Requirements
 <hr>
 
 #### Why does this application need administrative privileges?
-Stardew Valley Mod Manager (as of version 230301) requires administraive privileges in order to run. This may be alarming to some users, however, this is in response to some longstanding issues with the Mod Manager on machines where Stardew Valley is installed in the default directory.
+Stardew Valley Mod Manager may require administraive privileges in order to run. This may be alarming to some users, however, this is in response to some longstanding issues with the Mod Manager on machines where Stardew Valley is installed in the default directory.
 
-When Stardew Valley is installed in a folder that is child to the ``C:\Program Files\`` directory, the Stardew Valley Mod Manager is unable to move folders and files in and out of this directory, as it is protected by the system. For this reason, the application requires administrative privileges so that mods can be installed, enabled, disabled, uninstalled and deleted. It is easier for us to implement a program-wide enforcement of higher privileges than it is to redesign the program to only require priviliges when file transfers are taking place. This is something we are considering for the future however.
+When Stardew Valley is installed in a folder that is child to the ``C:\`` directory (with the exception of ``C:\users\``), the Stardew Valley Mod Manager may be unable to enable and disable mods, as file writing may be protected by the system. For this reason, the application may require administrative privileges so that mods can be installed, enabled, disabled, uninstalled and deleted. As of version 240402, if your Stardew Valley directory is in an affected directory, the application will always prompt the user to launch with administrative priviliges. Users who do not have the game installed in a protected folder will no longer be prompted to launch as an administrator, as opposed to versions 23x and 240401.
 
 As always, the code for the Stardew Valley Mod Manager is completely open source. There is no cause to be alarmed.
 
