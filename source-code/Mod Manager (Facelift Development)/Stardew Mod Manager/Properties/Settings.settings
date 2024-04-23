@@ -33,7 +33,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">240401</Value>
+      <Value Profile="(Default)">240402</Value>
     </Setting>
     <Setting Name="CheckUpdateOnStartup" Type="System.String" Scope="User">
       <Value Profile="(Default)">TRUE</Value>
@@ -69,6 +69,9 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="IgnoreWebsiteWarning" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FALSE</Value>
+    </Setting>
+    <Setting Name="LaunchAsAdmin" Type="System.String" Scope="User">
       <Value Profile="(Default)">FALSE</Value>
     </Setting>
   </Settings>

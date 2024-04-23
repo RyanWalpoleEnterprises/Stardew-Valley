@@ -42,7 +42,6 @@
             this.DoModInstall = new System.ComponentModel.BackgroundWorker();
             this.PresetGenerator = new System.Windows.Forms.RichTextBox();
             this.DoMovementOperation = new System.Windows.Forms.Timer(this.components);
-            this.DoModDelete = new System.ComponentModel.BackgroundWorker();
             this.ErrorLog = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SMAPITarget = new System.Windows.Forms.TextBox();
@@ -160,13 +159,6 @@
             this.DoMovementOperation.Interval = 11000;
             this.DoMovementOperation.Tick += new System.EventHandler(this.DoMovementOperation_Tick);
             // 
-            // DoModDelete
-            // 
-            this.DoModDelete.WorkerReportsProgress = true;
-            this.DoModDelete.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoModDelete_DoWork);
-            this.DoModDelete.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.DoModDelete_ProgressChanged);
-            this.DoModDelete.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.DoModDelete_RunWorkerCompleted);
-            // 
             // ErrorLog
             // 
             this.ErrorLog.Location = new System.Drawing.Point(12, 12);
@@ -269,7 +261,6 @@
         private System.ComponentModel.BackgroundWorker DoModInstall;
         private System.Windows.Forms.RichTextBox PresetGenerator;
         private System.Windows.Forms.Timer DoMovementOperation;
-        private System.ComponentModel.BackgroundWorker DoModDelete;
         private System.Windows.Forms.RichTextBox ErrorLog;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox SMAPITarget;

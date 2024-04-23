@@ -115,6 +115,8 @@ namespace Stardew_Mod_Manager.Forms
 
         private void MPOpen_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Properties.Settings.Default.LaunchArguments = null;
+            Properties.Settings.Default.Save();
             Application.Exit();
         }
 

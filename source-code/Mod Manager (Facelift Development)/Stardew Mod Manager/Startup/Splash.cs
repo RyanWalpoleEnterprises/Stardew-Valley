@@ -59,19 +59,19 @@ namespace Stardew_Mod_Manager.Startup
                 if (Properties.Settings.Default.LaunchArguments.EndsWith(".sdvmp"))
                 {
                     //Launch Modpack Installer
+                    //MessageBox.Show(Properties.Settings.Default.LaunchArguments);
                     Status.Text = "Doing Fun Things...";
                     ModpackStarter.Start();
                 }
-
                 //File is an error log
-                else if (Properties.Settings.Default.LaunchArguments.EndsWith(".sdvmmerrorlog"))
+                else 
+                if (Properties.Settings.Default.LaunchArguments.EndsWith(".sdvmmerrorlog"))
                 {
                     //Launch error log viewer
                     Status.Text = "Decompiling logs...";
                     LogTimer.Start();
                 }
-
-                //File is a modpack
+                else //Arguments are for repair
                 if (Properties.Settings.Default.LaunchArguments.EndsWith("repair"))
                 {
                     //Launch Modpack Installer
@@ -80,7 +80,13 @@ namespace Stardew_Mod_Manager.Startup
                     Properties.Settings.Default.RepairActive = "Yes";
                     Properties.Settings.Default.Save();
                 }
-
+                else //Argument is invalid
+                {
+                    //No Startup Arguments
+                    Properties.Settings.Default.RepairActive = "No";
+                    Properties.Settings.Default.Save();
+                    StartupTimer.Start();
+                }
             }
         }
 

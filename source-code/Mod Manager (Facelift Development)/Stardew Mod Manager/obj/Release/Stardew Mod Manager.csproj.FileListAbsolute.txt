@@ -192,3 +192,6 @@ C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod 
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew_Mod_Manager.Forms.TelemetryOnboarding.resources
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew_Mod_Manager.Forms.Repair.RepairApplication.resources
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\EnvDTE.xml
+C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\DotNetZip.dll
+C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\DotNetZip.pdb
+C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\DotNetZip.xml

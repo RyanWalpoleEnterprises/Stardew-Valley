@@ -145,7 +145,7 @@ namespace Stardew_Mod_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("240401")]
+        [global::System.Configuration.DefaultSettingValueAttribute("240402")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
@@ -296,6 +296,18 @@ namespace Stardew_Mod_Manager.Properties {
             }
             set {
                 this["IgnoreWebsiteWarning"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FALSE")]
+        public string LaunchAsAdmin {
+            get {
+                return ((string)(this["LaunchAsAdmin"]));
+            }
+            set {
+                this["LaunchAsAdmin"] = value;
             }
         }
     }
