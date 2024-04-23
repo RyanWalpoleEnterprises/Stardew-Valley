@@ -1,5 +1,5 @@
 <p align="center">
-<img height=300px src="https://github.com/RWELabs/Stardew-Valley/raw/release-stable/web/SDVMM_Logo_WhiteFill.png?raw=true">
+<img height=300px src="https://raw.githubusercontent.com/RWELabs/Stardew-Valley-Mod-Manager/release-stable/web/SDVMM_Logo_WhiteFill.png">
 </p>
 
 # Stardew Valley Mod Manager
