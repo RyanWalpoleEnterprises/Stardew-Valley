@@ -145,8 +145,8 @@
   <data name="sdv_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdv_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WTForward" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WTForward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sdvBackup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sdvBackup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SDVMM_LogoNoImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SDVMM_LogoNoImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,8 +166,8 @@
   <data name="sdv_settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdv_settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SDVPlay_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SDVPlay_Blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MainBG_Victoria" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainBG_Victoria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sdvError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvError.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,6 +235,9 @@
   <data name="sdvEdit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvEdit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sdvWTWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sdvWTWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sdvLeftArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvLeftArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -277,14 +280,14 @@
   <data name="sdvView" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvView.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sdvBackup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sdvBackup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SDVPlay_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SDVPlay_Blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SMAPILogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SMAPILogo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MainBG_Victoria" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MainBG_Victoria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WTForward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WTForward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SDVBGLQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SDVBGLQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,7 +295,7 @@
   <data name="sdvvalidated" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvvalidated.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sdvWTWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sdvWTWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="gallery-001455" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gallery-001455.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -83,6 +83,16 @@ namespace Stardew_Mod_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gallery_001455 {
+            get {
+                object obj = ResourceManager.GetObject("gallery-001455", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GameDirExample {
             get {
                 object obj = ResourceManager.GetObject("GameDirExample", resourceCulture);
