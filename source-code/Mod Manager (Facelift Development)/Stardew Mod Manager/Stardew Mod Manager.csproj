@@ -240,6 +240,12 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Startup\AdminElevate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Startup\AdminElevate.Designer.cs">
+      <DependentUpon>AdminElevate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Startup\Splash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +312,9 @@
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Startup\AdminElevate.resx">
+      <DependentUpon>AdminElevate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Startup\Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +355,7 @@
     <None Include="Resources\SDVTelemetryTask.gif" />
     <None Include="Resources\RWESoftwareRepair.png" />
     <None Include="Resources\sdvWTWarning.png" />
+    <None Include="Resources\gallery-001455.png" />
     <Content Include="Windows Logo.png" />
     <None Include="Resources\sdvbg.png" />
     <None Include="Resources\sdvbg.jpg" />
