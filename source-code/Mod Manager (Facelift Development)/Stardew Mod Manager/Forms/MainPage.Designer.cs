@@ -158,6 +158,7 @@ namespace Stardew_Mod_Manager
             this.StartSMAPIUpdateCheck = new System.Windows.Forms.Timer(this.components);
             this.Debug_BackupMods = new System.Windows.Forms.Button();
             this.DoTelemetricChecks = new System.ComponentModel.BackgroundWorker();
+            this.Tab_ModUpdates = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_SMAPIUpToDate)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -1378,6 +1379,7 @@ namespace Stardew_Mod_Manager
             this.MainTabs.Controls.Add(this.Tab_InstallOptions);
             this.MainTabs.Controls.Add(this.Tab_Settings);
             this.MainTabs.Controls.Add(this.Tab_Feedback);
+            this.MainTabs.Controls.Add(this.Tab_ModUpdates);
             this.MainTabs.EnableTouchMode = true;
             this.MainTabs.FixedSingleBorderColor = System.Drawing.Color.White;
             this.MainTabs.FocusOnTabClick = false;
@@ -1764,6 +1766,18 @@ namespace Stardew_Mod_Manager
             this.DoTelemetricChecks.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DoTelemetricChecks_DoWork);
             this.DoTelemetricChecks.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.DoTelemetricChecks_RunWorkerCompleted);
             // 
+            // Tab_ModUpdates
+            // 
+            this.Tab_ModUpdates.Image = null;
+            this.Tab_ModUpdates.ImageSize = new System.Drawing.Size(16, 16);
+            this.Tab_ModUpdates.Location = new System.Drawing.Point(0, 32);
+            this.Tab_ModUpdates.Name = "Tab_ModUpdates";
+            this.Tab_ModUpdates.ShowCloseButton = true;
+            this.Tab_ModUpdates.Size = new System.Drawing.Size(596, 525);
+            this.Tab_ModUpdates.TabIndex = 6;
+            this.Tab_ModUpdates.Text = "Check for Updates";
+            this.Tab_ModUpdates.ThemesEnabled = false;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1967,5 +1981,6 @@ namespace Stardew_Mod_Manager
         private System.Windows.Forms.GroupBox groupBox6;
         private Syncfusion.WinForms.Controls.SfButton SMAPIWebButton;
         private Syncfusion.WinForms.Controls.SfButton InstallBundledSMAPIButton;
+        private Syncfusion.Windows.Forms.Tools.TabPageAdv Tab_ModUpdates;
     }
 }
