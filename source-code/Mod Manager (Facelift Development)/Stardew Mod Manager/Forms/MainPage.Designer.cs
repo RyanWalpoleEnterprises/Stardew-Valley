@@ -1139,6 +1139,7 @@ namespace Stardew_Mod_Manager
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.HelpTooltip.SetToolTip(this.label1, "Mods that appear in this list will be active in your game \r\nwhen you start Starde" +
         "w Valley.");
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label13
             // 
