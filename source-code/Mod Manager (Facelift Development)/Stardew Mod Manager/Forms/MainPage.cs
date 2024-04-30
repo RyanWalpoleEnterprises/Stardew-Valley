@@ -1579,6 +1579,18 @@ namespace Stardew_Mod_Manager
             {
                 GiveFeedbackLink.Enabled = true;
             }
+
+            if (MainTabs.SelectedTab == Tab_ModUpdates)
+            {
+                MainTabs.TabPages.Remove(Tab_Main);
+                MainTabs.TabPages.Remove(Tab_GameMan);
+                MainTabs.TabPages.Remove(Tab_Settings);
+                MainTabs.TabPages.Remove(Tab_InstallOptions);
+            }
+            if (MainTabs.SelectedTab != Tab_ModUpdates)
+            {
+                MainTabs.TabPages.Remove(Tab_ModUpdates);
+            }
         }
 
         //Gets the color profile from user settings and apply them instantly
@@ -2046,6 +2058,29 @@ namespace Stardew_Mod_Manager
         private void CheckSDV_Tick(object sender, EventArgs e)
         {
             CheckIfGameRunning();
+        }
+
+
+
+        //          __  __           _   _    _           _       _          _____ _               _    
+        //         |  \/  |         | | | |  | |         | |     | |        / ____| |             | |   
+        //         | \  / | ___   __| | | |  | |_ __   __| | __ _| |_ ___  | |    | |__   ___  ___| | __
+        //         | |\/| |/ _ \ / _` | | |  | | '_ \ / _` |/ _` | __/ _ \ | |    | '_ \ / _ \/ __| |/ /
+        //         | |  | | (_) | (_| | | |__| | |_) | (_| | (_| | ||  __/ | |____| | | |  __/ (__|   < 
+        //         |_|  |_|\___/ \__,_|  \____/| .__/ \__,_|\__,_|\__\___|  \_____|_| |_|\___|\___|_|\_\
+        //                                     | |                                                      
+        //                                     |_|                                                      
+
+
+        //         THE CODE BLOCKS BELOW ARE FOR THE UPDATE CHECK FUNCTIONS
+        //         These will be shown when the user access the new Mod Update Check tab.
+
+
+
+        //Debug link click to open to the tab
+        private void label1_Click(object sender, EventArgs e)
+        {
+            MainTabs.SelectedTab = Tab_ModUpdates;
         }
     }
 
