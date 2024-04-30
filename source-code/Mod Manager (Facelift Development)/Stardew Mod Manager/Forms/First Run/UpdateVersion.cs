@@ -85,6 +85,8 @@ namespace Stardew_Mod_Manager.Forms.First_Run
             string IsCheckSMAPIUpdatesOnStartupRegex = "$CheckSMAPIUpdateOnStartup=";
             string ColorProfileRegex = "$ColorProfile=";
             string DoTelemetryRegex = "$DoTelemetry=";
+            string NexusAPIEnabledRegex= "$NexusAPIEnabled=";
+            string NexusAPIKeyRegex = "$NexusAPIKey=";
 
             foreach (string line in FileRead.Lines)
             {
@@ -96,6 +98,8 @@ namespace Stardew_Mod_Manager.Forms.First_Run
                 if (line.Contains(IsCheckSMAPIUpdatesOnStartupRegex)) { string CheckSMAPIUpdatesOnStartup = line.Replace(IsCheckSMAPIUpdatesOnStartupRegex, null); Properties.Settings.Default.CheckSMAPIUpdateOnStartup = CheckSMAPIUpdatesOnStartup; }
                 if (line.Contains(ColorProfileRegex)) { string ColorProfile = line.Replace(ColorProfileRegex, null); Properties.Settings.Default.ColorProfile = ColorProfile; }
                 if (line.Contains(DoTelemetryRegex)) { string DoTelemetry = line.Replace(DoTelemetryRegex, null); Properties.Settings.Default.DoTelemetry = DoTelemetry; }
+                if (line.Contains(NexusAPIEnabledRegex)) { string NexusAPIEnabled = line.Replace(NexusAPIEnabledRegex, null); Properties.Settings.Default.NexusAPIEnabled = NexusAPIEnabled; }
+                if (line.Contains(NexusAPIKeyRegex)) { string NexusAPIKey = line.Replace(NexusAPIKeyRegex, null); Properties.Settings.Default.NexusAPIKey = NexusAPIKey; }
             }
 
             Properties.Settings.Default.IsManuallyReset = "FALSE";
