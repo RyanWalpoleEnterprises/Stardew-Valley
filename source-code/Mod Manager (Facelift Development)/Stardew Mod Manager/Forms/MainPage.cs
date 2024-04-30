@@ -24,6 +24,7 @@ using System.Runtime.InteropServices;
 using Stardew_Mod_Manager.Forms.Webapp;
 using System.Security.Cryptography.X509Certificates;
 using Ionic.Zip;
+using Newtonsoft.Json.Linq;
 
 namespace Stardew_Mod_Manager
 {
@@ -71,6 +72,7 @@ namespace Stardew_Mod_Manager
             MainTabs.TabPages.Remove(Tab_Settings);
             MainTabs.TabPages.Remove(Tab_InstallOptions);
             MainTabs.TabPages.Remove(Tab_Feedback);
+            MainTabs.TabPages.Remove(Tab_ModUpdates);
 
             //If the user has opted to check for SMAPI updates on startup, do that now.
             if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
@@ -768,8 +770,10 @@ namespace Stardew_Mod_Manager
         //Open the Mod Update Check utility
         private void CheckModUpdates_Click(object sender, EventArgs e)
         {
-            ModUpdateCheck updatemods = new ModUpdateCheck();
-            updatemods.ShowDialog();
+            //ModUpdateCheck updatemods = new ModUpdateCheck();
+            //updatemods.ShowDialog();
+            MainTabs.TabPages.Add(Tab_ModUpdates);
+            this.MainTabs.SelectedTab = Tab_ModUpdates;
         }
 
         //When the user clicks "Check for Updates"
@@ -1508,6 +1512,7 @@ namespace Stardew_Mod_Manager
 
         //When the user moves between tabs...
         //This code handles the tab movement as well as defining what tabs are visible when the user is on each tab.
+        //This code also defines the settings of the application when the user enters the settings tab!
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (MainTabs.SelectedTab != Tab_Settings)
@@ -1529,6 +1534,25 @@ namespace Stardew_Mod_Manager
                 {
                     CheckForUpdatesOnStartup.Checked = false;
                 }
+
+                //Nexus Mods API
+                string fullAPI = Properties.Settings.Default.NexusAPIKey;
+                string maskedAPI = MaskApiKey(fullAPI);
+                NexusAPIInput.Text = maskedAPI;
+
+                if (Properties.Settings.Default.NexusAPIEnabled == "TRUE")
+                {
+                    NexusAPICheckbox.Checked = true;
+                    NexusAPIInput.Enabled = true;
+                    NexusAPISave.Enabled = true;
+                }
+                else if (Properties.Settings.Default.NexusAPIEnabled == "FALSE")
+                {
+                    NexusAPICheckbox.Checked = false;
+                    NexusAPIInput.Enabled = false;
+                    NexusAPISave.Enabled = false;
+                }
+
 
                 if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
                 {
@@ -1586,10 +1610,34 @@ namespace Stardew_Mod_Manager
                 MainTabs.TabPages.Remove(Tab_GameMan);
                 MainTabs.TabPages.Remove(Tab_Settings);
                 MainTabs.TabPages.Remove(Tab_InstallOptions);
+
+                //Disable Mods
+                for (int val = 0; val < InstalledModsList.Items.Count; val++)
+                {
+                    InstalledModsList.SetSelected(val, true);
+                }
+
+                DisableModButton.PerformClick();
+                LoadingSpinner.Visible = true;
+                PopulateUpdateList.Start();
             }
             if (MainTabs.SelectedTab != Tab_ModUpdates)
             {
                 MainTabs.TabPages.Remove(Tab_ModUpdates);
+            }
+        }
+
+        //Masks the API key, exposing only the last 7 digits.
+        private string MaskApiKey(string apiKey)
+        {
+            if (apiKey.Length <= 7)
+            {
+                return new string('*', apiKey.Length);
+            }
+            else
+            {
+                int visibleLength = apiKey.Length - 7;
+                return new string('*', visibleLength) + apiKey.Substring(visibleLength);
             }
         }
 
@@ -1998,6 +2046,8 @@ namespace Stardew_Mod_Manager
             FileWrite.AppendText("$CheckSMAPIUpdateOnStartup=" + Properties.Settings.Default.CheckSMAPIUpdateOnStartup + Environment.NewLine);
             FileWrite.AppendText("$ColorProfile=" + Properties.Settings.Default.ColorProfile + Environment.NewLine);
             FileWrite.AppendText("$DoTelemetry=" + Properties.Settings.Default.DoTelemetry + Environment.NewLine);
+            FileWrite.AppendText("$NexusAPIEnabled=" + Properties.Settings.Default.NexusAPIEnabled + Environment.NewLine);
+            FileWrite.AppendText("$NexusAPIKey=" + Properties.Settings.Default.NexusAPIKey + Environment.NewLine);
             FileWrite.SaveFile(SettingsINI, RichTextBoxStreamType.PlainText);
 
             FileWrite.Clear();
@@ -2060,6 +2110,43 @@ namespace Stardew_Mod_Manager
             CheckIfGameRunning();
         }
 
+        //Opens the Nexus API website - where the user can get their personal key.
+        private void NexusAPIGetKey_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://next.nexusmods.com/settings/api-keys");
+        }
+
+        //Handles the enabling/disabling of the NexusAPI feature.
+        private void NexusAPICheckbox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (NexusAPICheckbox.Checked == true)
+            {
+                NexusAPICheckbox.Enabled = true;
+                NexusAPIInput.Enabled = true;
+                NexusAPISave.Enabled = true;
+                Properties.Settings.Default.NexusAPIEnabled = "TRUE";
+                Properties.Settings.Default.Save();
+            }
+            if (NexusAPICheckbox.Checked == false)
+            {
+                NexusAPICheckbox.Enabled = true;
+                NexusAPIInput.Enabled = false;
+                NexusAPISave.Enabled = false;
+                Properties.Settings.Default.NexusAPIEnabled = "FALSE";
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        //Handles when the user clicks "Save/Update" for their Nexus API key
+        private void NexusAPISave_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.NexusAPIKey = NexusAPIInput.Text;
+            Properties.Settings.Default.Save();
+
+            string maskedAPI = MaskApiKey(NexusAPIInput.Text);
+            NexusAPIInput.Text = maskedAPI;
+        }
+
 
 
         //          __  __           _   _    _           _       _          _____ _               _    
@@ -2077,11 +2164,145 @@ namespace Stardew_Mod_Manager
 
 
 
-        //Debug link click to open to the tab
-        private void label1_Click(object sender, EventArgs e)
+        //When the user clicks on one mod from the list of mods, make sure to select the other columns.
+        private void ModName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MainTabs.SelectedTab = Tab_ModUpdates;
+            // Get the selected index of the first list box
+            int selectedIndex = ModName.SelectedIndex;
+
+            // Check if the selected index is valid for all list boxes
+            if (selectedIndex >= 0 && selectedIndex < InstallModVer.Items.Count)
+            {
+                // Set the selected index of other list boxes to match
+                InstallModVer.SelectedIndex = selectedIndex;
+            }
+            else
+            {
+                // Handle the case where the selected index is out of range
+                // For example, you could deselect the other list boxes or take other appropriate action
+                InstallModVer.ClearSelected();
+            }
+            // Check if the selected index is valid for all list boxes
+            if (selectedIndex >= 0 && selectedIndex < ModNexusID.Items.Count)
+            {
+                // Set the selected index of other list boxes to match
+                ModNexusID.SelectedIndex = selectedIndex;
+            }
+            else
+            {
+                // Handle the case where the selected index is out of range
+                // For example, you could deselect the other list boxes or take other appropriate action
+                ModNexusID.ClearSelected();
+            }
+        }
+
+        //Fires after a few seconds, to give the application time to catch up
+        //Populates the list of mods
+        private void PopulateUpdateList_Tick(object sender, EventArgs e)
+        {
+            
+            PopulateUpdateList.Stop();
+            PopulateModsListForUpdate.RunWorkerAsync();
+        }
+
+        //Gets the value of a JSON property result, normalised
+        private string GetPropertyValueIgnoreCase(JObject jsonObject, string propertyName)
+        {
+            var comparer = StringComparer.OrdinalIgnoreCase;
+            var property = jsonObject.Properties()
+                .FirstOrDefault(p => comparer.Equals(p.Name, propertyName));
+            return property?.Value.ToString();
+        }
+
+        //Populate the list of mods and all details, including version installed and unique ID
+        private void PopulateModsListForUpdate_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Once all mods disabled...
+            foreach (string folder in Directory.GetDirectories(Properties.Settings.Default.InactiveModsDir))
+            {
+                ModName.Invoke((MethodInvoker)delegate {
+                    ModName.Items.Add(Path.GetFileName(folder));
+                });
+            } 
+
+            foreach(string item in ModName.Items)
+            {
+                string manifestPath = Properties.Settings.Default.InactiveModsDir + @"\" + item.ToString() + @"\manifest.json";
+                if(File.Exists(manifestPath))
+                {
+                    try
+                    {
+                        string jsonContents = File.ReadAllText(manifestPath);
+                        // Deserialize JSON with case-insensitive property names
+                        JObject jsonObject = JObject.Parse(jsonContents, new JsonLoadSettings
+                        {
+                            CommentHandling = CommentHandling.Ignore,
+                            LineInfoHandling = LineInfoHandling.Ignore,
+                            DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Ignore
+                        });
+                        string version = GetPropertyValueIgnoreCase(jsonObject, "Version");
+                        string UniqueID = GetPropertyValueIgnoreCase(jsonObject, "UniqueID");
+                        try
+                        {
+                            InstallModVer.Invoke((MethodInvoker)delegate
+                            {
+                                InstallModVer.Items.Add(version);
+                            });
+                        }
+                        catch
+                        {
+                            InstallModVer.Invoke((MethodInvoker)delegate
+                            {
+                                InstallModVer.Items.Add("Unknown");
+                            });
+
+                        }
+                        //Get update keys and handle event where this fails
+                        try
+                        {
+                            ModNexusID.Invoke((MethodInvoker)delegate
+                            {
+                                ModNexusID.Items.Add(UniqueID);
+                            });
+                        }
+                        catch
+                        {
+                            ModNexusID.Invoke((MethodInvoker)delegate
+                            {
+                                ModNexusID.Items.Add("Unknown");
+                            });
+                        }
+                    }
+                    catch
+                    {
+                        InstallModVer.Invoke((MethodInvoker)delegate
+                        {
+                            InstallModVer.Items.Add("Unknown");
+                        });
+                        ModNexusID.Invoke((MethodInvoker)delegate
+                        {
+                            ModNexusID.Items.Add("Unknown");
+                        });
+                    }
+                }
+                else
+                {
+                    InstallModVer.Invoke((MethodInvoker)delegate
+                    {
+                        InstallModVer.Items.Add("Unknown");
+                    });
+                    ModNexusID.Invoke((MethodInvoker)delegate
+                    {
+                        ModNexusID.Items.Add("Unknown");
+                    });
+                }
+            }
+        }
+
+        //Disables the loading spinner when the mods list is populated
+        private void PopulateModsListForUpdate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            LoadingSpinner.Visible = false;
         }
     }
-
 }
