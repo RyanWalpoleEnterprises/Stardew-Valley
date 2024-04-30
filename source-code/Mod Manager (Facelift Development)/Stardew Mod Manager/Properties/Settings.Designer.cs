@@ -310,5 +310,29 @@ namespace Stardew_Mod_Manager.Properties {
                 this["LaunchAsAdmin"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TRUE")]
+        public string NexusAPIEnabled {
+            get {
+                return ((string)(this["NexusAPIEnabled"]));
+            }
+            set {
+                this["NexusAPIEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NexusAPIKey {
+            get {
+                return ((string)(this["NexusAPIKey"]));
+            }
+            set {
+                this["NexusAPIKey"] = value;
+            }
+        }
     }
 }

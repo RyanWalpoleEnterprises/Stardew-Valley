@@ -74,5 +74,11 @@
     <Setting Name="LaunchAsAdmin" Type="System.String" Scope="User">
       <Value Profile="(Default)">FALSE</Value>
     </Setting>
+    <Setting Name="NexusAPIEnabled" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TRUE</Value>
+    </Setting>
+    <Setting Name="NexusAPIKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
