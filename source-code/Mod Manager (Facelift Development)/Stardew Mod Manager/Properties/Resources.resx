@@ -145,8 +145,8 @@
   <data name="sdv_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdv_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sdvBackup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sdvBackup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SDVPlay_Purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SDVPlay_Purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SDVMM_LogoNoImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SDVMM_LogoNoImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,8 +166,8 @@
   <data name="sdv_settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdv_settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MainBG_Victoria" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MainBG_Victoria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SDVPlay_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SDVPlay_Blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sdvError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvError.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,26 +235,26 @@
   <data name="sdvEdit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvEdit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sdvWTWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sdvWTWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sdvLeftArrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvLeftArrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_attention" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_attention.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gallery-001455" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gallery-001455.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainBG_Victoria" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainBG_Victoria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sdvOpenPreset" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvOpenPreset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SDVPlay_Purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SDVPlay_Purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MainBG_Pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MainBG1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SdvSavePreset" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SdvSavePreset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sdvWTWarning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sdvWTWarning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sdvConnecting" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvConnecting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -274,14 +274,17 @@
   <data name="GameDirExample" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GameDirExample.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SDVBGLQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SDVBGLQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="WTRefresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WTRefresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sdvView" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvView.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SDVPlay_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SDVPlay_Blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sdvBackup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sdvBackup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SMAPILogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SMAPILogo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -289,13 +292,28 @@
   <data name="WTForward" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WTForward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SDVBGLQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SDVBGLQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SdvSavePreset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SdvSavePreset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sdvvalidated" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdvvalidated.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gallery-001455" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gallery-001455.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LSLyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSLyle.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSNature" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSNature.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSBirb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSBirb.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSGreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSPink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSPink.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LSBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LSBlue.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
