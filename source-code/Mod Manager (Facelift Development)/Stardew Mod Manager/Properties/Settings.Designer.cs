@@ -145,7 +145,7 @@ namespace Stardew_Mod_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("240402")]
+        [global::System.Configuration.DefaultSettingValueAttribute("240501")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
@@ -344,6 +344,18 @@ namespace Stardew_Mod_Manager.Properties {
             }
             set {
                 this["NexusUpdateFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int NexusAPIRateLimit {
+            get {
+                return ((int)(this["NexusAPIRateLimit"]));
+            }
+            set {
+                this["NexusAPIRateLimit"] = value;
             }
         }
     }
