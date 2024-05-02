@@ -359,6 +359,12 @@
     <None Include="Resources\RWESoftwareRepair.png" />
     <None Include="Resources\sdvWTWarning.png" />
     <None Include="Resources\gallery-001455.png" />
+    <None Include="Resources\LSLyle.gif" />
+    <None Include="Resources\LSNature.gif" />
+    <None Include="Resources\LSBirb.gif" />
+    <None Include="Resources\LSGreen.gif" />
+    <None Include="Resources\LSPink.gif" />
+    <None Include="Resources\LSBlue.gif" />
     <Content Include="Windows Logo.png" />
     <None Include="Resources\sdvbg.png" />
     <None Include="Resources\sdvbg.jpg" />
