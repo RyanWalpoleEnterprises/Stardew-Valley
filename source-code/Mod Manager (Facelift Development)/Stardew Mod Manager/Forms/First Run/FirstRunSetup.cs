@@ -41,31 +41,31 @@ namespace Stardew_Mod_Manager
             if (File.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\"; }
 
             //Try external/other hard drives and disc drives
-            if (File.Exists(@"A:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"A:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"B:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"B:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"D:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"D:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"E:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"E:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"F:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"F:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"G:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"G:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"H:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"H:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"I:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"I:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"J:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"J:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"K:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"K:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"L:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"L:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"M:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"M:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"N:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"N:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"O:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"O:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"P:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"P:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"Q:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"Q:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"R:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"R:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"S:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"S:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"T:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"T:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"U:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"U:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"V:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"V:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"W:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"W:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"X:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"X:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"Y:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"Y:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
-            if (File.Exists(@"Z:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"Z:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe"; }
+            if (File.Exists(@"A:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"A:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"B:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"B:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"D:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"D:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"E:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"E:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"F:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"F:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"G:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"G:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"H:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"H:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"I:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"I:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"J:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"J:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"K:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"K:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"L:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"L:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"M:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"M:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"N:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"N:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"O:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"O:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"P:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"P:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"Q:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"Q:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"R:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"R:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"S:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"S:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"T:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"T:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"U:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"U:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"V:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"V:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"W:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"W:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"X:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"X:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"Y:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"Y:\SteamLibrary\steamapps\common\Stardew Valley\"; }
+            if (File.Exists(@"Z:\SteamLibrary\steamapps\common\Stardew Valley\Stardew Valley.exe")) { SDVDirPath.Text = @"Z:\SteamLibrary\steamapps\common\Stardew Valley\"; }
         }
 
         //Deprecated: Check the version of SMAPI installed
