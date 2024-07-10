@@ -210,6 +210,7 @@ namespace Stardew_Mod_Manager
         //Lists the selected mod(s) that the user requests be enabled
         private void EnableMod_Click(object sender, EventArgs e)
         {
+            DeleteMod.Enabled = false;
             string ModList = Properties.Settings.Default.ModsDir;
             string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
 
@@ -463,56 +464,36 @@ namespace Stardew_Mod_Manager
         //Delete selected mod(s)
         private void DeleteMod_Click(object sender, EventArgs e)
         {
-            ModsToMove.Clear();
+            string ModList = Properties.Settings.Default.ModsDir;
+            string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
 
-            try
+            foreach (string item in AvailableModsList.SelectedItems)
             {
-                foreach (string item in AvailableModsList.SelectedItems)
+                string ModName = item.ToString(); // Get the current selected item inside the loop
+
+                // Step 1: Check Path Existence
+                if (Directory.Exists(DisabledModsList + @"\" + ModName))
                 {
-                    string ModDirectory = Properties.Settings.Default.ModsDir;
-                    string DisabledModFolderName = AvailableModsList.SelectedItem.ToString();
-                    string DisabledModsDir = Properties.Settings.Default.InactiveModsDir;
+                    // Step 2: Verify Paths
+                    Console.WriteLine("Deleting " + ModName);
 
-                    ModsToMove.AppendText("- " + item + Environment.NewLine);
-                }
-
-                DialogResult dr = MessageBox.Show("Are you sure you want to delete: " + Environment.NewLine + ModsToMove.Text + " from your mods folder? If you want to continue using this mod in the future, consider just disabling it instead.", "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (dr == DialogResult.Yes)
-                {
-                    string ModDirectory = Properties.Settings.Default.ModsDir;
-                    string DisabledModFolderName = AvailableModsList.SelectedItem.ToString();
-                    string DisabledModsDir = Properties.Settings.Default.InactiveModsDir;
-
-                    foreach (string item in AvailableModsList.SelectedItems)
+                    // Step 3: Handle Edge Cases
+                    try
                     {
-                        try
-                        {
-                            Directory.Delete(DisabledModsDir + item, true);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            CreateErrorLog("There was a problem deleting a mod. Error Message:" + ex.Message);
-                        }
+                        Directory.Delete(DisabledModsList + @"\" + ModName, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
                     }
                 }
-
-                else if (dr == DialogResult.No)
+                else
                 {
-                    //do nothing
-                    RefreshObjects();
+                    Console.WriteLine("Issue deleting mod.");
                 }
-
-                RefreshObjects();
-                DeleteMod.Enabled = false;
-
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("If you're attempting to delete a mod, please make sure to disable it before attempting to delete it." + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CreateErrorLog("There was a problem deleting a mod. Error Message:" + ex.Message);
-            }
+            RefreshObjects();
+            DeleteMod.Enabled = false;
         }
 
         //Handle when the user clicks the SMAPI download button
