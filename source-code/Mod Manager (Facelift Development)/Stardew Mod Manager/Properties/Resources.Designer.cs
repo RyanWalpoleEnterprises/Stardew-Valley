@@ -243,6 +243,16 @@ namespace Stardew_Mod_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NMLogo {
+            get {
+                object obj = ResourceManager.GetObject("NMLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap progress_colour {
             get {
                 object obj = ResourceManager.GetObject("progress_colour", resourceCulture);
