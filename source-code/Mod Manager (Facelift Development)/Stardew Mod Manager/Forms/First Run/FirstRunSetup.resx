@@ -137,6 +137,9 @@ You can now complete the setup process and enjoy your new modding experience.</v
 
 SMAPI is necessary to run mods. While the Stardew Valley Mod Manager will function completely fine without SMAPI, the mods you add using the Mod Manager will not be usable within your game. For this reason, we recommend strongly that you install SMAPI now.</value>
   </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>A NexusMods API key will allow you to take advantage of our mod update check and update download feature, making it easy to check for and install mod updates. Some features may require a NexusMods Premium account. Stardew Valley Mod Manager is not affiliated with NexusMods.</value>
+  </data>
   <metadata name="SetupEstablishTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>566, 17</value>
   </metadata>

@@ -171,7 +171,14 @@ namespace Stardew_Mod_Manager
         //When the user clicks Continue on the first page, jumping to the LoadingStep
         private void StepOneContinue_Click(object sender, EventArgs e)
         {
-            Step.SelectedTab = LoadingStep;
+            if(Properties.Settings.Default.NexusAPIEnabled == "TRUE")
+            {
+                Step.SelectedTab = NexusAPISettings;
+            }
+            if (Properties.Settings.Default.NexusAPIEnabled == "FALSE")
+            {
+                Step.SelectedTab = LoadingStep;
+            }
         }
         
         //Start a timer to move to the next step
@@ -309,6 +316,7 @@ namespace Stardew_Mod_Manager
             Properties.Settings.Default.ModsDir = Properties.Settings.Default.StardewDir.ToString() + @"\Mods\";
             Properties.Settings.Default.InactiveModsDir = Properties.Settings.Default.StardewDir + @"\inactive-mods\";
             Properties.Settings.Default.PresetsDir = ModPresets;
+            Properties.Settings.Default.NexusAPIRateLimit = 1000;
             Properties.Settings.Default.Save();
 
             this.Hide();
@@ -326,6 +334,61 @@ namespace Stardew_Mod_Manager
         private void FirstRunSetup_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void UseNexus_CheckedChanged(object sender, EventArgs e)
+        {
+            if(UseNexus.Checked == true)
+            {
+                Properties.Settings.Default.NexusAPIEnabled = "TRUE";
+            }
+            else if (UseNexus.Checked == false)
+            {
+                Properties.Settings.Default.NexusAPIEnabled = "FALSE";
+            }
+        }
+
+        private void EULACheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (EULACheck.Checked == true)
+            {
+                StepOneContinue.Enabled = true;
+            }
+            else if (EULACheck.Checked == false)
+            {
+                StepOneContinue.Enabled = false;
+            }
+        }
+
+        private void SkipNexus_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.NexusAPIEnabled = "FALSE";
+            Step.SelectedTab = LoadingStep;
+        }
+
+        private void SaveNexusSettings_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.NexusAPIKey = NexusAPIInput.Text;
+            // Parse the text from the TextBox to an integer
+            if (int.TryParse(NexusAPIRateLimit.Text, out int value))
+            {
+                // Assign the parsed value to the integer setting
+                Properties.Settings.Default.NexusAPIRateLimit = value;
+                // Save the settings
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                // Handle the case where the text cannot be parsed to an integer (e.g., display an error message)
+                MessageBox.Show("Invalid rate limit input. Please enter a valid value containing only numbers.");
+            }
+            Step.SelectedTab = LoadingStep;
+            Properties.Settings.Default.Save();
+        }
+
+        private void EULAJumpLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://rwelabs.github.io/sdvmm/policies/#EULA");
         }
     }
 }
