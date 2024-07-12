@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label9.Text" xml:space="preserve">
+    <value>A NexusMods API key will allow you to take advantage of our mod update check and update download feature, making it easy to check for and install mod updates. Some features may require a NexusMods Premium account. Stardew Valley Mod Manager is not affiliated with NexusMods.</value>
+  </data>
   <data name="SubHeading.Text" xml:space="preserve">
     <value>Congratulations for downloading and installing the Stardew Valley Mod Manager and Modded Framework. For that alone you deserve an iridium quality star! That being said, we need to do a few more things to get you set up and using the Stardew Valley Mod Manager.
 
@@ -136,9 +139,6 @@ You can now complete the setup process and enjoy your new modding experience.</v
     <value>Stardew Valley supports third party modifications by utilising the SMAPI open-source modding framework. It is installed safely alongside the game's executable and doesn't change any of the game files.
 
 SMAPI is necessary to run mods. While the Stardew Valley Mod Manager will function completely fine without SMAPI, the mods you add using the Mod Manager will not be usable within your game. For this reason, we recommend strongly that you install SMAPI now.</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>A NexusMods API key will allow you to take advantage of our mod update check and update download feature, making it easy to check for and install mod updates. Some features may require a NexusMods Premium account. Stardew Valley Mod Manager is not affiliated with NexusMods.</value>
   </data>
   <metadata name="SetupEstablishTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>566, 17</value>

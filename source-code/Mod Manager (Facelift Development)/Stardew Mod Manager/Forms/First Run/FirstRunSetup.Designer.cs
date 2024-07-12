@@ -81,6 +81,7 @@ namespace Stardew_Mod_Manager
             this.SkipNexus = new Syncfusion.WinForms.Controls.SfButton();
             this.SaveNexusSettings = new Syncfusion.WinForms.Controls.SfButton();
             this.SetupEstablishTimer = new System.Windows.Forms.Timer(this.components);
+            this.label10 = new System.Windows.Forms.Label();
             this.Step.SuspendLayout();
             this.StepOne.SuspendLayout();
             this.StepTwo.SuspendLayout();
@@ -546,8 +547,8 @@ namespace Stardew_Mod_Manager
             // 
             // label9
             // 
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.label9.Location = new System.Drawing.Point(23, 334);
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(23, 325);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(541, 47);
             this.label9.TabIndex = 47;
@@ -555,22 +556,23 @@ namespace Stardew_Mod_Manager
             // 
             // NexusModsSettings
             // 
+            this.NexusModsSettings.Controls.Add(this.label10);
             this.NexusModsSettings.Controls.Add(this.NexusAPIRateLimit);
             this.NexusModsSettings.Controls.Add(this.label25);
             this.NexusModsSettings.Controls.Add(this.NexusAPIGetKey);
             this.NexusModsSettings.Controls.Add(this.label20);
             this.NexusModsSettings.Controls.Add(this.NexusAPIInput);
-            this.NexusModsSettings.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.NexusModsSettings.Location = new System.Drawing.Point(23, 400);
+            this.NexusModsSettings.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NexusModsSettings.Location = new System.Drawing.Point(23, 379);
             this.NexusModsSettings.Name = "NexusModsSettings";
-            this.NexusModsSettings.Size = new System.Drawing.Size(541, 124);
+            this.NexusModsSettings.Size = new System.Drawing.Size(541, 159);
             this.NexusModsSettings.TabIndex = 42;
             this.NexusModsSettings.TabStop = false;
             this.NexusModsSettings.Text = "Mod Updates";
             // 
             // NexusAPIRateLimit
             // 
-            this.NexusAPIRateLimit.Location = new System.Drawing.Point(116, 79);
+            this.NexusAPIRateLimit.Location = new System.Drawing.Point(107, 79);
             this.NexusAPIRateLimit.Name = "NexusAPIRateLimit";
             this.NexusAPIRateLimit.Size = new System.Drawing.Size(133, 22);
             this.NexusAPIRateLimit.TabIndex = 46;
@@ -579,10 +581,10 @@ namespace Stardew_Mod_Manager
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+            this.label25.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(13, 81);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(97, 17);
+            this.label25.Size = new System.Drawing.Size(88, 15);
             this.label25.TabIndex = 45;
             this.label25.Text = "Rate Limit (ms):";
             // 
@@ -591,7 +593,7 @@ namespace Stardew_Mod_Manager
             this.NexusAPIGetKey.AutoSize = true;
             this.NexusAPIGetKey.Location = new System.Drawing.Point(463, 27);
             this.NexusAPIGetKey.Name = "NexusAPIGetKey";
-            this.NexusAPIGetKey.Size = new System.Drawing.Size(64, 13);
+            this.NexusAPIGetKey.Size = new System.Drawing.Size(62, 13);
             this.NexusAPIGetKey.TabIndex = 44;
             this.NexusAPIGetKey.TabStop = true;
             this.NexusAPIGetKey.Text = "Get API Key";
@@ -599,22 +601,24 @@ namespace Stardew_Mod_Manager
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+            this.label20.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(13, 27);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(108, 17);
+            this.label20.Size = new System.Drawing.Size(98, 15);
             this.label20.TabIndex = 39;
             this.label20.Text = "Personal API Key:";
             // 
             // NexusAPIInput
             // 
-            this.NexusAPIInput.Location = new System.Drawing.Point(16, 51);
+            this.NexusAPIInput.Location = new System.Drawing.Point(15, 45);
             this.NexusAPIInput.Name = "NexusAPIInput";
             this.NexusAPIInput.Size = new System.Drawing.Size(510, 22);
             this.NexusAPIInput.TabIndex = 41;
             // 
             // pictureBox5
             // 
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox5.Image = global::Stardew_Mod_Manager.Properties.Resources.NMLogo;
             this.pictureBox5.Location = new System.Drawing.Point(0, 0);
             this.pictureBox5.Name = "pictureBox5";
@@ -649,6 +653,17 @@ namespace Stardew_Mod_Manager
             // 
             this.SetupEstablishTimer.Interval = 6000;
             this.SetupEstablishTimer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label10.Location = new System.Drawing.Point(13, 109);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(512, 28);
+            this.label10.TabIndex = 48;
+            this.label10.Text = "We recommend a rate limit of 0.5-1s (500-1000ms) so that your requests are accept" +
+    "ed by NexusMods without impacting your experience heavily.";
             // 
             // FirstRunSetup
             // 
@@ -739,5 +754,6 @@ namespace Stardew_Mod_Manager
         private System.Windows.Forms.LinkLabel NexusAPIGetKey;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox NexusAPIInput;
+        private System.Windows.Forms.Label label10;
     }
 }
