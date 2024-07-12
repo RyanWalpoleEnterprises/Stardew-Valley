@@ -365,6 +365,7 @@
     <None Include="Resources\LSGreen.gif" />
     <None Include="Resources\LSPink.gif" />
     <None Include="Resources\LSBlue.gif" />
+    <None Include="Resources\NMLogo.png" />
     <Content Include="Windows Logo.png" />
     <None Include="Resources\sdvbg.png" />
     <None Include="Resources\sdvbg.jpg" />
