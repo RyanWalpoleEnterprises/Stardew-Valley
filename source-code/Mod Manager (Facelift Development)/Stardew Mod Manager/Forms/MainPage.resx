@@ -131,15 +131,6 @@ If you're experiencing problems with the application, consider resetting it with
   <metadata name="SaveBackups.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>863, 5</value>
   </metadata>
-  <metadata name="SaveBackups.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>863, 5</value>
-  </metadata>
-  <metadata name="PresetManagement.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>705, 5</value>
-  </metadata>
-  <metadata name="AddRemoveMods.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>372, 6</value>
-  </metadata>
   <metadata name="PresetManagement.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>705, 5</value>
   </metadata>
@@ -149,8 +140,23 @@ If you're experiencing problems with the application, consider resetting it with
   <data name="label9.Text" xml:space="preserve">
     <value>Please note that the mod install process was designed for mods distributed on NexusMods. If you received your ZIP file from a different vendor, it might not install correctly. If you're having issues, ensure that the ZIP archive contains a folder named after the mod and that the mod files are not in the root directory of the ZIP archive.</value>
   </data>
-  <metadata name="HelpTooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>984, 6</value>
+  <metadata name="ModName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="NexusID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Installed.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Latest.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Status.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="StatusIcon.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <metadata name="CheckSDV.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1099, 6</value>
@@ -181,7 +187,7 @@ If you're experiencing problems with the application, consider resetting it with
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADk
-        CQAAAk1TRnQBSQFMAgEBAwEAAQgBAAEIAQABCgEAAQoBAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAEo
+        CQAAAk1TRnQBSQFMAgEBAwEAARABAAEQAQABCgEAAQoBAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAEo
         AwABCgMAAQEBAAEgBQABQAEGEgAB5QGjAR8B/wHkAaABHQH/AeMBnQEcAf8B4QGbARsB/wHfAZ4BLAH/
         Ad4BnwE0Af8B3QGTARgB/wHdAY8BEQH/AdsBjAEPAf8B2wGJAQ0B/wFIATsB7QH/AUYBOAHtAf8BRAE3
         AewB/wFCATQB6wH/AT8BMQHqAf8BPQEuAekB/wE7ASwB6AH/ATkBKgHnAf8BNgEnAecB/wE0ASQB5gH/
@@ -218,8 +224,8 @@ If you're experiencing problems with the application, consider resetting it with
         AS8B/wHrAcUBbwH/AewBzgGNAf8B5wGuATgB/wHmAaUBIQH/AeUBowEfAf8B5AGgAR0B/wFXAUsB8wH/
         AVYBSgHyAf8BXgFUAe4B/wFZAU8B7gH/AVABRAHwAf8BTgFBAe8B/wFRAUQB7gH/AVgBTAHsAf8BSwE+
         Ae0B/wFGATgB7QH/AcAB9QGMAf8BwAH1AYwB/wHAAfUBjAH/AcAB9QGMAf8BwAH1AYwB/wHAAfUBjAH/
-        AcAB9QGMAf8BwAH1AYwB/wG+AfMBigH/AcAB9AGMAf8oAAHZAbQBLAH8Ae8BugEwAf8B7QG3AS4B/wHs
-        AbQBLAH/AesBsQEqAf8B6gGuASgB/wHoAasBJQH/AecBqAEjAf8B5gGlASEB/wHfAZwBIgH+AVgBTQHz
+        AcAB9QGMAf8BwAH1AYwB/wG+AfMBigH/AcAB9AGMAf8oAAHUAbIBKwH8Ae8BugEwAf8B7QG3AS4B/wHs
+        AbQBLAH/AesBsQEqAf8B6gGuASgB/wHoAasBJQH/AecBqAEjAf8B5gGlASEB/wHdAZoBIwH+AVgBTQHz
         Af8BVwFLAfMB/wFVAUkB8gH/AVMBSAHyAf8BUQFFAfEB/wFQAUQB8AH/AU4BQQHvAf8BTAE/Ae8B/wFK
         AT0B7gH/AUgBOwHtAf8BxQH4AZIB/wHFAfgBkgH/AcUB+AGSAf8BxQH4AZIB/wHFAfgBkgH/AcUB+AGS
         Af8BxQH4AZIB/wHFAfgBkgH/AcUB+AGSAf8BxQH4AZIB/ygAAUIBTQE+BwABPgMAASgDAAEoAwABCgMA

@@ -31,6 +31,7 @@ namespace Stardew_Mod_Manager
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ModFolderPath = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SMAPIVer = new System.Windows.Forms.Label();
@@ -159,19 +160,9 @@ namespace Stardew_Mod_Manager
             this.UpdateCheckIsThinking = new System.Windows.Forms.PictureBox();
             this.LastCheckedModUpdateLabel = new System.Windows.Forms.Label();
             this.LSModCheck = new System.Windows.Forms.PictureBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.DoModUpdates = new Syncfusion.WinForms.Controls.SfButton();
             this.StartModUpdateCheck = new Syncfusion.WinForms.Controls.SfButton();
             this.ModManagementContainer = new System.Windows.Forms.Panel();
-            this.IconView = new System.Windows.Forms.ListView();
-            this.ModName = new System.Windows.Forms.ListBox();
-            this.InstallModVer = new System.Windows.Forms.ListBox();
-            this.UpdateModVer = new System.Windows.Forms.ListBox();
-            this.UpdateStatus = new System.Windows.Forms.ListBox();
-            this.ModNexusID = new System.Windows.Forms.ListBox();
             this.barItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem2 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem3 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
@@ -187,6 +178,13 @@ namespace Stardew_Mod_Manager
             this.PopulateUpdateList = new System.Windows.Forms.Timer(this.components);
             this.PopulateModsListForUpdate = new System.ComponentModel.BackgroundWorker();
             this.IconList = new System.Windows.Forms.ImageList(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ModName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NexusID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Installed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Latest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatusIcon = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_SMAPIUpToDate)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -220,6 +218,7 @@ namespace Stardew_Mod_Manager
             ((System.ComponentModel.ISupportInitialize)(this.UpdateCheckIsThinking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LSModCheck)).BeginInit();
             this.ModManagementContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ModFolderPath
@@ -1078,7 +1077,7 @@ namespace Stardew_Mod_Manager
             this.BackupSelectedFarm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BackupSelectedFarm.Name = "BackupSelectedFarm";
             this.BackupSelectedFarm.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.BackupSelectedFarm.Size = new System.Drawing.Size(101, 58);
+            this.BackupSelectedFarm.Size = new System.Drawing.Size(101, 45);
             this.BackupSelectedFarm.Text = "Backup Selected";
             this.BackupSelectedFarm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BackupSelectedFarm.Click += new System.EventHandler(this.MakeBackupButton_Click);
@@ -1089,7 +1088,7 @@ namespace Stardew_Mod_Manager
             this.ViewBackups.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ViewBackups.Name = "ViewBackups";
             this.ViewBackups.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.ViewBackups.Size = new System.Drawing.Size(88, 58);
+            this.ViewBackups.Size = new System.Drawing.Size(88, 45);
             this.ViewBackups.Text = "View Backups";
             this.ViewBackups.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ViewBackups.Click += new System.EventHandler(this.ViewBackupsButton_Click);
@@ -1100,7 +1099,7 @@ namespace Stardew_Mod_Manager
             this.OpenSMAPIBackups.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenSMAPIBackups.Name = "OpenSMAPIBackups";
             this.OpenSMAPIBackups.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.OpenSMAPIBackups.Size = new System.Drawing.Size(95, 58);
+            this.OpenSMAPIBackups.Size = new System.Drawing.Size(95, 45);
             this.OpenSMAPIBackups.Text = "SMAPI Backups";
             this.OpenSMAPIBackups.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenSMAPIBackups.Click += new System.EventHandler(this.ViewSMAPIBackups_Click);
@@ -1112,7 +1111,7 @@ namespace Stardew_Mod_Manager
             this.DeleteFarm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteFarm.Name = "DeleteFarm";
             this.DeleteFarm.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.DeleteFarm.Size = new System.Drawing.Size(97, 58);
+            this.DeleteFarm.Size = new System.Drawing.Size(97, 45);
             this.DeleteFarm.Text = "Delete Selected";
             this.DeleteFarm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.DeleteFarm.Click += new System.EventHandler(this.DeleteFarmButton_Click);
@@ -1123,7 +1122,7 @@ namespace Stardew_Mod_Manager
             this.OpenSaves.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenSaves.Name = "OpenSaves";
             this.OpenSaves.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
-            this.OpenSaves.Size = new System.Drawing.Size(114, 58);
+            this.OpenSaves.Size = new System.Drawing.Size(114, 45);
             this.OpenSaves.Text = "Open Saves Folder";
             this.OpenSaves.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OpenSaves.Click += new System.EventHandler(this.OpenSavesButton_Click);
@@ -1815,11 +1814,6 @@ namespace Stardew_Mod_Manager
             this.Tab_ModUpdates.Controls.Add(this.UpdateStatusLabel);
             this.Tab_ModUpdates.Controls.Add(this.UpdateCheckIsThinking);
             this.Tab_ModUpdates.Controls.Add(this.LastCheckedModUpdateLabel);
-            this.Tab_ModUpdates.Controls.Add(this.LSModCheck);
-            this.Tab_ModUpdates.Controls.Add(this.label24);
-            this.Tab_ModUpdates.Controls.Add(this.label23);
-            this.Tab_ModUpdates.Controls.Add(this.label22);
-            this.Tab_ModUpdates.Controls.Add(this.label21);
             this.Tab_ModUpdates.Controls.Add(this.DoModUpdates);
             this.Tab_ModUpdates.Controls.Add(this.StartModUpdateCheck);
             this.Tab_ModUpdates.Controls.Add(this.ModManagementContainer);
@@ -1872,52 +1866,12 @@ namespace Stardew_Mod_Manager
             // 
             this.LSModCheck.BackColor = System.Drawing.Color.Transparent;
             this.LSModCheck.Image = global::Stardew_Mod_Manager.Properties.Resources.LSPink;
-            this.LSModCheck.Location = new System.Drawing.Point(11, 262);
+            this.LSModCheck.Location = new System.Drawing.Point(2, 183);
             this.LSModCheck.Name = "LSModCheck";
-            this.LSModCheck.Size = new System.Drawing.Size(579, 85);
+            this.LSModCheck.Size = new System.Drawing.Size(567, 42);
             this.LSModCheck.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LSModCheck.TabIndex = 50;
             this.LSModCheck.TabStop = false;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(385, 85);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(40, 15);
-            this.label24.TabIndex = 54;
-            this.label24.Text = "Status";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(300, 85);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(38, 15);
-            this.label23.TabIndex = 53;
-            this.label23.Text = "Latest";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(219, 85);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(52, 15);
-            this.label22.TabIndex = 52;
-            this.label22.Text = "Installed";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(18, 85);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(67, 15);
-            this.label21.TabIndex = 51;
-            this.label21.Text = "Mod Name";
             // 
             // DoModUpdates
             // 
@@ -1946,93 +1900,12 @@ namespace Stardew_Mod_Manager
             // ModManagementContainer
             // 
             this.ModManagementContainer.AutoScroll = true;
-            this.ModManagementContainer.Controls.Add(this.IconView);
-            this.ModManagementContainer.Controls.Add(this.ModName);
-            this.ModManagementContainer.Controls.Add(this.InstallModVer);
-            this.ModManagementContainer.Controls.Add(this.UpdateModVer);
-            this.ModManagementContainer.Controls.Add(this.UpdateStatus);
-            this.ModManagementContainer.Controls.Add(this.ModNexusID);
-            this.ModManagementContainer.Location = new System.Drawing.Point(14, 105);
+            this.ModManagementContainer.Controls.Add(this.LSModCheck);
+            this.ModManagementContainer.Controls.Add(this.dataGridView1);
+            this.ModManagementContainer.Location = new System.Drawing.Point(14, 82);
             this.ModManagementContainer.Name = "ModManagementContainer";
-            this.ModManagementContainer.Size = new System.Drawing.Size(572, 362);
+            this.ModManagementContainer.Size = new System.Drawing.Size(572, 385);
             this.ModManagementContainer.TabIndex = 55;
-            // 
-            // IconView
-            // 
-            this.IconView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.IconView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.IconView.Font = new System.Drawing.Font("Segoe UI", 7F);
-            this.IconView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.IconView.HideSelection = false;
-            this.IconView.Location = new System.Drawing.Point(519, 7);
-            this.IconView.Margin = new System.Windows.Forms.Padding(0);
-            this.IconView.Name = "IconView";
-            this.IconView.Size = new System.Drawing.Size(42, 345);
-            this.IconView.TabIndex = 5;
-            this.IconView.UseCompatibleStateImageBehavior = false;
-            this.IconView.View = System.Windows.Forms.View.Details;
-            // 
-            // ModName
-            // 
-            this.ModName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.ModName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ModName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModName.FormattingEnabled = true;
-            this.ModName.ItemHeight = 15;
-            this.ModName.Location = new System.Drawing.Point(6, 7);
-            this.ModName.Name = "ModName";
-            this.ModName.Size = new System.Drawing.Size(199, 345);
-            this.ModName.TabIndex = 0;
-            this.ModName.SelectedIndexChanged += new System.EventHandler(this.ModName_SelectedIndexChanged);
-            // 
-            // InstallModVer
-            // 
-            this.InstallModVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.InstallModVer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.InstallModVer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InstallModVer.FormattingEnabled = true;
-            this.InstallModVer.ItemHeight = 15;
-            this.InstallModVer.Location = new System.Drawing.Point(208, 7);
-            this.InstallModVer.Name = "InstallModVer";
-            this.InstallModVer.Size = new System.Drawing.Size(78, 345);
-            this.InstallModVer.TabIndex = 1;
-            this.InstallModVer.SelectedIndexChanged += new System.EventHandler(this.InstallModVer_SelectedIndexChanged);
-            // 
-            // UpdateModVer
-            // 
-            this.UpdateModVer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.UpdateModVer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UpdateModVer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateModVer.FormattingEnabled = true;
-            this.UpdateModVer.ItemHeight = 15;
-            this.UpdateModVer.Location = new System.Drawing.Point(292, 7);
-            this.UpdateModVer.Name = "UpdateModVer";
-            this.UpdateModVer.Size = new System.Drawing.Size(79, 345);
-            this.UpdateModVer.TabIndex = 2;
-            this.UpdateModVer.SelectedIndexChanged += new System.EventHandler(this.UpdateModVer_SelectedIndexChanged);
-            this.UpdateModVer.SelectedValueChanged += new System.EventHandler(this.UpdateModVer_SelectedValueChanged);
-            // 
-            // UpdateStatus
-            // 
-            this.UpdateStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.UpdateStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UpdateStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateStatus.FormattingEnabled = true;
-            this.UpdateStatus.ItemHeight = 15;
-            this.UpdateStatus.Location = new System.Drawing.Point(374, 7);
-            this.UpdateStatus.Name = "UpdateStatus";
-            this.UpdateStatus.Size = new System.Drawing.Size(142, 345);
-            this.UpdateStatus.TabIndex = 3;
-            this.UpdateStatus.SelectedIndexChanged += new System.EventHandler(this.UpdateStatus_SelectedIndexChanged);
-            // 
-            // ModNexusID
-            // 
-            this.ModNexusID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ModNexusID.FormattingEnabled = true;
-            this.ModNexusID.Location = new System.Drawing.Point(295, 7);
-            this.ModNexusID.Name = "ModNexusID";
-            this.ModNexusID.Size = new System.Drawing.Size(43, 91);
-            this.ModNexusID.TabIndex = 4;
             // 
             // barItem1
             // 
@@ -2132,6 +2005,85 @@ namespace Stardew_Mod_Manager
             this.IconList.Images.SetKeyName(1, "cross.png");
             this.IconList.Images.SetKeyName(2, "check.png");
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ModName,
+            this.NexusID,
+            this.Installed,
+            this.Latest,
+            this.Status,
+            this.StatusIcon});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.RowHeadersWidth = 30;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.ShowCellErrors = false;
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.Size = new System.Drawing.Size(572, 385);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // ModName
+            // 
+            this.ModName.HeaderText = "Mod Name";
+            this.ModName.Name = "ModName";
+            this.ModName.ReadOnly = true;
+            // 
+            // NexusID
+            // 
+            this.NexusID.HeaderText = "Nexus ID";
+            this.NexusID.Name = "NexusID";
+            this.NexusID.ReadOnly = true;
+            // 
+            // Installed
+            // 
+            this.Installed.HeaderText = "Installed";
+            this.Installed.Name = "Installed";
+            this.Installed.ReadOnly = true;
+            // 
+            // Latest
+            // 
+            this.Latest.HeaderText = "Latest";
+            this.Latest.Name = "Latest";
+            this.Latest.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // StatusIcon
+            // 
+            this.StatusIcon.HeaderText = "";
+            this.StatusIcon.Name = "StatusIcon";
+            this.StatusIcon.ReadOnly = true;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2205,10 +2157,10 @@ namespace Stardew_Mod_Manager
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.Tab_ModUpdates.ResumeLayout(false);
-            this.Tab_ModUpdates.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateCheckIsThinking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LSModCheck)).EndInit();
             this.ModManagementContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2349,27 +2301,24 @@ namespace Stardew_Mod_Manager
         private System.Windows.Forms.LinkLabel NexusAPIGetKey;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox NexusAPIInput;
-        private System.Windows.Forms.ListBox UpdateStatus;
-        private System.Windows.Forms.ListBox UpdateModVer;
-        private System.Windows.Forms.ListBox InstallModVer;
-        private System.Windows.Forms.ListBox ModName;
         private Syncfusion.WinForms.Controls.SfButton DoModUpdates;
         private Syncfusion.WinForms.Controls.SfButton StartModUpdateCheck;
-        private System.Windows.Forms.ListBox ModNexusID;
         private System.Windows.Forms.Timer PopulateUpdateList;
         private System.Windows.Forms.PictureBox LSModCheck;
         private System.ComponentModel.BackgroundWorker PopulateModsListForUpdate;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Panel ModManagementContainer;
         private System.Windows.Forms.Label LastCheckedModUpdateLabel;
         private System.Windows.Forms.PictureBox UpdateCheckIsThinking;
         private System.Windows.Forms.ImageList IconList;
-        private System.Windows.Forms.ListView IconView;
         private System.Windows.Forms.TextBox NexusAPIRateLimit;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label UpdateStatusLabel;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ModName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NexusID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Installed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Latest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewImageColumn StatusIcon;
     }
 }
