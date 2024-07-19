@@ -52,8 +52,8 @@ namespace Stardew_Mod_Manager.Forms
             {
                 using (WebClient wc = new WebClient())
                 {
-                    string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                    string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
+                    string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    string updatelocation = Path.Combine(dataPath, @"\RWE Labs\update\SDVMMlatest.exe");
 
                     // Check if the file already exists, delete if necessary
                     if (File.Exists(updatelocation))
