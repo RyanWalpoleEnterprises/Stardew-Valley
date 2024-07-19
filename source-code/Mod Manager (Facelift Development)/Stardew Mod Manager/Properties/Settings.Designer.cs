@@ -358,5 +358,17 @@ namespace Stardew_Mod_Manager.Properties {
                 this["NexusAPIRateLimit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Not recently.")]
+        public string MCLastCheck {
+            get {
+                return ((string)(this["MCLastCheck"]));
+            }
+            set {
+                this["MCLastCheck"] = value;
+            }
+        }
     }
 }
