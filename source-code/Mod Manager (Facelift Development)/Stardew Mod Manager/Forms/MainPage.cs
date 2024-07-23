@@ -1565,12 +1565,12 @@ namespace Stardew_Mod_Manager
 
                 DisableModButton.PerformClick();
 
-                if (dataGridView1.Rows.Count > 0)
+                if (ModUpdateGrid.Rows.Count > 0)
                 {
                     //don't populate
                     LSModCheck.Visible = false;
                 }
-                else if(dataGridView1.Rows.Count <= 0)
+                else if(ModUpdateGrid.Rows.Count <= 0)
                 {
                     LSModCheck.Visible = true;
                     PopulateUpdateList.Start();
@@ -1956,8 +1956,8 @@ namespace Stardew_Mod_Manager
         //Handles the closing of the main window
         private void MainPage_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
+            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string updatelocation = Path.Combine(dataPath, @"\RWE Labs\update\SDVMMlatest.exe");
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string tmpdir = Path.Combine(appdata, @"\RWE Labs\SDV Mod Manager\tmp\nexusAPI");
 
@@ -2167,10 +2167,10 @@ namespace Stardew_Mod_Manager
             // Get the selected value of UpdateStatus and check if it's "update available."
             try
             {
-                if (dataGridView1.SelectedRows.Count > 0) // Add null check here
+                if (ModUpdateGrid.SelectedRows.Count > 0) // Add null check here
                 {
                     // Your code handling the selected value here
-                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                    DataGridViewRow selectedRow = ModUpdateGrid.SelectedRows[0];
 
                     // Safely retrieve cell values
                     string modName = selectedRow.Cells["ModName"]?.Value?.ToString();
@@ -2229,20 +2229,20 @@ namespace Stardew_Mod_Manager
             //Once all mods disabled...
             foreach (string folder in Directory.GetDirectories(Properties.Settings.Default.InactiveModsDir))
             {
-                dataGridView1.Invoke((MethodInvoker)delegate
+                ModUpdateGrid.Invoke((MethodInvoker)delegate
                 {
-                    int newRowIndex = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[newRowIndex].Cells["ModName"].Value = Path.GetFileName(folder);
-                    dataGridView1.Rows[newRowIndex].Cells["NexusID"].Value = " "; // Initialize as empty
-                    dataGridView1.Rows[newRowIndex].Cells["Installed"].Value = " "; //Initialize as empty
-                    dataGridView1.Rows[newRowIndex].Cells["Latest"].Value = " ";
-                    dataGridView1.Rows[newRowIndex].Cells["Status"].Value = " ";
-                    dataGridView1.Rows[newRowIndex].Cells["StatusIcon"].Value = IconList.Images[0];
+                    int newRowIndex = ModUpdateGrid.Rows.Add();
+                    ModUpdateGrid.Rows[newRowIndex].Cells["ModName"].Value = Path.GetFileName(folder);
+                    ModUpdateGrid.Rows[newRowIndex].Cells["NexusID"].Value = " "; // Initialize as empty
+                    ModUpdateGrid.Rows[newRowIndex].Cells["Installed"].Value = " "; //Initialize as empty
+                    ModUpdateGrid.Rows[newRowIndex].Cells["Latest"].Value = " ";
+                    ModUpdateGrid.Rows[newRowIndex].Cells["Status"].Value = " ";
+                    ModUpdateGrid.Rows[newRowIndex].Cells["StatusIcon"].Value = IconList.Images[0];
                 });
             }
 
             //Get the mod details, including the Version and UpdateKeys
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in ModUpdateGrid.Rows)
             {
                 string modName = row.Cells["ModName"].Value?.ToString();
                 string modID = row.Cells["NexusID"].Value?.ToString();
@@ -2273,14 +2273,14 @@ namespace Stardew_Mod_Manager
 
                         if (!string.IsNullOrEmpty(version))
                         {
-                            dataGridView1.Invoke((MethodInvoker)delegate
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
                             {
                                 row.Cells["Installed"].Value = version;
                             });
                         }
                         else if (string.IsNullOrEmpty(version))
                         {
-                            dataGridView1.Invoke((MethodInvoker)delegate
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
                             {
                                 row.Cells["Installed"].Value = "N/A";
                             });
@@ -2293,7 +2293,7 @@ namespace Stardew_Mod_Manager
                                 .Where(key => key.StartsWith("Nexus:", StringComparison.OrdinalIgnoreCase) && IsValidNexusKey(key))
                                 .ToList();
 
-                            dataGridView1.Invoke((MethodInvoker)delegate
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
                             {
                                 if (nexusUpdateKeys.Any())
                                 {
@@ -2311,7 +2311,7 @@ namespace Stardew_Mod_Manager
                         }
                         else
                         {
-                            dataGridView1.Invoke((MethodInvoker)delegate
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
                             {
                                 //No Update Keys
                                 row.Cells["NexusID"].Value = "N/A";
@@ -2320,7 +2320,7 @@ namespace Stardew_Mod_Manager
                     }
                     catch (Exception ex)
                     {
-                        dataGridView1.Invoke((MethodInvoker)delegate
+                        ModUpdateGrid.Invoke((MethodInvoker)delegate
                         {
                             //Error
                             row.Cells["NexusID"].Value = "N/A";
@@ -2330,21 +2330,21 @@ namespace Stardew_Mod_Manager
                 }
                 else
                 {
-                    dataGridView1.Invoke((MethodInvoker)delegate
+                    ModUpdateGrid.Invoke((MethodInvoker)delegate
                     {
                         row.Cells["NexusID"].Value = "N/A";
                     });
                 }
             }
 
-            dataGridView1.Invoke((MethodInvoker)delegate
+            ModUpdateGrid.Invoke((MethodInvoker)delegate
             {
-                dataGridView1.Columns["ModName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dataGridView1.Columns["NexusID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dataGridView1.Columns["Installed"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dataGridView1.Columns["Latest"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dataGridView1.Columns["Status"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridView1.Columns["StatusIcon"].Width = 25; // Set specific width
+                ModUpdateGrid.Columns["ModName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["NexusID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["Installed"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["Latest"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["Status"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                ModUpdateGrid.Columns["StatusIcon"].Width = 25; // Set specific width
             });
         }
 
@@ -2353,7 +2353,7 @@ namespace Stardew_Mod_Manager
         {
             LSModCheck.Visible = false;
 
-            if(dataGridView1.Rows.Count > 0)
+            if(ModUpdateGrid.Rows.Count > 0)
             {
                 StartModUpdateCheck.Enabled = true;
             }
@@ -2386,9 +2386,9 @@ namespace Stardew_Mod_Manager
             DoModUpdates.Enabled = false;
             StartModUpdateCheck.Enabled = false;
 
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (ModUpdateGrid.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                DataGridViewRow selectedRow = ModUpdateGrid.SelectedRows[0];
                 string modtoupdatename = selectedRow.Cells["ModName"].Value.ToString();
                 string modtoupdateID = selectedRow.Cells["NexusID"].Value.ToString();
                 string updatestatus = selectedRow.Cells["Status"].Value.ToString();
@@ -2550,7 +2550,7 @@ namespace Stardew_Mod_Manager
         {
             Timer installmodupdatetimer = (Timer)sender;
             installmodupdatetimer.Stop();
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            DataGridViewRow selectedRow = ModUpdateGrid.SelectedRows[0];
 
             selectedRow.Cells["Status"].Value = "Extracting files...";
             UpdateStatusLabel.Text = "Extracting files...";
@@ -2639,7 +2639,7 @@ namespace Stardew_Mod_Manager
             //IconView.SmallImageList = IconList;
             //IconView.Padding = new Padding(0, 0, 0, 0);
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in ModUpdateGrid.Rows)
             {
                 string modName = row.Cells["ModName"].Value.ToString();
                 string modNexusID = row.Cells["NexusID"].Value.ToString();
@@ -2655,7 +2655,7 @@ namespace Stardew_Mod_Manager
 
                     // Update UI asynchronously
                     // Update UI asynchronously
-                    dataGridView1.Invoke((MethodInvoker)delegate
+                    ModUpdateGrid.Invoke((MethodInvoker)delegate
                     {
                         if (latestVersion != null)
                         {
@@ -2775,6 +2775,12 @@ namespace Stardew_Mod_Manager
         {
             //Selection Change
             CheckUpdatePossible();
+        }
+
+        private void DeprecatedModCheck_Click(object sender, EventArgs e)
+        {
+            ModUpdateCheck update = new ModUpdateCheck();
+            update.Show();
         }
     }
 }

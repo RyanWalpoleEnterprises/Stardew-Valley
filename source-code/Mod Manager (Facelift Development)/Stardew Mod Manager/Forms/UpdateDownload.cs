@@ -52,7 +52,7 @@ namespace Stardew_Mod_Manager.Forms
             {
                 using (WebClient wc = new WebClient())
                 {
-                    string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                     string updatelocation = Path.Combine(dataPath, @"\RWE Labs\update\SDVMMlatest.exe");
 
                     // Check if the file already exists, delete if necessary
@@ -125,8 +125,8 @@ namespace Stardew_Mod_Manager.Forms
 
         private void StartExecute_Tick(object sender, EventArgs e)
         {
-            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
+            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string updatelocation = Path.Combine(dataPath, @"\RWE Labs\update\SDVMMlatest.exe");
 
             StartExecute.Stop();
 
