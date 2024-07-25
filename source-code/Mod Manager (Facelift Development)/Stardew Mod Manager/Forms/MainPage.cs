@@ -2523,6 +2523,7 @@ namespace Stardew_Mod_Manager
                     UpdateStatusLabel.Text = "Error: Premium API Required";
                     DoModUpdates.Enabled = true;
                     UpdateCheckIsThinking.Visible = false;
+                    UpdateCheckIsThinking.Image = Resources.sdvError;
                     DialogResult dr = MessageBox.Show("One-click update and install requires a NexusMods Pro subscription. Would you like to manually update this mod?","api.nexusmods.com | Stardew Valely Mod Manager",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
                     if(dr == DialogResult.Yes)
                     {
@@ -2572,6 +2573,7 @@ namespace Stardew_Mod_Manager
                         {
                             selectedRow.Cells["Status"].Value = "Could not install update.";
                             UpdateStatusLabel.Text = "Error: Could not update.";
+                            UpdateCheckIsThinking.Image = Resources.sdvError;
                             MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
                         }
@@ -2584,7 +2586,8 @@ namespace Stardew_Mod_Manager
                 //InstallModVer.Items[InstallModVer.SelectedIndex] = UpdateModVer.SelectedItem.ToString();
                 //DoModUpdates.Enabled = false;
                 StartModUpdateCheck.Enabled = true;
-                UpdateCheckIsThinking.Visible = false;
+                UpdateCheckIsThinking.Visible = true;
+                UpdateCheckIsThinking.Image = Resources.sdvvalidated;
 
                 try
                 {
@@ -2607,12 +2610,12 @@ namespace Stardew_Mod_Manager
         //When the user clicks "Check for Updates", initiate a HTTP request and fetch the most up to date version from Nexus' API
         private async void StartModUpdateCheck_Click(object sender, EventArgs e)
         {
+            GetColorProfile();
 
             if (Properties.Settings.Default.NexusAPIEnabled == "TRUE")
             {
                 UpdateStatusLabel.Visible = true;
                 UpdateStatusLabel.Text = "Checking for updates...";
-
                 LastCheckedModUpdateLabel.Text = "Last Checked: " + DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
                 Properties.Settings.Default.MCLastCheck = DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
                 Properties.Settings.Default.Save();
@@ -2620,7 +2623,8 @@ namespace Stardew_Mod_Manager
                 StartModUpdateCheck.Text = "Please wait...";
                 UpdateCheckIsThinking.Visible = true;
                 await CheckForUpdatesAsync();
-                UpdateCheckIsThinking.Visible = false;
+                UpdateCheckIsThinking.Visible = true;
+                UpdateCheckIsThinking.Image = Resources.sdvvalidated;
                 StartModUpdateCheck.Enabled = true;
                 StartModUpdateCheck.Text = "Check for Updates";
                 UpdateStatusLabel.Visible = false;

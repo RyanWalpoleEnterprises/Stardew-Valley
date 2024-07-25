@@ -156,6 +156,7 @@ namespace Stardew_Mod_Manager
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.Tab_ModUpdates = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
+            this.DeprecatedModCheck = new Syncfusion.WinForms.Controls.SfButton();
             this.UpdateStatusLabel = new System.Windows.Forms.Label();
             this.UpdateCheckIsThinking = new System.Windows.Forms.PictureBox();
             this.LastCheckedModUpdateLabel = new System.Windows.Forms.Label();
@@ -185,7 +186,6 @@ namespace Stardew_Mod_Manager
             this.PopulateUpdateList = new System.Windows.Forms.Timer(this.components);
             this.PopulateModsListForUpdate = new System.ComponentModel.BackgroundWorker();
             this.IconList = new System.Windows.Forms.ImageList(this.components);
-            this.DeprecatedModCheck = new Syncfusion.WinForms.Controls.SfButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_SMAPIUpToDate)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -868,7 +868,7 @@ namespace Stardew_Mod_Manager
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.groupBox3.Location = new System.Drawing.Point(21, 878);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(539, 127);
+            this.groupBox3.Size = new System.Drawing.Size(539, 105);
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Telemetry";
@@ -877,9 +877,9 @@ namespace Stardew_Mod_Manager
             // 
             this.VolunteerTelemetry.AccessibleName = "Button";
             this.VolunteerTelemetry.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.VolunteerTelemetry.Location = new System.Drawing.Point(264, 57);
+            this.VolunteerTelemetry.Location = new System.Drawing.Point(207, 57);
             this.VolunteerTelemetry.Name = "VolunteerTelemetry";
-            this.VolunteerTelemetry.Size = new System.Drawing.Size(238, 28);
+            this.VolunteerTelemetry.Size = new System.Drawing.Size(208, 28);
             this.VolunteerTelemetry.TabIndex = 43;
             this.VolunteerTelemetry.Text = "Volunteer Single Time Telemetry";
             this.VolunteerTelemetry.Click += new System.EventHandler(this.VolunteerTelemetry_Click);
@@ -887,7 +887,7 @@ namespace Stardew_Mod_Manager
             // ViewTelemetryPolicy
             // 
             this.ViewTelemetryPolicy.AutoSize = true;
-            this.ViewTelemetryPolicy.Location = new System.Drawing.Point(18, 96);
+            this.ViewTelemetryPolicy.Location = new System.Drawing.Point(410, 28);
             this.ViewTelemetryPolicy.Name = "ViewTelemetryPolicy";
             this.ViewTelemetryPolicy.Size = new System.Drawing.Size(115, 13);
             this.ViewTelemetryPolicy.TabIndex = 42;
@@ -921,7 +921,7 @@ namespace Stardew_Mod_Manager
             this.TelemetryOptInOut.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TelemetryOptInOut.Location = new System.Drawing.Point(11, 57);
             this.TelemetryOptInOut.Name = "TelemetryOptInOut";
-            this.TelemetryOptInOut.Size = new System.Drawing.Size(238, 28);
+            this.TelemetryOptInOut.Size = new System.Drawing.Size(190, 28);
             this.TelemetryOptInOut.TabIndex = 39;
             this.TelemetryOptInOut.Text = "OptInOut";
             this.TelemetryOptInOut.Click += new System.EventHandler(this.TelemetryOptInOut_Click);
@@ -979,7 +979,7 @@ namespace Stardew_Mod_Manager
             // 
             this.SettingsResetButton.AccessibleName = "Button";
             this.SettingsResetButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.SettingsResetButton.Location = new System.Drawing.Point(261, 1019);
+            this.SettingsResetButton.Location = new System.Drawing.Point(263, 994);
             this.SettingsResetButton.Name = "SettingsResetButton";
             this.SettingsResetButton.Size = new System.Drawing.Size(233, 28);
             this.SettingsResetButton.TabIndex = 38;
@@ -990,7 +990,7 @@ namespace Stardew_Mod_Manager
             // 
             this.LegacySettings.AccessibleName = "Button";
             this.LegacySettings.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LegacySettings.Location = new System.Drawing.Point(19, 1019);
+            this.LegacySettings.Location = new System.Drawing.Point(21, 994);
             this.LegacySettings.Name = "LegacySettings";
             this.LegacySettings.Size = new System.Drawing.Size(236, 28);
             this.LegacySettings.TabIndex = 37;
@@ -1831,6 +1831,18 @@ namespace Stardew_Mod_Manager
             this.Tab_ModUpdates.ThemesEnabled = false;
             this.Tab_ModUpdates.Closed += new System.EventHandler(this.Tab_ModUpdates_Closed);
             // 
+            // DeprecatedModCheck
+            // 
+            this.DeprecatedModCheck.AccessibleName = "Button";
+            this.DeprecatedModCheck.Enabled = false;
+            this.DeprecatedModCheck.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.DeprecatedModCheck.Location = new System.Drawing.Point(400, 23);
+            this.DeprecatedModCheck.Name = "DeprecatedModCheck";
+            this.DeprecatedModCheck.Size = new System.Drawing.Size(186, 28);
+            this.DeprecatedModCheck.TabIndex = 59;
+            this.DeprecatedModCheck.Text = "Use Deprecated Update Checker\r\n";
+            this.DeprecatedModCheck.Click += new System.EventHandler(this.DeprecatedModCheck_Click);
+            // 
             // UpdateStatusLabel
             // 
             this.UpdateStatusLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2085,18 +2097,6 @@ namespace Stardew_Mod_Manager
             this.IconList.Images.SetKeyName(0, "info.png");
             this.IconList.Images.SetKeyName(1, "cross.png");
             this.IconList.Images.SetKeyName(2, "check.png");
-            // 
-            // DeprecatedModCheck
-            // 
-            this.DeprecatedModCheck.AccessibleName = "Button";
-            this.DeprecatedModCheck.Enabled = false;
-            this.DeprecatedModCheck.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.DeprecatedModCheck.Location = new System.Drawing.Point(400, 23);
-            this.DeprecatedModCheck.Name = "DeprecatedModCheck";
-            this.DeprecatedModCheck.Size = new System.Drawing.Size(186, 28);
-            this.DeprecatedModCheck.TabIndex = 59;
-            this.DeprecatedModCheck.Text = "Use Deprecated Update Checker\r\n";
-            this.DeprecatedModCheck.Click += new System.EventHandler(this.DeprecatedModCheck_Click);
             // 
             // MainPage
             // 
