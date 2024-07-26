@@ -2522,7 +2522,7 @@ namespace Stardew_Mod_Manager
                     Console.WriteLine("Premium user required for download.");
                     UpdateStatusLabel.Text = "Error: Premium API Required";
                     DoModUpdates.Enabled = true;
-                    UpdateCheckIsThinking.Visible = false;
+                    UpdateCheckIsThinking.Visible = true;
                     UpdateCheckIsThinking.Image = Resources.sdvError;
                     DialogResult dr = MessageBox.Show("One-click update and install requires a NexusMods Pro subscription. Would you like to manually update this mod?","api.nexusmods.com | Stardew Valely Mod Manager",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
                     if(dr == DialogResult.Yes)
