@@ -24,6 +24,12 @@ using System.Runtime.InteropServices;
 using Stardew_Mod_Manager.Forms.Webapp;
 using System.Security.Cryptography.X509Certificates;
 using Ionic.Zip;
+using Newtonsoft.Json.Linq;
+using ListBox = System.Windows.Forms.ListBox;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Syncfusion.ComponentModel;
+using System.Net.Http;
+using Microsoft.VisualBasic.Compatibility.VB6;
 
 namespace Stardew_Mod_Manager
 {
@@ -71,6 +77,10 @@ namespace Stardew_Mod_Manager
             MainTabs.TabPages.Remove(Tab_Settings);
             MainTabs.TabPages.Remove(Tab_InstallOptions);
             MainTabs.TabPages.Remove(Tab_Feedback);
+            MainTabs.TabPages.Remove(Tab_ModUpdates);
+
+            //Prefill Last Check
+            LastCheckedModUpdateLabel.Text = Properties.Settings.Default.MCLastCheck;
 
             //If the user has opted to check for SMAPI updates on startup, do that now.
             if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
@@ -167,121 +177,76 @@ namespace Stardew_Mod_Manager
         //Lists the selected mod(s) that the user requests be disabled
         private void DisableMod_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string ModList = Properties.Settings.Default.ModsDir;
-                string InstalledModFolderName = InstalledModsList.SelectedItem.ToString();
-                string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
-
-                foreach (string item in InstalledModsList.SelectedItems)
-                {
-                    ModsToMove.AppendText(item.ToString() + Environment.NewLine);
-                }
-
-                DoDisableMods();
-                //Mod Folder To Move
-                //string MovementOperation = ModList + @"\" + InstalledModFolderName;
-                //Directory.Move(MovementOperation, DisabledModsList + InstalledModFolderName);
-                //RefreshObjects();//RefreshObjects();
-
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("Cannot create a file when that file already exists."))
-                {
-                    RefreshObjects();
-                    ModsToMove.Clear();
-                    DisableModButton.Enabled = false;
-                }
-                else
-                {
-                    MessageBox.Show("There was an issue disabling this mod:" + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    CreateErrorLog("There was an issue disabling a mod: " + ex.Message);
-                }
-            }
-
-        }
-
-        //Disables the mod(s) requested to be disabled
-        private void DoDisableMods()
-        {
             string ModList = Properties.Settings.Default.ModsDir;
-            string InstalledModFolderName = InstalledModsList.SelectedItem.ToString();
             string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
 
-            foreach (string line in ModsToMove.Lines)
+            foreach (string item in InstalledModsList.SelectedItems)
             {
-                if (line == null)
+                string EnabledModName = item.ToString(); // Get the current selected item inside the loop
+
+                // Step 1: Check Path Existence
+                if (Directory.Exists(ModList + @"\" + EnabledModName) && Directory.Exists(DisabledModsList))
                 {
-                    //
+                    // Step 2: Verify Paths
+                    Console.WriteLine("Moving from: " + ModList + @"\" + EnabledModName);
+                    Console.WriteLine("Moving to: " + DisabledModsList + @"\" + EnabledModName);
+
+                    // Step 3: Handle Edge Cases
+                    try
+                    {
+                        Directory.Move(ModList + @"\" + EnabledModName, DisabledModsList + @"\" + EnabledModName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                    }
                 }
                 else
                 {
-                    Directory.Move(ModList + @"\" + line + @"\", DisabledModsList + line + @"\");
-                    //RefreshObjects();
+                    Console.WriteLine("One or both directories do not exist.");
                 }
             }
 
-            //RefreshObjects();
+            RefreshObjects();
+
         }
 
         //Lists the selected mod(s) that the user requests be enabled
         private void EnableMod_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string ModList = Properties.Settings.Default.ModsDir;
-                string DisabledModName = AvailableModsList.SelectedItem.ToString();
-                string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
-
-                foreach (string item in AvailableModsList.SelectedItems)
-                {
-                    ModsToMove.AppendText(item.ToString() + Environment.NewLine);
-                }
-
-                DoEnableMods();
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains("Cannot create a file when that file already exists."))
-                {
-                    RefreshObjects();
-                    ModsToMove.Clear();
-                    EnableModButton.Enabled = false;
-                }
-                else
-                {
-                    MessageBox.Show("There was an issue enabling this mod:" + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    CreateErrorLog("There was a problem enabling a mod. Error Message:" + ex.Message);
-                }
-            }
-
-        }
-
-        //Enables the mod(s) requested to be enabled.
-        private void DoEnableMods()
-        {
+            DeleteMod.Enabled = false;
             string ModList = Properties.Settings.Default.ModsDir;
-            //string InstalledModFolderName = InstalledModsList.SelectedItem.ToString();
             string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
 
-            foreach (string line in ModsToMove.Lines)
+            foreach (string item in AvailableModsList.SelectedItems)
             {
-                if (line == null)
+                string DisabledModName = item.ToString(); // Get the current selected item inside the loop
+
+                // Step 1: Check Path Existence
+                if (Directory.Exists(DisabledModsList + @"\" + DisabledModName) && Directory.Exists(ModList))
                 {
-                    //
+                    // Step 2: Verify Paths
+                    Console.WriteLine("Moving from: " + DisabledModsList + @"\" + DisabledModName);
+                    Console.WriteLine("Moving to: " + ModList + @"\" + DisabledModName);
+
+                    // Step 3: Handle Edge Cases
+                    try
+                    {
+                        Directory.Move(DisabledModsList + @"\" + DisabledModName, ModList + @"\" + DisabledModName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                    }
                 }
                 else
                 {
-                    Directory.Move(DisabledModsList + @"\" + line + @"\", ModList + line + @"\");
-                    //RefreshObjects();
+                    Console.WriteLine("One or both directories do not exist.");
                 }
             }
 
-            //RefreshObjects();
+            RefreshObjects();
         }
-
         //Refreshes the mods lists and game save lists
         private void RefreshObjects()
         {
@@ -503,56 +468,36 @@ namespace Stardew_Mod_Manager
         //Delete selected mod(s)
         private void DeleteMod_Click(object sender, EventArgs e)
         {
-            ModsToMove.Clear();
+            string ModList = Properties.Settings.Default.ModsDir;
+            string DisabledModsList = Properties.Settings.Default.InactiveModsDir;
 
-            try
+            foreach (string item in AvailableModsList.SelectedItems)
             {
-                foreach (string item in AvailableModsList.SelectedItems)
+                string ModName = item.ToString(); // Get the current selected item inside the loop
+
+                // Step 1: Check Path Existence
+                if (Directory.Exists(DisabledModsList + @"\" + ModName))
                 {
-                    string ModDirectory = Properties.Settings.Default.ModsDir;
-                    string DisabledModFolderName = AvailableModsList.SelectedItem.ToString();
-                    string DisabledModsDir = Properties.Settings.Default.InactiveModsDir;
+                    // Step 2: Verify Paths
+                    Console.WriteLine("Deleting " + ModName);
 
-                    ModsToMove.AppendText("- " + item + Environment.NewLine);
-                }
-
-                DialogResult dr = MessageBox.Show("Are you sure you want to delete: " + Environment.NewLine + ModsToMove.Text + " from your mods folder? If you want to continue using this mod in the future, consider just disabling it instead.", "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (dr == DialogResult.Yes)
-                {
-                    string ModDirectory = Properties.Settings.Default.ModsDir;
-                    string DisabledModFolderName = AvailableModsList.SelectedItem.ToString();
-                    string DisabledModsDir = Properties.Settings.Default.InactiveModsDir;
-
-                    foreach (string item in AvailableModsList.SelectedItems)
+                    // Step 3: Handle Edge Cases
+                    try
                     {
-                        try
-                        {
-                            Directory.Delete(DisabledModsDir + item, true);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            CreateErrorLog("There was a problem deleting a mod. Error Message:" + ex.Message);
-                        }
+                        Directory.Delete(DisabledModsList + @"\" + ModName, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
                     }
                 }
-
-                else if (dr == DialogResult.No)
+                else
                 {
-                    //do nothing
-                    RefreshObjects();
+                    Console.WriteLine("Issue deleting mod.");
                 }
-
-                RefreshObjects();
-                DeleteMod.Enabled = false;
-
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("If you're attempting to delete a mod, please make sure to disable it before attempting to delete it." + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                CreateErrorLog("There was a problem deleting a mod. Error Message:" + ex.Message);
-            }
+            RefreshObjects();
+            DeleteMod.Enabled = false;
         }
 
         //Handle when the user clicks the SMAPI download button
@@ -768,8 +713,13 @@ namespace Stardew_Mod_Manager
         //Open the Mod Update Check utility
         private void CheckModUpdates_Click(object sender, EventArgs e)
         {
-            ModUpdateCheck updatemods = new ModUpdateCheck();
-            updatemods.ShowDialog();
+            //Deprecated mod update window
+            //ModUpdateCheck updatemods = new ModUpdateCheck();
+            //updatemods.ShowDialog();
+
+            //Show new mod update tab
+            MainTabs.TabPages.Add(Tab_ModUpdates);
+            this.MainTabs.SelectedTab = Tab_ModUpdates;
         }
 
         //When the user clicks "Check for Updates"
@@ -1508,6 +1458,7 @@ namespace Stardew_Mod_Manager
 
         //When the user moves between tabs...
         //This code handles the tab movement as well as defining what tabs are visible when the user is on each tab.
+        //This code also defines the settings of the application when the user enters the settings tab!
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (MainTabs.SelectedTab != Tab_Settings)
@@ -1528,6 +1479,25 @@ namespace Stardew_Mod_Manager
                 else if (Properties.Settings.Default.CheckUpdateOnStartup == "FALSE")
                 {
                     CheckForUpdatesOnStartup.Checked = false;
+                }
+
+                //Nexus Mods API
+                string fullAPI = Properties.Settings.Default.NexusAPIKey;
+                string maskedAPI = MaskApiKey(fullAPI);
+                NexusAPIInput.Text = maskedAPI;
+                NexusAPIRateLimit.Text = Properties.Settings.Default.NexusAPIRateLimit.ToString();
+
+                if (Properties.Settings.Default.NexusAPIEnabled == "TRUE")
+                {
+                    NexusAPICheckbox.Checked = true;
+                    NexusAPIInput.Enabled = true;
+                    NexusAPISave.Enabled = true;
+                }
+                else if (Properties.Settings.Default.NexusAPIEnabled == "FALSE")
+                {
+                    NexusAPICheckbox.Checked = false;
+                    NexusAPIInput.Enabled = false;
+                    NexusAPISave.Enabled = false;
                 }
 
                 if (Properties.Settings.Default.CheckSMAPIUpdateOnStartup == "TRUE")
@@ -1579,6 +1549,52 @@ namespace Stardew_Mod_Manager
             {
                 GiveFeedbackLink.Enabled = true;
             }
+
+            if (MainTabs.SelectedTab == Tab_ModUpdates)
+            {
+                //MainTabs.TabPages.Remove(Tab_Main);
+                //MainTabs.TabPages.Remove(Tab_GameMan);
+                MainTabs.TabPages.Remove(Tab_Settings);
+                MainTabs.TabPages.Remove(Tab_InstallOptions);
+
+                //Disable Mods
+                for (int val = 0; val < InstalledModsList.Items.Count; val++)
+                {
+                    InstalledModsList.SetSelected(val, true);
+                }
+
+                DisableModButton.PerformClick();
+
+                if (ModUpdateGrid.Rows.Count > 0)
+                {
+                    //don't populate
+                    LSModCheck.Visible = false;
+                }
+                else if(ModUpdateGrid.Rows.Count <= 0)
+                {
+                    LSModCheck.Visible = true;
+                    PopulateUpdateList.Start();
+                }
+                
+            }
+            if (MainTabs.SelectedTab != Tab_ModUpdates)
+            {
+                MainTabs.TabPages.Remove(Tab_ModUpdates);
+            }
+        }
+
+        //Masks the API key, exposing only the last 7 digits.
+        private string MaskApiKey(string apiKey)
+        {
+            if (apiKey.Length <= 7)
+            {
+                return new string('•', apiKey.Length);
+            }
+            else
+            {
+                int visibleLength = apiKey.Length - 7;
+                return new string('•', visibleLength) + apiKey.Substring(visibleLength);
+            }
         }
 
         //Gets the color profile from user settings and apply them instantly
@@ -1599,6 +1615,8 @@ namespace Stardew_Mod_Manager
                     Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
                     ThemeColor.SelectedItem = "Colorful - Blue";
                     SDVPlay.Image = Resources.SDVPlay_Blue;
+                    LSModCheck.Image = Resources.LSBlue;
+                    UpdateCheckIsThinking.Image = Resources.LSBlue;
                     break;
                 case "PINK":
                     MainTabs.ActiveTabColor = Color.FromArgb(255, 227, 116, 137);
@@ -1608,6 +1626,8 @@ namespace Stardew_Mod_Manager
                     Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
                     ThemeColor.SelectedItem = "Colorful - Pink";
                     SDVPlay.Image = Resources.SDVPlay_Pink;
+                    LSModCheck.Image = Resources.LSPink;
+                    UpdateCheckIsThinking.Image = Resources.LSPink;
                     break;
                 case "GREEN":
                     MainTabs.ActiveTabColor = Color.FromArgb(255, 100, 148, 90);
@@ -1617,6 +1637,8 @@ namespace Stardew_Mod_Manager
                     Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
                     ThemeColor.SelectedItem = "Colorful - Green";
                     SDVPlay.Image = Resources.SDVPlay_Green;
+                    LSModCheck.Image = Resources.LSGreen;
+                    UpdateCheckIsThinking.Image = Resources.LSGreen;
                     break;
                 case "BIRB":
                     MainTabs.ActiveTabColor = Color.FromArgb(255, 112, 48, 160);
@@ -1626,6 +1648,8 @@ namespace Stardew_Mod_Manager
                     Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
                     ThemeColor.SelectedItem = "Special - Birb";
                     SDVPlay.Image = Resources.SDVPlay_Purple;
+                    LSModCheck.Image = Resources.LSBirb;
+                    UpdateCheckIsThinking.Image = Resources.LSBirb;
                     break;
                 case "NATURE":
                     MainTabs.ActiveTabColor = Color.FromArgb(255, 0, 112, 192);
@@ -1635,6 +1659,8 @@ namespace Stardew_Mod_Manager
                     Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
                     ThemeColor.SelectedItem = "Colorful - Nature";
                     SDVPlay.Image = Resources.SDVPlay_Blue;
+                    LSModCheck.Image = Resources.LSNature;
+                    UpdateCheckIsThinking.Image = Resources.LSNature;
                     break;
                 case "LYLE":
                     MainTabs.ActiveTabColor = Color.FromArgb(255, 74, 130, 53);
@@ -1644,6 +1670,8 @@ namespace Stardew_Mod_Manager
                     Tab_GameMan.BackgroundImageLayout = ImageLayout.Stretch;
                     ThemeColor.SelectedItem = "Special - Lyle";
                     SDVPlay.Image = Resources.SDVPlay_Green;
+                    LSModCheck.Image = Resources.LSLyle;
+                    UpdateCheckIsThinking.Image = Resources.LSLyle;
                     break;
             }
 
@@ -1928,14 +1956,21 @@ namespace Stardew_Mod_Manager
         //Handles the closing of the main window
         private void MainPage_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
-            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string updatelocation = Path.Combine(dataPath, @"\RWE Labs\update\SDVMMlatest.exe");
+            string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string tmpdir = Path.Combine(appdata, @"\RWE Labs\SDV Mod Manager\tmp\nexusAPI");
 
             //Delete update files if they exist
             if (File.Exists(updatelocation))
             {
                 File.Delete(updatelocation);
+            }
+
+            //Delete nexus update files if they exist
+            if (Directory.Exists(tmpdir))
+            {
+                Directory.Delete(tmpdir,true);
             }
 
             //Reset the IsUpdateModInactive setting
@@ -1986,6 +2021,8 @@ namespace Stardew_Mod_Manager
             FileWrite.AppendText("$CheckSMAPIUpdateOnStartup=" + Properties.Settings.Default.CheckSMAPIUpdateOnStartup + Environment.NewLine);
             FileWrite.AppendText("$ColorProfile=" + Properties.Settings.Default.ColorProfile + Environment.NewLine);
             FileWrite.AppendText("$DoTelemetry=" + Properties.Settings.Default.DoTelemetry + Environment.NewLine);
+            FileWrite.AppendText("$NexusAPIEnabled=" + Properties.Settings.Default.NexusAPIEnabled + Environment.NewLine);
+            FileWrite.AppendText("$NexusAPIKey=" + Properties.Settings.Default.NexusAPIKey + Environment.NewLine);
             FileWrite.SaveFile(SettingsINI, RichTextBoxStreamType.PlainText);
 
             FileWrite.Clear();
@@ -2047,6 +2084,707 @@ namespace Stardew_Mod_Manager
         {
             CheckIfGameRunning();
         }
-    }
 
+        //Opens the Nexus API website - where the user can get their personal key.
+        private void NexusAPIGetKey_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://next.nexusmods.com/settings/api-keys");
+        }
+
+        //Handles the enabling/disabling of the NexusAPI feature.
+        private void NexusAPICheckbox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (NexusAPICheckbox.Checked == true)
+            {
+                NexusAPICheckbox.Enabled = true;
+                NexusAPIInput.Enabled = true;
+                NexusAPISave.Enabled = true;
+                Properties.Settings.Default.NexusAPIEnabled = "TRUE";
+                Properties.Settings.Default.Save();
+            }
+            if (NexusAPICheckbox.Checked == false)
+            {
+                NexusAPICheckbox.Enabled = true;
+                NexusAPIInput.Enabled = false;
+                NexusAPISave.Enabled = false;
+                Properties.Settings.Default.NexusAPIEnabled = "FALSE";
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        //Handles when the user clicks "Save/Update" for their Nexus API key
+        private void NexusAPISave_Click(object sender, EventArgs e)
+        {
+            if (NexusAPIInput.Text.StartsWith("•••••••"))
+            {
+                //
+            }
+            else
+            {
+                Properties.Settings.Default.NexusAPIKey = NexusAPIInput.Text;
+                Properties.Settings.Default.Save();
+                string maskedAPI = MaskApiKey(NexusAPIInput.Text);
+                NexusAPIInput.Text = maskedAPI;
+            }
+            
+
+            // Parse the text from the TextBox to an integer
+            if (int.TryParse(NexusAPIRateLimit.Text, out int value))
+            {
+                // Assign the parsed value to the integer setting
+                Properties.Settings.Default.NexusAPIRateLimit = value;
+                // Save the settings
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                // Handle the case where the text cannot be parsed to an integer (e.g., display an error message)
+                MessageBox.Show("Invalid input. Please enter a valid integer value.");
+            }
+        }
+
+
+
+        //          __  __           _   _    _           _       _          _____ _               _    
+        //         |  \/  |         | | | |  | |         | |     | |        / ____| |             | |   
+        //         | \  / | ___   __| | | |  | |_ __   __| | __ _| |_ ___  | |    | |__   ___  ___| | __
+        //         | |\/| |/ _ \ / _` | | |  | | '_ \ / _` |/ _` | __/ _ \ | |    | '_ \ / _ \/ __| |/ /
+        //         | |  | | (_) | (_| | | |__| | |_) | (_| | (_| | ||  __/ | |____| | | |  __/ (__|   < 
+        //         |_|  |_|\___/ \__,_|  \____/| .__/ \__,_|\__,_|\__\___|  \_____|_| |_|\___|\___|_|\_\
+        //                                     | |                                                      
+        //                                     |_|                                                      
+
+
+        //         THE CODE BLOCKS BELOW ARE FOR THE UPDATE CHECK FUNCTIONS
+        //         These will be shown when the user access the new Mod Update Check tab.
+
+
+
+        //Sync the selection between the listboxes...
+
+        private void CheckUpdatePossible()
+        {
+            // Get the selected value of UpdateStatus and check if it's "update available."
+            try
+            {
+                if (ModUpdateGrid.SelectedRows.Count > 0) // Add null check here
+                {
+                    // Your code handling the selected value here
+                    DataGridViewRow selectedRow = ModUpdateGrid.SelectedRows[0];
+
+                    // Safely retrieve cell values
+                    string modName = selectedRow.Cells["ModName"]?.Value?.ToString();
+                    string modID = selectedRow.Cells["NexusID"]?.Value?.ToString();
+                    string modStatus = selectedRow.Cells["Status"]?.Value?.ToString();
+
+                    if (modStatus != null && modStatus.ToLower() == "update available.")
+                    {
+                        DoModUpdates.Enabled = true;
+                        DoModUpdates.Refresh();
+                    }
+                    else
+                    {
+                        DoModUpdates.Enabled = false;
+                        DoModUpdates.Refresh();
+                    }
+                }               
+            }
+            catch
+            {
+                DoModUpdates.Enabled = false;
+                DoModUpdates.Refresh();
+            }
+        }
+
+        //Fires after a few seconds, to give the application time to catch up
+        //Populates the list of mods
+        private void PopulateUpdateList_Tick(object sender, EventArgs e)
+        {
+            PopulateUpdateList.Stop();
+            PopulateModsListForUpdate.RunWorkerAsync();
+        }
+
+        //Gets the value of a JSON property result, normalised
+        private string GetPropertyValueIgnoreCase(JObject jsonObject, string propertyName)
+        {
+            var comparer = StringComparer.OrdinalIgnoreCase;
+            var property = jsonObject.Properties()
+                .FirstOrDefault(p => comparer.Equals(p.Name, propertyName));
+            return property?.Value.ToString();
+        }
+
+        // Function to check if a Nexus key is valid (contains only digits after "Nexus:")
+        private bool IsValidNexusKey(string key)
+        {
+            // Remove "Nexus:" prefix
+            string numericPart = key.Substring(6);
+
+            // Check if the remaining part consists only of digits
+            return numericPart.All(char.IsDigit);
+        }
+
+        //Populate the list of mods and all details, including version installed and unique ID
+        private void PopulateModsListForUpdate_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Once all mods disabled...
+            foreach (string folder in Directory.GetDirectories(Properties.Settings.Default.InactiveModsDir))
+            {
+                ModUpdateGrid.Invoke((MethodInvoker)delegate
+                {
+                    int newRowIndex = ModUpdateGrid.Rows.Add();
+                    ModUpdateGrid.Rows[newRowIndex].Cells["ModName"].Value = Path.GetFileName(folder);
+                    ModUpdateGrid.Rows[newRowIndex].Cells["NexusID"].Value = " "; // Initialize as empty
+                    ModUpdateGrid.Rows[newRowIndex].Cells["Installed"].Value = " "; //Initialize as empty
+                    ModUpdateGrid.Rows[newRowIndex].Cells["Latest"].Value = " ";
+                    ModUpdateGrid.Rows[newRowIndex].Cells["Status"].Value = " ";
+                    ModUpdateGrid.Rows[newRowIndex].Cells["StatusIcon"].Value = IconList.Images[0];
+                });
+            }
+
+            //Get the mod details, including the Version and UpdateKeys
+            foreach (DataGridViewRow row in ModUpdateGrid.Rows)
+            {
+                string modName = row.Cells["ModName"].Value?.ToString();
+                string modID = row.Cells["NexusID"].Value?.ToString();
+                string installedver = row.Cells["Installed"].Value?.ToString();
+
+                if (string.IsNullOrWhiteSpace(modName))
+                {
+                    continue; // Skip rows with missing ModName
+                }
+
+                string manifestPath = Path.Combine(Properties.Settings.Default.InactiveModsDir, modName, "manifest.json");
+
+                if (File.Exists(manifestPath))
+                {
+                    try
+                    {
+                        string jsonContents = File.ReadAllText(manifestPath);
+                        JObject jsonObject = JObject.Parse(jsonContents, new JsonLoadSettings
+                        {
+                            CommentHandling = CommentHandling.Ignore,
+                            LineInfoHandling = LineInfoHandling.Ignore,
+                            DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Ignore
+                        });
+
+                        string version = GetPropertyValueIgnoreCase(jsonObject, "Version");
+                        string uniqueID = GetPropertyValueIgnoreCase(jsonObject, "UniqueID");
+                        JArray updateKeysArray = jsonObject["UpdateKeys"] as JArray;
+
+                        if (!string.IsNullOrEmpty(version))
+                        {
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
+                            {
+                                row.Cells["Installed"].Value = version;
+                            });
+                        }
+                        else if (string.IsNullOrEmpty(version))
+                        {
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
+                            {
+                                row.Cells["Installed"].Value = "N/A";
+                            });
+                        }
+
+                        if (updateKeysArray != null)
+                        {
+                            var nexusUpdateKeys = updateKeysArray
+                                .Select(key => key.Value<string>())
+                                .Where(key => key.StartsWith("Nexus:", StringComparison.OrdinalIgnoreCase) && IsValidNexusKey(key))
+                                .ToList();
+
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
+                            {
+                                if (nexusUpdateKeys.Any())
+                                {
+                                    foreach (var nexusKey in nexusUpdateKeys)
+                                    {
+                                        row.Cells["NexusID"].Value = nexusKey.ToLower().Replace("nexus:", string.Empty);
+                                    }
+                                }
+                                else
+                                {
+                                    //No Nexus Keys
+                                    row.Cells["NexusID"].Value = "N/A";
+                                }
+                            });
+                        }
+                        else
+                        {
+                            ModUpdateGrid.Invoke((MethodInvoker)delegate
+                            {
+                                //No Update Keys
+                                row.Cells["NexusID"].Value = "N/A";
+                            });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ModUpdateGrid.Invoke((MethodInvoker)delegate
+                        {
+                            //Error
+                            row.Cells["NexusID"].Value = "N/A";
+                            //row.Cells["NexusID"].Value = $"Error: {ex.Message}";
+                        });
+                    }
+                }
+                else
+                {
+                    ModUpdateGrid.Invoke((MethodInvoker)delegate
+                    {
+                        row.Cells["NexusID"].Value = "N/A";
+                    });
+                }
+            }
+
+            ModUpdateGrid.Invoke((MethodInvoker)delegate
+            {
+                ModUpdateGrid.Columns["ModName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["NexusID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["Installed"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["Latest"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                ModUpdateGrid.Columns["Status"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                ModUpdateGrid.Columns["StatusIcon"].Width = 25; // Set specific width
+            });
+        }
+
+        //Disables the loading spinner when the mods list is populated, as well as enabling buttons
+        private void PopulateModsListForUpdate_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            LSModCheck.Visible = false;
+
+            if(ModUpdateGrid.Rows.Count > 0)
+            {
+                StartModUpdateCheck.Enabled = true;
+            }
+            else
+            {
+                //Show a warning
+                MessageBox.Show("There are no mods currently installed. Try installing some mods, in order to update them!","Stardew Valley Mod Manager",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+                //Set tab to main
+                MainTabs.TabPages.Add(Tab_Main);
+                MainTabs.SelectedTab = Tab_Main;
+                MainTabs.TabPages.Remove(Tab_ModUpdates);
+            }
+        }
+
+        //Handle the closing of the ModUpdates tab.
+        private void Tab_ModUpdates_Closed(object sender, EventArgs e)
+        {
+            MainTabs.TabPages.Add(Tab_Main);
+            MainTabs.SelectedTab = Tab_Main;
+        }
+
+        //When the user clicks "Update selected", initialize and start the WebClient download and handle UI so that things don't break.
+        private async void DoModUpdates_Click(object sender, EventArgs e)
+        {
+            UpdateCheckIsThinking.Visible = true; 
+            UpdateStatusLabel.Visible = true;
+            UpdateStatusLabel.Text = "Connecting to Nexus...";
+
+            DoModUpdates.Enabled = false;
+            StartModUpdateCheck.Enabled = false;
+
+            if (ModUpdateGrid.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = ModUpdateGrid.SelectedRows[0];
+                string modtoupdatename = selectedRow.Cells["ModName"].Value.ToString();
+                string modtoupdateID = selectedRow.Cells["NexusID"].Value.ToString();
+                string updatestatus = selectedRow.Cells["Status"].Value.ToString();
+
+                string apiKey = Properties.Settings.Default.NexusAPIKey;
+                Properties.Settings.Default.TMP_ModSafeName = modtoupdatename;
+                string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                string tmpdir = Path.Combine(appdata, @"\RWE Labs\SDV Mod Manager\tmp\nexusAPI");
+
+                if (!Directory.Exists(tmpdir))
+                {
+                    Directory.CreateDirectory(tmpdir);
+                }
+
+                string latestFileID = await GetLatestFileID(modtoupdateID, apiKey);
+                if (latestFileID != null)
+                {
+                    string downloadLink = await GetDownloadLink(modtoupdateID, latestFileID, apiKey);
+                    if (downloadLink != null)
+                    {
+                        // Proceed with downloading the mod using the download link
+                        // Download the update
+                        WebClient webClient = new WebClient();
+                        string updateFileName = Path.Combine(tmpdir, @"{modtoupdatename}_update.zip"); // Name the update file
+                        Properties.Settings.Default.NexusUpdateFile = updateFileName;
+                        // Subscribe to the DownloadProgressChanged event
+                        webClient.DownloadProgressChanged += (s, args) =>
+                        {
+                            // Update progress bar or display progress percentage
+                            selectedRow.Cells["Status"].Value = "Downloading update... (" + args.ProgressPercentage + ")";
+                            UpdateStatusLabel.Text = "Downloading update... (" + args.ProgressPercentage + ")";
+                        };
+                        // Subscribe to the DownloadFileCompleted event
+                        webClient.DownloadFileCompleted += (s, args) =>
+                        {
+                            // Code to execute when download is completed
+                            selectedRow.Cells["Status"].Value = "Preparing to update...";
+                            UpdateStatusLabel.Text = "Preparing to update...";
+                            // Create a timer to start the extraction (to allow file to sit for a second)
+                            Timer installmodupdatetimer;
+                            installmodupdatetimer = new Timer();
+
+                            installmodupdatetimer.Interval = 4000; //4s
+                            installmodupdatetimer.Tick += ModUpdateInstallTimer_Tick;
+                            installmodupdatetimer.Start();
+                        };
+
+                        // Start the download asynchronously
+                        webClient.DownloadFileAsync(new Uri(downloadLink), updateFileName);
+                    }
+                }
+            }
+        }
+
+        private async Task<string> GetLatestFileID(string modtoupdateID, string apiKey)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("apikey", apiKey);
+                HttpResponseMessage response = await client.GetAsync($"https://api.nexusmods.com/v1/games/stardewvalley/mods/{modtoupdateID}/files.json?category=update");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
+
+                    if (result.file_updates != null && result.file_updates.Count > 0)
+                    {
+                        // Assuming the JSON response is sorted by upload time, get the latest file ID
+                        string fileID = result.file_updates[result.file_updates.Count - 1].new_file_id;
+                        return fileID;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No file updates found for the mod.");
+                        UpdateStatusLabel.Text = "Error: Update Returned Null";
+                        return null;
+                    }
+                }
+                else
+                {
+                    // Handle error
+                    Console.WriteLine($"Failed to get latest file ID. Status code: {response.StatusCode}");
+                    UpdateStatusLabel.Text = "Error: Unable to fetch file ID";
+                    return null;
+                }
+            }
+        }
+
+
+        private async Task<string> GetDownloadLink(string modtoupdateID, string fileID, string apiKey)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("apikey", apiKey);
+                HttpResponseMessage response = await client.GetAsync($"https://api.nexusmods.com/v1/games/stardewvalley/mods/{modtoupdateID}/files/{fileID}/download_link.json");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Response Body:");
+                    Console.WriteLine(responseBody); // Print response body for examination
+
+                    dynamic result = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
+
+                    // Check if the response is an array and contains at least one item
+                    if (result != null && result.Count > 0)
+                    {
+                        // Select the first item and check if it contains the URI property
+                        if (result[0]?.URI != null)
+                        {
+                            string downloadLink = result[0].URI;
+                            return downloadLink;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Download link not found in response.");
+                            UpdateStatusLabel.Text = "Error: No Download Found";
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No download links found in response.");
+                        UpdateStatusLabel.Text = "Error: No Download Found";
+                        return null;
+                    }
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden) // 403 - Premium user check
+                {
+                    Console.WriteLine("Premium user required for download.");
+                    UpdateStatusLabel.Text = "Error: Premium API Required";
+                    DoModUpdates.Enabled = true;
+                    UpdateCheckIsThinking.Visible = true;
+                    UpdateCheckIsThinking.Image = Resources.sdvError;
+                    DialogResult dr = MessageBox.Show("One-click update and install requires a NexusMods Pro subscription. Would you like to manually update this mod?","api.nexusmods.com | Stardew Valely Mod Manager",MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+                    if(dr == DialogResult.Yes)
+                    {
+                        Process.Start("https://www.nexusmods.com/stardewvalley/mods/{modtoupdateID}/");
+                    }
+                    if (dr == DialogResult.No)
+                    {
+                        //
+                    }
+                    return null;
+                }
+                else
+                {
+                    // Handle other errors
+                    Console.WriteLine($"Failed to get download link. Status code: {response.StatusCode}");
+                    UpdateStatusLabel.Text = "Error: No Download Found";
+                    return null;
+                }
+            }
+        }
+
+
+        //After a 4s grace period, handle the extraction of the newly downloaded file.
+        private void ModUpdateInstallTimer_Tick(object sender, EventArgs e)
+        {
+            Timer installmodupdatetimer = (Timer)sender;
+            installmodupdatetimer.Stop();
+            DataGridViewRow selectedRow = ModUpdateGrid.SelectedRows[0];
+
+            selectedRow.Cells["Status"].Value = "Extracting files...";
+            UpdateStatusLabel.Text = "Extracting files...";
+
+            try
+            {
+                string extractdir = Properties.Settings.Default.InactiveModsDir;
+                string extractpath = extractdir + Properties.Settings.Default.TMP_ModSafeName;
+
+                Ionic.Zip.ZipFile zipFile = Ionic.Zip.ZipFile.Read(Properties.Settings.Default.NexusUpdateFile);
+                {
+                    foreach (ZipEntry zipEntry in zipFile)
+                    {
+                        try
+                        {
+                            zipEntry.Extract(extractdir, ExtractExistingFileAction.OverwriteSilently);
+                        }
+                        catch (Exception ex)
+                        {
+                            selectedRow.Cells["Status"].Value = "Could not install update.";
+                            UpdateStatusLabel.Text = "Error: Could not update.";
+                            UpdateCheckIsThinking.Image = Resources.sdvError;
+                            MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
+                        }
+                    }
+                }
+
+                selectedRow.Cells["Status"].Value = "Update installed.";
+                UpdateStatusLabel.Text = "Update installed!";
+                selectedRow.Cells["Installed"].Value = selectedRow.Cells["Latest"].Value;
+                //InstallModVer.Items[InstallModVer.SelectedIndex] = UpdateModVer.SelectedItem.ToString();
+                //DoModUpdates.Enabled = false;
+                StartModUpdateCheck.Enabled = true;
+                UpdateCheckIsThinking.Visible = true;
+                UpdateCheckIsThinking.Image = Resources.sdvvalidated;
+
+                try
+                {
+                    //Remove the ZIP now that it's been extracted to the correct location
+                    File.Delete(Properties.Settings.Default.NexusUpdateFile);
+                }
+                catch
+                {
+                    //do it later
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was a problem installing your mod: " + Environment.NewLine + ex.Message, "Mod Manager | Stardew Valley Modded Framework", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CreateErrorLog("There was a problem installing a mod. Error Message:" + ex.Message);
+            }
+        }
+
+        //When the user clicks "Check for Updates", initiate a HTTP request and fetch the most up to date version from Nexus' API
+        private async void StartModUpdateCheck_Click(object sender, EventArgs e)
+        {
+            GetColorProfile();
+
+            if (Properties.Settings.Default.NexusAPIEnabled == "TRUE")
+            {
+                UpdateStatusLabel.Visible = true;
+                UpdateStatusLabel.Text = "Checking for updates...";
+                LastCheckedModUpdateLabel.Text = "Last Checked: " + DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
+                Properties.Settings.Default.MCLastCheck = DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
+                Properties.Settings.Default.Save();
+                StartModUpdateCheck.Enabled = false;
+                StartModUpdateCheck.Text = "Please wait...";
+                UpdateCheckIsThinking.Visible = true;
+                await CheckForUpdatesAsync();
+                UpdateCheckIsThinking.Visible = true;
+                UpdateCheckIsThinking.Image = Resources.sdvvalidated;
+                StartModUpdateCheck.Enabled = true;
+                StartModUpdateCheck.Text = "Check for Updates";
+                UpdateStatusLabel.Visible = false;
+                UpdateStatusLabel.Text = "Thinking...";
+            }
+            else
+            {
+                MessageBox.Show("Stardew Valley Mod Manager v240701 and later require a NexusModsAPI key to check for and update mods. You can set up this functionality in the settings. Some of the functionality may require a NexusMods pro account or subscription.","Stardew Valley Mod Manager");
+            }
+        }
+
+        //Async check for updates and compare version numbers
+        private async Task CheckForUpdatesAsync()
+        {
+            //IconView.Columns.Add("Icon",15);
+            //IconView.SmallImageList = IconList;
+            //IconView.Padding = new Padding(0, 0, 0, 0);
+
+            foreach (DataGridViewRow row in ModUpdateGrid.Rows)
+            {
+                string modName = row.Cells["ModName"].Value.ToString();
+                string modNexusID = row.Cells["NexusID"].Value.ToString();
+                string installVersionString = row.Cells["Installed"].Value.ToString();
+                string apiKey = Properties.Settings.Default.NexusAPIKey;
+
+                string apiUrl = $"https://api.nexusmods.com/v1/games/stardewvalley/mods/{modNexusID}.json";
+
+                try
+                {
+                    // Make the API request asynchronously
+                    string latestVersion = await GetLatestModVersion(modNexusID, apiKey);
+
+                    // Update UI asynchronously
+                    // Update UI asynchronously
+                    ModUpdateGrid.Invoke((MethodInvoker)delegate
+                    {
+                        if (latestVersion != null)
+                        {
+                            if (latestVersion != installVersionString)
+                            {
+                                row.Cells["Latest"].Value = latestVersion;
+                                row.Cells["Status"].Value = "Update Available.";
+                                row.Cells["StatusIcon"].Value = IconList.Images[0];
+                                //dataGridView1.Items.Add(latestVersion);
+                                //IconView.Items.Add(new System.Windows.Forms.ListViewItem(new[] { " ", null }, 0));
+                            }
+                            else
+                            {
+                                row.Cells["Latest"].Value = latestVersion;
+                                row.Cells["Status"].Value = "Up-to-date.";
+                                row.Cells["StatusIcon"].Value = IconList.Images[2];
+                                //UpdateStatus.Items.Add($"Up-to-date.");
+                                //IconView.Items.Add(new System.Windows.Forms.ListViewItem(new[] { " ", null }, 2));
+                                //UpdateModVer.Items.Add(latestVersion);
+                            }
+                        }
+                        else if (string.IsNullOrEmpty(row.Cells["Installed"].Value.ToString()))
+                        {
+                            row.Cells["Latest"].Value = "N/A";
+                            row.Cells["Status"].Value = "Version installed unknown.";
+                            row.Cells["StatusIcon"].Value = IconList.Images[1];
+                            //UpdateStatus.Items.Add($"Failed update check.");
+                            //UpdateModVer.Items.Add("Unknown");
+                            //IconView.Items.Add(new System.Windows.Forms.ListViewItem(new[] { " ", null }, 1));
+                        }
+                        else if (row.Cells["NexusID"].Value == "N/A")
+                        {
+                            row.Cells["Latest"].Value = "N/A";
+                            row.Cells["Status"].Value = "NexusID unknown.";
+                            row.Cells["StatusIcon"].Value = IconList.Images[1];
+                            //UpdateStatus.Items.Add($"Failed update check.");
+                            //UpdateModVer.Items.Add("Unknown");
+                            //IconView.Items.Add(new System.Windows.Forms.ListViewItem(new[] { " ", null }, 1));
+                        }
+                        else
+                        {
+                            row.Cells["Latest"].Value = "N/A";
+                            row.Cells["Status"].Value = "Failed to check for updates.";
+                            row.Cells["StatusIcon"].Value = IconList.Images[1];
+                            //UpdateStatus.Items.Add($"Failed update check.");
+                            //UpdateModVer.Items.Add("Unknown");
+                            //IconView.Items.Add(new System.Windows.Forms.ListViewItem(new[] { " ", null }, 1));
+                        }
+                    });
+                }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions
+                    Console.WriteLine($"Error checking for updates for {modName}: {ex.Message}");
+                    
+                }
+                finally
+                {
+                    // Delay to prevent flooding the network with requests
+                    int ratelimit = Properties.Settings.Default.NexusAPIRateLimit;
+                    //MessageBox.Show(ratelimit.ToString());
+                    await Task.Delay(ratelimit); // Adjust as needed
+                }
+            }
+        }
+
+        //Obtains the latest version number from NexusMods API with async
+        public async Task<string> GetLatestModVersion(string modId, string apiKey)
+        {
+            string apiUrl = $"https://api.nexusmods.com/v1/games/stardewvalley/mods/{modId}.json";
+
+            // Create a WebClient instance
+            using (WebClient client = new WebClient())
+            {
+                // Add API key to request headers
+                client.Headers.Add("apikey", apiKey);
+
+                try
+                {
+                    // Make a GET request to Nexus Mods API asynchronously
+                    string response = await client.DownloadStringTaskAsync(apiUrl);
+
+                    // Parse JSON response
+                    JObject modInfo = JObject.Parse(response);
+
+                    // Extract latest version from the response
+                    string latestVersion = modInfo["version"].ToString();
+
+                    return latestVersion;
+                }
+                catch (WebException ex)
+                {
+                    // Handle any exceptions (e.g., network errors)
+                    Console.WriteLine("Error: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        private void NexusAPIRateLimit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed key is a digit or a control key (such as Backspace or Delete)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Cancel the keypress event
+                e.Handled = true;
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Cell Click - Highlight Row
+            int row = e.RowIndex;
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            //Selection Change
+            CheckUpdatePossible();
+        }
+
+        private void DeprecatedModCheck_Click(object sender, EventArgs e)
+        {
+            ModUpdateCheck update = new ModUpdateCheck();
+            update.Show();
+        }
+    }
 }

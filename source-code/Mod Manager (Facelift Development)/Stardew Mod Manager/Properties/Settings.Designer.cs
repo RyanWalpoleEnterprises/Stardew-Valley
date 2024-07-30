@@ -12,7 +12,7 @@ namespace Stardew_Mod_Manager.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -145,7 +145,7 @@ namespace Stardew_Mod_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("240402")]
+        [global::System.Configuration.DefaultSettingValueAttribute("240701")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
@@ -308,6 +308,66 @@ namespace Stardew_Mod_Manager.Properties {
             }
             set {
                 this["LaunchAsAdmin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TRUE")]
+        public string NexusAPIEnabled {
+            get {
+                return ((string)(this["NexusAPIEnabled"]));
+            }
+            set {
+                this["NexusAPIEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NexusAPIKey {
+            get {
+                return ((string)(this["NexusAPIKey"]));
+            }
+            set {
+                this["NexusAPIKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NexusUpdateFile {
+            get {
+                return ((string)(this["NexusUpdateFile"]));
+            }
+            set {
+                this["NexusUpdateFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int NexusAPIRateLimit {
+            get {
+                return ((int)(this["NexusAPIRateLimit"]));
+            }
+            set {
+                this["NexusAPIRateLimit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Not recently.")]
+        public string MCLastCheck {
+            get {
+                return ((string)(this["MCLastCheck"]));
+            }
+            set {
+                this["MCLastCheck"] = value;
             }
         }
     }

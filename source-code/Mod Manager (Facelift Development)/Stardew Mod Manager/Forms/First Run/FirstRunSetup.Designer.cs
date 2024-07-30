@@ -33,6 +33,9 @@ namespace Stardew_Mod_Manager
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstRunSetup));
             this.Step = new System.Windows.Forms.TabControl();
             this.StepOne = new System.Windows.Forms.TabPage();
+            this.UseNexus = new System.Windows.Forms.CheckBox();
+            this.EULAJumpLink = new System.Windows.Forms.LinkLabel();
+            this.EULACheck = new System.Windows.Forms.CheckBox();
             this.StepOneContinue = new Syncfusion.WinForms.Controls.SfButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SubHeading = new System.Windows.Forms.Label();
@@ -66,7 +69,19 @@ namespace Stardew_Mod_Manager
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.NexusAPISettings = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.NexusModsSettings = new System.Windows.Forms.GroupBox();
+            this.NexusAPIRateLimit = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.NexusAPIGetKey = new System.Windows.Forms.LinkLabel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.NexusAPIInput = new System.Windows.Forms.TextBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.SkipNexus = new Syncfusion.WinForms.Controls.SfButton();
+            this.SaveNexusSettings = new Syncfusion.WinForms.Controls.SfButton();
             this.SetupEstablishTimer = new System.Windows.Forms.Timer(this.components);
+            this.label10 = new System.Windows.Forms.Label();
             this.Step.SuspendLayout();
             this.StepOne.SuspendLayout();
             this.StepTwo.SuspendLayout();
@@ -79,6 +94,9 @@ namespace Stardew_Mod_Manager
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.LoadingStep.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.NexusAPISettings.SuspendLayout();
+            this.NexusModsSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // Step
@@ -88,6 +106,7 @@ namespace Stardew_Mod_Manager
             this.Step.Controls.Add(this.StepThree);
             this.Step.Controls.Add(this.StepSmapi);
             this.Step.Controls.Add(this.LoadingStep);
+            this.Step.Controls.Add(this.NexusAPISettings);
             this.Step.Location = new System.Drawing.Point(-9, -25);
             this.Step.Name = "Step";
             this.Step.SelectedIndex = 0;
@@ -98,6 +117,9 @@ namespace Stardew_Mod_Manager
             // StepOne
             // 
             this.StepOne.BackColor = System.Drawing.Color.White;
+            this.StepOne.Controls.Add(this.UseNexus);
+            this.StepOne.Controls.Add(this.EULAJumpLink);
+            this.StepOne.Controls.Add(this.EULACheck);
             this.StepOne.Controls.Add(this.StepOneContinue);
             this.StepOne.Controls.Add(this.panel1);
             this.StepOne.Controls.Add(this.SubHeading);
@@ -109,11 +131,48 @@ namespace Stardew_Mod_Manager
             this.StepOne.TabIndex = 0;
             this.StepOne.Text = "StepOne";
             // 
+            // UseNexus
+            // 
+            this.UseNexus.AutoSize = true;
+            this.UseNexus.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UseNexus.Location = new System.Drawing.Point(26, 565);
+            this.UseNexus.Name = "UseNexus";
+            this.UseNexus.Size = new System.Drawing.Size(278, 17);
+            this.UseNexus.TabIndex = 12;
+            this.UseNexus.Text = "I would like to use my Nexus API key for mod updates.";
+            this.UseNexus.UseVisualStyleBackColor = true;
+            this.UseNexus.CheckedChanged += new System.EventHandler(this.UseNexus_CheckedChanged);
+            // 
+            // EULAJumpLink
+            // 
+            this.EULAJumpLink.AutoSize = true;
+            this.EULAJumpLink.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EULAJumpLink.Location = new System.Drawing.Point(182, 549);
+            this.EULAJumpLink.Name = "EULAJumpLink";
+            this.EULAJumpLink.Size = new System.Drawing.Size(139, 13);
+            this.EULAJumpLink.TabIndex = 11;
+            this.EULAJumpLink.TabStop = true;
+            this.EULAJumpLink.Text = "end user license agreement.";
+            this.EULAJumpLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EULAJumpLink_LinkClicked);
+            // 
+            // EULACheck
+            // 
+            this.EULACheck.AutoSize = true;
+            this.EULACheck.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EULACheck.Location = new System.Drawing.Point(26, 548);
+            this.EULACheck.Name = "EULACheck";
+            this.EULACheck.Size = new System.Drawing.Size(162, 17);
+            this.EULACheck.TabIndex = 10;
+            this.EULACheck.Text = "I have read and agree to the";
+            this.EULACheck.UseVisualStyleBackColor = true;
+            this.EULACheck.CheckedChanged += new System.EventHandler(this.EULACheck_CheckedChanged);
+            // 
             // StepOneContinue
             // 
             this.StepOneContinue.AccessibleName = "Button";
+            this.StepOneContinue.Enabled = false;
             this.StepOneContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.StepOneContinue.Location = new System.Drawing.Point(225, 541);
+            this.StepOneContinue.Location = new System.Drawing.Point(419, 551);
             this.StepOneContinue.Name = "StepOneContinue";
             this.StepOneContinue.Size = new System.Drawing.Size(147, 32);
             this.StepOneContinue.TabIndex = 9;
@@ -134,7 +193,7 @@ namespace Stardew_Mod_Manager
             // SubHeading
             // 
             this.SubHeading.Font = new System.Drawing.Font("Segoe UI Semilight", 9.25F);
-            this.SubHeading.Location = new System.Drawing.Point(12, 396);
+            this.SubHeading.Location = new System.Drawing.Point(12, 389);
             this.SubHeading.Name = "SubHeading";
             this.SubHeading.Size = new System.Drawing.Size(568, 128);
             this.SubHeading.TabIndex = 7;
@@ -144,7 +203,7 @@ namespace Stardew_Mod_Manager
             // Heading
             // 
             this.Heading.Font = new System.Drawing.Font("Segoe UI Semibold", 16.25F);
-            this.Heading.Location = new System.Drawing.Point(3, 353);
+            this.Heading.Location = new System.Drawing.Point(3, 346);
             this.Heading.Name = "Heading";
             this.Heading.Size = new System.Drawing.Size(590, 43);
             this.Heading.TabIndex = 6;
@@ -472,10 +531,139 @@ namespace Stardew_Mod_Manager
             this.pictureBox4.TabIndex = 6;
             this.pictureBox4.TabStop = false;
             // 
+            // NexusAPISettings
+            // 
+            this.NexusAPISettings.BackColor = System.Drawing.Color.White;
+            this.NexusAPISettings.Controls.Add(this.label9);
+            this.NexusAPISettings.Controls.Add(this.NexusModsSettings);
+            this.NexusAPISettings.Controls.Add(this.pictureBox5);
+            this.NexusAPISettings.Controls.Add(this.SkipNexus);
+            this.NexusAPISettings.Controls.Add(this.SaveNexusSettings);
+            this.NexusAPISettings.Location = new System.Drawing.Point(4, 22);
+            this.NexusAPISettings.Name = "NexusAPISettings";
+            this.NexusAPISettings.Size = new System.Drawing.Size(604, 608);
+            this.NexusAPISettings.TabIndex = 5;
+            this.NexusAPISettings.Text = "Nexus API Settings";
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(23, 325);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(541, 47);
+            this.label9.TabIndex = 47;
+            this.label9.Text = resources.GetString("label9.Text");
+            // 
+            // NexusModsSettings
+            // 
+            this.NexusModsSettings.Controls.Add(this.label10);
+            this.NexusModsSettings.Controls.Add(this.NexusAPIRateLimit);
+            this.NexusModsSettings.Controls.Add(this.label25);
+            this.NexusModsSettings.Controls.Add(this.NexusAPIGetKey);
+            this.NexusModsSettings.Controls.Add(this.label20);
+            this.NexusModsSettings.Controls.Add(this.NexusAPIInput);
+            this.NexusModsSettings.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NexusModsSettings.Location = new System.Drawing.Point(23, 379);
+            this.NexusModsSettings.Name = "NexusModsSettings";
+            this.NexusModsSettings.Size = new System.Drawing.Size(541, 159);
+            this.NexusModsSettings.TabIndex = 42;
+            this.NexusModsSettings.TabStop = false;
+            this.NexusModsSettings.Text = "Mod Updates";
+            // 
+            // NexusAPIRateLimit
+            // 
+            this.NexusAPIRateLimit.Location = new System.Drawing.Point(107, 79);
+            this.NexusAPIRateLimit.Name = "NexusAPIRateLimit";
+            this.NexusAPIRateLimit.Size = new System.Drawing.Size(133, 22);
+            this.NexusAPIRateLimit.TabIndex = 46;
+            this.NexusAPIRateLimit.Text = "1000";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(13, 81);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(88, 15);
+            this.label25.TabIndex = 45;
+            this.label25.Text = "Rate Limit (ms):";
+            // 
+            // NexusAPIGetKey
+            // 
+            this.NexusAPIGetKey.AutoSize = true;
+            this.NexusAPIGetKey.Location = new System.Drawing.Point(463, 27);
+            this.NexusAPIGetKey.Name = "NexusAPIGetKey";
+            this.NexusAPIGetKey.Size = new System.Drawing.Size(62, 13);
+            this.NexusAPIGetKey.TabIndex = 44;
+            this.NexusAPIGetKey.TabStop = true;
+            this.NexusAPIGetKey.Text = "Get API Key";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(13, 27);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(98, 15);
+            this.label20.TabIndex = 39;
+            this.label20.Text = "Personal API Key:";
+            // 
+            // NexusAPIInput
+            // 
+            this.NexusAPIInput.Location = new System.Drawing.Point(15, 45);
+            this.NexusAPIInput.Name = "NexusAPIInput";
+            this.NexusAPIInput.Size = new System.Drawing.Size(510, 22);
+            this.NexusAPIInput.TabIndex = 41;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox5.Image = global::Stardew_Mod_Manager.Properties.Resources.NMLogo;
+            this.pictureBox5.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(590, 309);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 2;
+            this.pictureBox5.TabStop = false;
+            // 
+            // SkipNexus
+            // 
+            this.SkipNexus.AccessibleName = "Button";
+            this.SkipNexus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.SkipNexus.Location = new System.Drawing.Point(292, 553);
+            this.SkipNexus.Name = "SkipNexus";
+            this.SkipNexus.Size = new System.Drawing.Size(133, 28);
+            this.SkipNexus.TabIndex = 1;
+            this.SkipNexus.Text = "Skip";
+            this.SkipNexus.Click += new System.EventHandler(this.SkipNexus_Click);
+            // 
+            // SaveNexusSettings
+            // 
+            this.SaveNexusSettings.AccessibleName = "Button";
+            this.SaveNexusSettings.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.SaveNexusSettings.Location = new System.Drawing.Point(431, 553);
+            this.SaveNexusSettings.Name = "SaveNexusSettings";
+            this.SaveNexusSettings.Size = new System.Drawing.Size(133, 28);
+            this.SaveNexusSettings.TabIndex = 0;
+            this.SaveNexusSettings.Text = "Save";
+            this.SaveNexusSettings.Click += new System.EventHandler(this.SaveNexusSettings_Click);
+            // 
             // SetupEstablishTimer
             // 
             this.SetupEstablishTimer.Interval = 6000;
             this.SetupEstablishTimer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label10.Location = new System.Drawing.Point(13, 109);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(512, 28);
+            this.label10.TabIndex = 48;
+            this.label10.Text = "We recommend a rate limit of 0.5-1s (500-1000ms) so that your requests are accept" +
+    "ed by NexusMods without impacting your experience heavily.";
             // 
             // FirstRunSetup
             // 
@@ -493,6 +681,7 @@ namespace Stardew_Mod_Manager
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FirstRunSetup_FormClosed);
             this.Step.ResumeLayout(false);
             this.StepOne.ResumeLayout(false);
+            this.StepOne.PerformLayout();
             this.StepTwo.ResumeLayout(false);
             this.StepTwo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -505,6 +694,10 @@ namespace Stardew_Mod_Manager
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.LoadingStep.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.NexusAPISettings.ResumeLayout(false);
+            this.NexusModsSettings.ResumeLayout(false);
+            this.NexusModsSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -547,5 +740,20 @@ namespace Stardew_Mod_Manager
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.CheckBox UseNexus;
+        private System.Windows.Forms.LinkLabel EULAJumpLink;
+        private System.Windows.Forms.CheckBox EULACheck;
+        private System.Windows.Forms.TabPage NexusAPISettings;
+        private Syncfusion.WinForms.Controls.SfButton SkipNexus;
+        private Syncfusion.WinForms.Controls.SfButton SaveNexusSettings;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox NexusModsSettings;
+        private System.Windows.Forms.TextBox NexusAPIRateLimit;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.LinkLabel NexusAPIGetKey;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox NexusAPIInput;
+        private System.Windows.Forms.Label label10;
     }
 }

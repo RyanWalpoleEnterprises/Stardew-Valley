@@ -52,15 +52,21 @@ namespace Stardew_Mod_Manager.Forms
             {
                 using (WebClient wc = new WebClient())
                 {
-                    string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                    string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
+                    string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                    string updatelocation = Path.Combine(dataPath, @"\RWE Labs\update\SDVMMlatest.exe");
+
+                    // Check if the file already exists, delete if necessary
+                    if (File.Exists(updatelocation))
+                    {
+                        File.Delete(updatelocation);
+                    }
 
                     wc.DownloadProgressChanged += wc_DownloadProgressChanged2;
                     wc.DownloadFileCompleted += wc_DownloadFileCompleted;
                     
                     wc.DownloadFileAsync(
                         // Param1 = Link of file
-                        new System.Uri("https://github.com/RyanWalpoleEnterprises/Stardew-Valley-Mod-Manager/raw/release-stable/version/Latest/StardewModManagerSetup.exe"),
+                        new System.Uri("https://github.com/RWELabs/Stardew-Valley-Mod-Manager/raw/release-stable/version/Latest/StardewModManagerSetup.exe"),
                         // Param2 = Path to save
                         updatelocation
                     );
@@ -71,7 +77,7 @@ namespace Stardew_Mod_Manager.Forms
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("An error occured whilst trying to update: " + ex.Message);
             }
         }
 
@@ -84,8 +90,13 @@ namespace Stardew_Mod_Manager.Forms
             }
             if (e.Error != null)
             {
-                // handle error scenario
-                throw e.Error;
+                // Handle error scenario
+                MessageBox.Show("The download failed: " + e.Error.Message);
+                Cancel.Enabled = false;
+                Cancel.Text = "Cancelling...";
+                Properties.Settings.Default.CancelDownload = true;
+
+                CancelCleanup.Start();
             }
         }
 
@@ -114,8 +125,8 @@ namespace Stardew_Mod_Manager.Forms
 
         private void StartExecute_Tick(object sender, EventArgs e)
         {
-            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            string updatelocation = Path.Combine(dataPath, "SDVMMlatest.exe");
+            string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string updatelocation = Path.Combine(dataPath, @"\RWE Labs\update\SDVMMlatest.exe");
 
             StartExecute.Stop();
 

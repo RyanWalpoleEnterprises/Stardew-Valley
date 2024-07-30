@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\rwalpole\\Documents\\GitHub\\Stardew-Valley-Mod-Framework\\source-code\\Mod Manager (Facelift Development)\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6E49D1C7-7B85-4405-A743-8801CD72D624}|Stardew Mod Manager\\Stardew Mod Manager.csproj|c:\\users\\rwalpole\\documents\\github\\stardew-valley-mod-framework\\source-code\\mod manager (facelift development)\\stardew mod manager\\forms\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E49D1C7-7B85-4405-A743-8801CD72D624}|Stardew Mod Manager\\Stardew Mod Manager.csproj|solutionrelative:stardew mod manager\\forms\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E49D1C7-7B85-4405-A743-8801CD72D624}|Stardew Mod Manager\\Stardew Mod Manager.csproj|c:\\users\\rwalpole\\documents\\github\\stardew-valley-mod-framework\\source-code\\mod manager (facelift development)\\stardew mod manager\\forms\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6E49D1C7-7B85-4405-A743-8801CD72D624}|Stardew Mod Manager\\Stardew Mod Manager.csproj|solutionrelative:stardew mod manager\\forms\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Stardew Mod Manager||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E49D1C7-7B85-4405-A743-8801CD72D624}|Stardew Mod Manager\\Stardew Mod Manager.csproj|c:\\users\\rwalpole\\documents\\github\\stardew-valley-mod-framework\\source-code\\mod manager (facelift development)\\stardew mod manager\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.cs",
+              "DocumentMoniker": "C:\\Users\\rwalpole\\Documents\\GitHub\\Stardew-Valley-Mod-Framework\\source-code\\Mod Manager (Facelift Development)\\Stardew Mod Manager\\Forms\\MainPage.cs",
+              "RelativeDocumentMoniker": "Stardew Mod Manager\\Forms\\MainPage.cs",
+              "ToolTip": "C:\\Users\\rwalpole\\Documents\\GitHub\\Stardew-Valley-Mod-Framework\\source-code\\Mod Manager (Facelift Development)\\Stardew Mod Manager\\Forms\\MainPage.cs",
+              "RelativeToolTip": "Stardew Mod Manager\\Forms\\MainPage.cs",
+              "ViewState": "AQIAAM0JAAAAAAAAAAAIwNsJAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T05:41:41.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\rwalpole\\Documents\\GitHub\\Stardew-Valley-Mod-Framework\\source-code\\Mod Manager (Facelift Development)\\Stardew Mod Manager\\Forms\\MainPage.cs",
+              "RelativeDocumentMoniker": "Stardew Mod Manager\\Forms\\MainPage.cs",
+              "ToolTip": "C:\\Users\\rwalpole\\Documents\\GitHub\\Stardew-Valley-Mod-Framework\\source-code\\Mod Manager (Facelift Development)\\Stardew Mod Manager\\Forms\\MainPage.cs [Design]",
+              "RelativeToolTip": "Stardew Mod Manager\\Forms\\MainPage.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T04:43:17.119Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Stardew Mod Manager",
+              "DocumentMoniker": "C:\\Users\\rwalpole\\Documents\\GitHub\\Stardew-Valley-Mod-Framework\\source-code\\Mod Manager (Facelift Development)\\Stardew Mod Manager\\Stardew Mod Manager.csproj",
+              "RelativeDocumentMoniker": "Stardew Mod Manager\\Stardew Mod Manager.csproj",
+              "ToolTip": "C:\\Users\\rwalpole\\Documents\\GitHub\\Stardew-Valley-Mod-Framework\\source-code\\Mod Manager (Facelift Development)\\Stardew Mod Manager\\Stardew Mod Manager.csproj",
+              "RelativeToolTip": "Stardew Mod Manager\\Stardew Mod Manager.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-25T04:31:13.87Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

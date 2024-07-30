@@ -104,14 +104,7 @@ namespace Stardew_Mod_Manager
                 {
                     if (Properties.Settings.Default.LaunchAsAdmin == "TRUE")
                     {
-                        ProcessStartInfo startInfo = new ProcessStartInfo();
-                        startInfo.FileName = Application.ExecutablePath;
-                        startInfo.Arguments = Properties.Settings.Default.LaunchArguments;
-                        startInfo.Verb = "runas";
-                        startInfo.UseShellExecute = true;
-
-                        Process.Start(startInfo);
-                        Application.Exit();
+                        Application.Run(new AdminElevate());
                     }
                     else
                     {
@@ -177,14 +170,7 @@ namespace Stardew_Mod_Manager
                     //Launch the application again - this time as administrator.
                     if (Properties.Settings.Default.LaunchAsAdmin == "TRUE")
                     {
-                        ProcessStartInfo startInfo = new ProcessStartInfo();
-                        startInfo.FileName = Application.ExecutablePath;
-                        startInfo.Arguments = Properties.Settings.Default.LaunchArguments;
-                        startInfo.Verb = "runas";
-                        startInfo.UseShellExecute = true;
-
-                        Process.Start(startInfo);
-                        Application.Exit();
+                        Application.Run(new AdminElevate());
                     }
                     //Otherwise, we just need to run the application normally.
                     else

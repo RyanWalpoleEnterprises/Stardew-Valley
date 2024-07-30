@@ -34,6 +34,7 @@ namespace Stardew_Mod_Manager
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SettingsReset = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,13 +71,23 @@ namespace Stardew_Mod_Manager
             // 
             // SettingsReset
             // 
-            this.SettingsReset.Location = new System.Drawing.Point(12, 106);
+            this.SettingsReset.Location = new System.Drawing.Point(246, 110);
             this.SettingsReset.Name = "SettingsReset";
-            this.SettingsReset.Size = new System.Drawing.Size(110, 23);
+            this.SettingsReset.Size = new System.Drawing.Size(156, 23);
             this.SettingsReset.TabIndex = 27;
-            this.SettingsReset.Text = "Reset Settings";
+            this.SettingsReset.Text = "Reset Application Settings";
             this.SettingsReset.UseVisualStyleBackColor = true;
             this.SettingsReset.Click += new System.EventHandler(this.SettingsReset_Click);
+            // 
+            // Cancel
+            // 
+            this.Cancel.Location = new System.Drawing.Point(154, 110);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(86, 23);
+            this.Cancel.TabIndex = 28;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // Settings
             // 
@@ -84,6 +95,7 @@ namespace Stardew_Mod_Manager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(414, 145);
+            this.Controls.Add(this.Cancel);
             this.Controls.Add(this.SettingsReset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -104,5 +116,6 @@ namespace Stardew_Mod_Manager
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button SettingsReset;
+        private System.Windows.Forms.Button Cancel;
     }
 }

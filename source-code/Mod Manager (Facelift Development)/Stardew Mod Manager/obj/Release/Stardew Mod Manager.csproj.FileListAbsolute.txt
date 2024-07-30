@@ -49,7 +49,6 @@ C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod 
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\Syncfusion.Core.WinForms.xml
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\Syncfusion.Shared.Base.xml
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.csproj.AssemblyReference.cache
-C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.csproj.SuggestedBindingRedirects.cache
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Interop.IWshRuntimeLibrary.dll
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.csproj.ResolveComReference.cache
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew_Mod_Manager.FirstRunSetup_Complete.resources
@@ -62,7 +61,6 @@ C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod 
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew_Mod_Manager.Startup.Splash.resources
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.csproj.GenerateResource.cache
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.csproj.CoreCompileInputs.cache
-C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.csproj.CopyComplete
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.exe
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew Mod Manager.pdb
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew_Mod_Manager.Forms.First_Run.UpdateVersion.resources
@@ -195,3 +193,7 @@ C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod 
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\DotNetZip.dll
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\DotNetZip.pdb
 C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\DotNetZip.xml
+C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew_Mod_Manager.Startup.AdminElevate.resources
+C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\Newtonsoft.Json.dll
+C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\bin\Release\Newtonsoft.Json.xml
+C:\Users\rwalpole\Documents\GitHub\Stardew-Valley-Mod-Framework\source-code\Mod Manager (Facelift Development)\Stardew Mod Manager\obj\Release\Stardew .EC720556.Up2Date
