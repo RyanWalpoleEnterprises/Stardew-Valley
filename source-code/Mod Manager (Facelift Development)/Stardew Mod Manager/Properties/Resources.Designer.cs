@@ -83,6 +83,16 @@ namespace Stardew_Mod_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gallery_001455 {
+            get {
+                object obj = ResourceManager.GetObject("gallery-001455", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GameDirExample {
             get {
                 object obj = ResourceManager.GetObject("GameDirExample", resourceCulture);
@@ -96,6 +106,66 @@ namespace Stardew_Mod_Manager.Properties {
         internal static System.Drawing.Bitmap icon_attention {
             get {
                 object obj = ResourceManager.GetObject("icon_attention", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LSBirb {
+            get {
+                object obj = ResourceManager.GetObject("LSBirb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LSBlue {
+            get {
+                object obj = ResourceManager.GetObject("LSBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LSGreen {
+            get {
+                object obj = ResourceManager.GetObject("LSGreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LSLyle {
+            get {
+                object obj = ResourceManager.GetObject("LSLyle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LSNature {
+            get {
+                object obj = ResourceManager.GetObject("LSNature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LSPink {
+            get {
+                object obj = ResourceManager.GetObject("LSPink", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +236,16 @@ namespace Stardew_Mod_Manager.Properties {
         internal static System.Drawing.Bitmap ModpackInstall {
             get {
                 object obj = ResourceManager.GetObject("ModpackInstall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NMLogo {
+            get {
+                object obj = ResourceManager.GetObject("NMLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

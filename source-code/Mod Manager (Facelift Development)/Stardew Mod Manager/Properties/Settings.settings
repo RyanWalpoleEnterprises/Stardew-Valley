@@ -33,7 +33,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">240402</Value>
+      <Value Profile="(Default)">240701</Value>
     </Setting>
     <Setting Name="CheckUpdateOnStartup" Type="System.String" Scope="User">
       <Value Profile="(Default)">TRUE</Value>
@@ -73,6 +73,21 @@
     </Setting>
     <Setting Name="LaunchAsAdmin" Type="System.String" Scope="User">
       <Value Profile="(Default)">FALSE</Value>
+    </Setting>
+    <Setting Name="NexusAPIEnabled" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TRUE</Value>
+    </Setting>
+    <Setting Name="NexusAPIKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NexusUpdateFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NexusAPIRateLimit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="MCLastCheck" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Not recently.</Value>
     </Setting>
   </Settings>
 </SettingsFile>

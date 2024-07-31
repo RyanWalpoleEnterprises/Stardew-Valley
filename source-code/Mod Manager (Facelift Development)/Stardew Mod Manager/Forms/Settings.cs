@@ -37,5 +37,10 @@ namespace Stardew_Mod_Manager
                 //do nothing.
             }
         }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
